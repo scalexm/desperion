@@ -20,7 +20,7 @@ void session::load_patch()
 std::shared_ptr<session> session::create(boost::asio::io_service & ios,
                                          boost::asio::io_service & ws)
 {
-    return std::shared_ptr<session>{ new session { ios, ws } };
+    return std::shared_ptr<session> { new session { ios, ws } };
 }
 
 session::session(boost::asio::io_service & ios, boost::asio::io_service & ws)

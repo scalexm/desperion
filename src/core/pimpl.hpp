@@ -18,7 +18,7 @@ private:
     std::unique_ptr<T> _ptr;
 public:
     pimpl();
-    template<class... Args> pimpl(Args && ...);
+    template<class ... Args> pimpl(Args && ...);
     ~pimpl();
     T * operator ->();
     const T * operator ->() const;

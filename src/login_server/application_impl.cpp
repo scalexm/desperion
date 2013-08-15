@@ -101,8 +101,7 @@ shutdown_type application::impl::run(int argc, const char ** argv)
     port = _config.get_property("system_port", SERVER_PORT_DEFAULT);
     listener.listen<game_session>(port, _owner->_service);
 
-    std::cout << std::endl;
-    std::cout << "uptime " << _owner->uptime() << " microseconds" << std::endl;
+    std::cout << "\nuptime " << _owner->uptime() << " microseconds" << std::endl;
 
     listener.spawn_threads(_config.get_property("pool_threads", POOL_THREADS_DEFAULT));
     std::thread t { std::bind(&run_service, std::ref(_owner->_service)) };

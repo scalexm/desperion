@@ -70,7 +70,7 @@ private:
         q.args.push_back(boost::lexical_cast<std::string>(value));
     }
 
-    template<class T, class... Args>
+    template<class T, class ... Args>
     static void build_query(sql_query & q, const T & value, const Args & ... args)
     {
         q.args.push_back(boost::lexical_cast<std::string>(value));
@@ -88,7 +88,7 @@ public:
     void async_query(sql_callback, query_list);
 
     // helper method to create prepared statements easily
-    template<class... Args>
+    template<class ... Args>
     static sql_query prepare(std::string name, const Args & ... args)
     {
         sql_query q { std::move(name) };

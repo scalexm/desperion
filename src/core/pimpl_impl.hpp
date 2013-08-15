@@ -11,12 +11,12 @@
 
 // see gotw c++11 updated pimpl idiom
 
-template<class T> pimpl<T>::pimpl() : _ptr { new T { } }
+template<class T> pimpl<T>::pimpl() : _ptr { std::make_unique<T>() }
 {
 }
 
-template<class T> template<class ...Args>
-pimpl<T>::pimpl(Args && ... args ) : _ptr{ new T { std::forward<Args>(args)... } }
+template<class T> template<class ... Args>
+pimpl<T>::pimpl(Args && ... args ) : _ptr { std::make_unique<T>(std::forward<Args>(args)...) }
 {
 }
 

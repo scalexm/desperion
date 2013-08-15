@@ -210,7 +210,7 @@ void abstract_session::send(const network::dofus_unit & message, bool disconnect
 void abstract_session::write(const network::dofus_unit & message)
 {
     if (!_packet)
-        _packet.reset(new byte_buffer);
+        _packet = std::make_shared<byte_buffer>();
     abstract_session::format(_packet, message);
 }
 

@@ -20,11 +20,11 @@ protected:
     ~singleton() = default;
 
 public:
-    template<class... Args>
+    template<class ... Args>
     static T & create(Args && ... args)
     {
         assert( !_singleton );
-        _singleton.reset(new T { std::forward<Args>(args)... });
+        _singleton.reset(new T { std::forward<Args>(args)... }); // raw new because of private ctors
         return *_singleton;
     }
 
