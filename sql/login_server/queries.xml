@@ -1,0 +1,17 @@
+<config>
+	<load>SELECT * FROM game_servers</load>
+    
+    <check_ban_ip>SELECT "ban_end" FROM "ip_bans" WHERE "ip"=$1 LIMIT 1</check_ban_ip>
+    
+    <delete_ban_ip>DELETE FROM "ip_bans" WHERE "ip"=$1</delete_ban_ip>
+    
+    <load_account>SELECT "password", "guid", "secret_question", "pseudo", "logged", "level", "last_server", "subscription_end", "ban_end", "salt" FROM "accounts" WHERE "account"=$1 LIMIT 1</load_account>
+    
+    <update_ban>UPDATE "accounts" SET "ban_end"=0 WHERE "guid"=$1</update_ban>
+    
+    <character_counts>SELECT "server_id" FROM "character_counts" WHERE "account_guid"=$1</character_counts>
+    
+    <update_ticket>UPDATE "accounts" SET "ticket"=$1 WHERE "guid"=$2</update_ticket>
+    
+    <acquaintance_search>SELECT "server_id" FROM "character_counts" INNER JOIN "accounts" ON "accounts"."guid" = "character_counts"."account_guid" WHERE LOWER("accounts"."pseudo")=$1</acquaintance_search>
+</config>
