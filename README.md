@@ -9,6 +9,7 @@ Attention, le projet protocol_builder inclut l'utilisation d'inheriting construc
 * Desperion est constitué de six projets:
 	* core: bibliothèque incluant les fonctionnalités partagées par tous les projets
 	* d2fstream: bibliothèque permettant de lire les différents fichiers du client Dofus
+	* tests: tests unitaires
 	* protocol_builder: utilitaire pour traduire les fichiers ActionScript du protocole Dofus en fichiers C++
 	* login_server: serveur de connexion de l'émulateur
 	* game_server: serveur de jeu de l'émulateur
