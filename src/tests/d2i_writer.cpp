@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(misc)
 
     d2i_reader d2i { std::ifstream { "test.d2i", std::ios::binary } };
     BOOST_REQUIRE_EQUAL( d2i.read_all_text()[2], "yo" );
-    BOOST_REQUIRE_EQUAL( d2i.read_all_ui_text()["hey"],"abc" );
+    BOOST_REQUIRE_EQUAL( d2i.read_all_ui_text()["hey"], "abc" );
 }
 
 BOOST_AUTO_TEST_SUITE_END()

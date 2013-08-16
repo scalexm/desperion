@@ -37,8 +37,8 @@ BOOST_AUTO_TEST_CASE(misc)
                            throw sql_error { err };
                        BOOST_REQUIRE( *result );
                        auto && fields = result->fetch();
-                       BOOST_REQUIRE( fields.at("a").get<std::string>() == "salut" );
-                       BOOST_REQUIRE( fields.at("b").get<int>() == 45 );
+                       BOOST_REQUIRE_EQUAL( fields.at("a").get<std::string>(), "salut" );
+                       BOOST_REQUIRE_EQUAL( fields.at("b").get<int>(), 45 );
                    }, { sql_database::prepare("t2") });
 
     ios.run();

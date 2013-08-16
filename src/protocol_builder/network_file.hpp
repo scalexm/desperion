@@ -13,40 +13,41 @@
 #include <list>
 #include <unordered_map>
 
-class field
-{
-private:
-    std::string _name;
-    std::string _type;
-    bool _instance_of;
-    int _bit;
-    bool _vector;
-
-public:
-    field(std::string name, std::string type, bool vector, bool instance_of, int bit)
-    : _name { std::move(name) }, _vector { vector }, _type { std::move(type) },
-    _instance_of { instance_of }, _bit { bit }
-    {
-    }
-
-    const std::string & name() const
-    { return _name; }
-
-    const std::string & type() const
-    { return _type; }
-
-    bool is_instance_of() const
-    { return _instance_of; }
-
-    int bit() const
-    { return _bit; }
-
-    bool is_vector() const
-    { return _vector; }
-};
-
 class network_file : public parser
 {
+public:
+    class field
+    {
+    private:
+        std::string _name;
+        std::string _type;
+        bool _instance_of;
+        int _bit;
+        bool _vector;
+
+    public:
+        field(std::string name, std::string type, bool vector, bool instance_of, int bit)
+            : _name { std::move(name) }, _vector { vector }, _type { std::move(type) },
+            _instance_of { instance_of }, _bit { bit }
+        {
+        }
+
+        const std::string & name() const
+        { return _name; }
+
+        const std::string & type() const
+        { return _type; }
+
+        bool is_instance_of() const
+        { return _instance_of; }
+        
+        int bit() const
+        { return _bit; }
+        
+        bool is_vector() const
+        { return _vector; }
+    };
+
 private:
     std::list<field> _fields;
     int _id = -1;

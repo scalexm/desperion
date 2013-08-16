@@ -91,7 +91,9 @@ boost::any d2o_field::read_object(d2o_reader * owner, byte_buffer & buffer, int)
     buffer >> class_id;
     return {
         data_object {
-            class_id, owner->get_class_definition(class_id).read(owner, buffer)
+            class_id,
+            class_id >= 0 ? owner->get_class_definition(class_id).read(owner, buffer)
+                : data_fields { }
         }
     };
 }

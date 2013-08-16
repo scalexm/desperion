@@ -12,27 +12,28 @@
 #include "parser.hpp"
 #include <list>
 
-class constant
-{
-private:
-    std::string _name;
-    int _value;
-
-public:
-    constant(std::string name, int value) : _name { std::move(name) }, _value { value }
-    {
-
-    }
-
-    const std::string & name() const
-    { return _name; }
-
-    int value() const
-    { return _value; }
-};
-
 class enum_file : public parser
 {
+public:
+    class constant
+    {
+    private:
+        std::string _name;
+        int _value;
+
+    public:
+        constant(std::string name, int value) : _name { std::move(name) }, _value { value }
+        {
+
+        }
+
+        const std::string & name() const
+        { return _name; }
+        
+        int value() const
+        { return _value; }
+    };
+    
 private:
     std::list<constant> _constants;
 

@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <boost/any.hpp>
 #include <string>
+#include <fstream>
 
 class d2o_class_definition;
 using data_fields = std::unordered_map<std::string, boost::any>;

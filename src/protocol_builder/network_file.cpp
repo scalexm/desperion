@@ -66,11 +66,12 @@ void network_file::parse()
 
 /*
  cpp output
- yeah i know, i'm not that goot at outputting formatted things
+ yeah i know, i'm not that good at outputting formatted things
  */
 
-std::list<field> get_base_fields(const std::string & name,
-                                 const std::unordered_map<std::string, network_file> & files)
+std::list<network_file::field> get_base_fields(const std::string & name,
+                                               const std::unordered_map<std::string, network_file>
+                                               & files)
 {
     if (name == "NetworkMessage" || name == "Object")
         return { };
@@ -98,7 +99,7 @@ std::string get_cpp_type(const std::string & type, bool vector)
     return to_cpp_case(type) + "_ptr";
 }
 
-std::string get_real_type(const field & f)
+std::string get_real_type(const network_file::field & f)
 {
     return f.is_vector() ? "std::vector<" + f.type() + ">" : f.type();
 }
@@ -114,7 +115,7 @@ bool is_serializable(const std::string & type)
     || type == "std::string" || type == "bool" || type == "std::vector<int8_t>";
 }
 
-bool read_field(output & o, const field & f, bool flagged, bool from_vector)
+bool read_field(output & o, const network_file::field & f, bool flagged, bool from_vector)
 {
     if (is_serializable(get_real_type(f)) && f.bit() == -1)
         o.next() << "data >> " << f.name() << ";";
@@ -164,7 +165,7 @@ bool read_field(output & o, const field & f, bool flagged, bool from_vector)
     return flagged;
 }
 
-bool write_field(output & o, const field & f, bool flagged)
+bool write_field(output & o, const network_file::field & f, bool flagged)
 {
     if (flagged && f.bit() == -1)
     {

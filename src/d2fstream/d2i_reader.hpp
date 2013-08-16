@@ -12,6 +12,7 @@
 #include "../core/pimpl.hpp"
 #include <unordered_map>
 #include <string>
+#include <fstream>
 
 class d2i_reader
 {

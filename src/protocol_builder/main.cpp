@@ -9,6 +9,7 @@
 #include "enum_file.hpp"
 #include "output_helper.hpp"
 #include "network_file.hpp"
+#include "datacenter_file.hpp"
 #include <iostream>
 #include <boost/filesystem.hpp>
 #include <sstream>
@@ -69,17 +70,48 @@ void make_cpp_file(const std::string & content, const fs::path & path)
     f << content;
 }
 
+fs::path compute(const fs::path & local, const fs::path & protocol, const fs::path & path)
+{
+    auto complete_path = local / (make_relative(protocol, path));
+    return complete_path;
+}
+
+template<class T>
+void retrieve(std::unordered_map<std::string, T> & files,
+              std::unordered_map<std::string, fs::path> & paths,
+              const fs::path & local, const fs::path & protocol, const std::string & folder)
+{
+    for (fs::recursive_directory_iterator it { protocol / folder };
+         it != fs::recursive_directory_iterator { }; ++it)
+    {
+        if (!fs::is_regular_file(it->path()) || it->path().extension() != ".as")
+        {
+            if (fs::is_directory(it->path()))
+                create_directory(compute(local, protocol, it->path()));
+            continue;
+        }
+        if (it->path().string().find("IItemCriterion") != std::string::npos)
+            continue;
+        T f { std::ifstream { it->path().string() } };
+        f.parse();
+        paths.emplace(f.class_name(),
+                      compute(local, protocol, it->path().parent_path())
+                      / (to_cpp_case(f.class_name()) + ".hpp"));
+        files.emplace(f.class_name(), std::move(f));
+    }
+}
+
+
 int main(int argc, const char * argv[])
 {
-    std::string path = "/Users/alexm/Desktop/DofusInvoker/action/com/ankamagames/dofus/network";//"./network";
+    std::string path = "./protocol";
     if (argc > 1)
         path = argv[1];
-    
+    fs::path protocol;
     std::istringstream ss { path };
-    fs::path network;
-    ss >> network;
+    ss >> protocol;
     
-    if (!fs::is_directory(network))
+    if (!fs::is_directory(protocol))
         throw std::runtime_error { path + " is not a directory or doesn't exist" };
 
     auto local = fs::current_path() / "cpp" ;
@@ -89,62 +121,49 @@ int main(int argc, const char * argv[])
     fs::create_directory(local / "enums");
     fs::create_directory(local / "messages");
     fs::create_directory(local / "types");
-
-    auto compute = [&local, &network](const fs::path & path)
-    {
-        auto complete_path = local / (make_relative(network, path));
-        return complete_path;
-    };
+    fs::create_directory(local / "datacenter");
     
     /* enums */
     std::cout << "Translating enums..." << std::endl;
-    for (fs::recursive_directory_iterator it { network / "enums" };
+    for (fs::recursive_directory_iterator it { protocol / "enums" };
          it != fs::recursive_directory_iterator { }; ++it)
     {
         if (!fs::is_regular_file(it->path()) || it->path().extension() != ".as")
         {
             if (fs::is_directory(it->path()))
-                create_directory(compute(it->path()));
+                create_directory(compute(local, protocol, it->path()));
             continue;
         }
         enum_file f { std::ifstream { it->path().string() } };
         f.parse();
         make_cpp_file(f.cpp_output(),
-                      compute(it->path().parent_path()) / (to_cpp_case(f.class_name()) + ".hpp"));
+                      compute(local, protocol, it->path().parent_path())
+                      / (to_cpp_case(f.class_name()) + ".hpp"));
     }
 
     /* messages / types */
     std::cout << "Translating messages and types..." << std::endl;
-    std::unordered_map<std::string, network_file> files;
+    std::unordered_map<std::string, network_file> network;
     std::unordered_map<std::string, fs::path> paths;
     
-    auto retrieve = [&network, &files, &paths, &compute](const std::string & folder)
-    {
-        for (fs::recursive_directory_iterator it { (network / folder) };
-             it != fs::recursive_directory_iterator { }; ++it)
-        {
-            if (!fs::is_regular_file(it->path()) || it->path().extension() != ".as")
-            {
-                if (fs::is_directory(it->path()))
-                    create_directory(compute(it->path()));
-                continue;
-            }
-            network_file f { std::ifstream { it->path().string() } };
-            f.parse();
-            paths.emplace(f.class_name(),
-                          compute(it->path().parent_path()) / (to_cpp_case(f.class_name())
-                                                               + ".hpp"));
-            files.emplace(f.class_name(), std::move(f));
-        }
-    };
-    
-    retrieve("messages");
-    retrieve("types");
+    retrieve(network, paths, local, protocol, "messages");
+    retrieve(network, paths, local, protocol, "types");
 
     for (auto && it : paths)
     {
-        auto && f = files.at(it.first);
-        make_cpp_file(f.cpp_output(files), it.second);
+        auto && f = network.at(it.first);
+        make_cpp_file(f.cpp_output(network), it.second);
+    }
+
+    /* datacenter */
+    std::cout << "Translating datacenter..." << std::endl;
+    std::unordered_map<std::string, datacenter_file> datacenter;
+    paths.clear();
+    retrieve(datacenter, paths, local, protocol, "datacenter");
+    for (auto && it : paths)
+    {
+        auto && f = datacenter.at(it.first);
+        make_cpp_file(f.cpp_output(datacenter), it.second);
     }
 
     return 0;

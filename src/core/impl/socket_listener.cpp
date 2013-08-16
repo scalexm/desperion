@@ -32,4 +32,5 @@ void socket_listener::spawn_threads(size_t threads)
 void socket_listener::stop()
 {
     _service.stop();
+    _handlers.clear();
 }
