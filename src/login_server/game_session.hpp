@@ -39,7 +39,7 @@ private:
     void handle_players_message(byte_buffer &);
     void handle_connect_message(byte_buffer &);
 
-    void process_data(const network_message &) override;
+    void process_data(const dofus_executor::message &) override;
     void send(const network::dofus_unit &, bool disconnect = false);
     void write(const network::dofus_unit &);
     void flush(bool disconnect = false);

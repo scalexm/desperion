@@ -18,14 +18,8 @@ namespace network
     class dofus_unit;
 }
 
-struct network_message
-{
-    int16_t opcode;
-    std::shared_ptr<byte_buffer> packet;
-};
-
 class dofus_executor;
-using base_type = abstract_session<network_message, dofus_executor>;
+using base_type = abstract_session<dofus_executor>;
 
 class dofus_executor
 {
@@ -42,6 +36,12 @@ private:
                       std::shared_ptr<base_type> &,
                       bool);
 public:
+    struct message
+    {
+        int16_t opcode;
+        std::shared_ptr<byte_buffer> packet;
+    };
+
     dofus_executor() = default;
     void start_read(std::shared_ptr<base_type>);
 

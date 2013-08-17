@@ -48,7 +48,7 @@ session::~session()
     //  willingly empty
 }
 
-void session::process_data(const network_message & message)
+void session::process_data(const dofus_executor::message & message)
 {
     _impl->process_data(message);
 }

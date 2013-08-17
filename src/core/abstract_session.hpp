@@ -12,8 +12,8 @@
 #include <ctime>
 #include <boost/asio.hpp>
 
-template<class Message, class Executor>
-class abstract_session : public std::enable_shared_from_this<abstract_session<Message, Executor>>
+template<class Executor>
+class abstract_session : public std::enable_shared_from_this<abstract_session<Executor>>
 {
     friend Executor;
 private:
@@ -30,7 +30,7 @@ private:
         }
     }
 
-    void handle_new_message(Message message)
+    void handle_new_message(typename Executor::message message)
     {
         _main_service.post(std::bind(&abstract_session::process_data,
                                      this->shared_from_this(),
@@ -61,7 +61,7 @@ protected:
         close_socket();
     }
 
-    virtual void process_data(const Message &) = 0;
+    virtual void process_data(const typename Executor::message &) = 0;
 
 public:
     virtual void start() = 0;

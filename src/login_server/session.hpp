@@ -28,7 +28,7 @@ private:
     pimpl<impl> _impl;
 
     session(boost::asio::io_service &, boost::asio::io_service &);
-    void process_data(const network_message &) override;
+    void process_data(const dofus_executor::message &) override;
     void handle_identification(const std::shared_ptr<network::identification_message> &);
     void finish_identification(int16_t, int16_t, bool);
 

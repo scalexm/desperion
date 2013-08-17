@@ -155,7 +155,7 @@ void game_session::start()
     _executor.start_read(this->shared_from_this());
 }
 
-void game_session::process_data(const network_message & message)
+void game_session::process_data(const dofus_executor::message & message)
 {
     auto it = _handlers.find(message.opcode);
     if (it == end(_handlers))

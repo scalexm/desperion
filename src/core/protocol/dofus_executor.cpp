@@ -160,7 +160,7 @@ void dofus_executor::handle_read_raw_data(const boost::system::error_code & ec,
     if (ec)
         return owner->handle_error();
 
-    network_message message;
+    struct message message;
     message.opcode = _header >> 2;
     message.packet = std::make_shared<byte_buffer>(_raw_data);
     owner->handle_new_message(message);

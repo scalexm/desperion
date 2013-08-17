@@ -167,7 +167,7 @@ void session::impl::start()
     _owner->_executor.start_read(_owner->shared_from_this());
 }
 
-void session::impl::process_data(const network_message & message)
+void session::impl::process_data(const dofus_executor::message & message)
 {
     auto it = _handlers.find(message.opcode);
     if (it == end(_handlers))
