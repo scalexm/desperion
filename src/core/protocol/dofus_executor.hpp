@@ -56,8 +56,7 @@ public:
 
     // ::write writes in a buffer, and ::flush calls ::send(buffer)
     void write(const network::dofus_unit &);
-    void flush(std::shared_ptr<base_type>,
-               bool disconnect = false);
+    void flush(std::shared_ptr<base_type>, bool disconnect = false);
 };
 
 #endif
