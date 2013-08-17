@@ -102,7 +102,7 @@ void retrieve(std::unordered_map<std::string, T> & files,
 }
 
 
-int main(int argc, const char * argv[])
+int main(int argc, const char ** argv)
 {
     std::string path = "./protocol";
     if (argc > 1)

@@ -8,16 +8,16 @@
 
 #include "common.hpp"
 #include "world_impl.hpp"
+#include "../core/protocol/dofus.hpp"
 #include "../core/utils.hpp"
 #include "../core/sql_database.hpp"
 #include "../core/query_result.hpp"
 #include "application.hpp"
 #include "session.hpp"
 #include "game_session.hpp"
-#include "../core/network/dofus.hpp"
-#include "../core/network/types/connection/game_server_informations.hpp"
-#include "../core/network/messages/connection/server_status_update_message.hpp"
-#include "../core/network/enums/server_status_enum.hpp"
+#include "../core/protocol/types/connection/game_server_informations.hpp"
+#include "../core/protocol/messages/connection/server_status_update_message.hpp"
+#include "../core/protocol/enums/server_status_enum.hpp"
 #include <iostream>
 #include <chrono>
 #include <boost/algorithm/string.hpp>

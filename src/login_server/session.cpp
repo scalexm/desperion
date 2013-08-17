@@ -8,8 +8,8 @@
 
 #include "common.hpp"
 #include "session_impl.hpp"
-#include "../core/network/dofus.hpp"
-#include "../core/network/types/connection/game_server_informations.hpp"
+#include "../core/protocol/dofus.hpp"
+#include "../core/protocol/types/connection/game_server_informations.hpp"
 #include <iostream>
 
 void session::load_patch()
@@ -28,9 +28,19 @@ session::session(boost::asio::io_service & ios, boost::asio::io_service & ws)
 {
 }
 
-bool session::is_allowed(int16_t opcode) const
+void session::send(const network::dofus_unit & unit, bool disconnect)
 {
-    return _impl->is_allowed(opcode);
+    _impl->send(unit, disconnect);
+}
+
+void session::write(const network::dofus_unit & unit)
+{
+    _impl->write(unit);
+}
+
+void session::flush(bool disconnect)
+{
+    _impl->flush(disconnect);
 }
 
 session::~session()
@@ -38,9 +48,9 @@ session::~session()
     //  willingly empty
 }
 
-void session::process_data(int16_t opcode, byte_buffer & packet)
+void session::process_data(const network_message & message)
 {
-    _impl->process_data(opcode, packet);
+    _impl->process_data(message);
 }
 
 void session::start()

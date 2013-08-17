@@ -22,6 +22,8 @@ enum class shutdown_type
 
 class abstract_application
 {
+private:
+    class impl;
 public:
     virtual shutdown_type run(int, const char **) = 0;
     void shutdown(shutdown_type s);

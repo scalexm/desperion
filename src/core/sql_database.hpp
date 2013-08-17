@@ -60,6 +60,7 @@ private:
     std::unique_ptr<boost::asio::io_service::work> _work;
     std::unique_ptr<std::thread> _thread;
     std::vector<connection> _connections;
+    
     query_result send_query(connection &, const query_list &, std::string &);
     void async_send_query(boost::asio::io_service::work & work, sql_callback, const query_list &);
     connection & get_free_connection();

@@ -12,8 +12,8 @@
 d2o_reader::impl::impl(std::ifstream & file, d2o_reader * owner) : _buffer { file },
     _owner { owner }
 {
-    std::string header;
-    _buffer.read_bytes(header, 3);
+    std::string header(3, ' ');
+    _buffer.read_bytes<false>(reinterpret_cast<uint8_t *>(&header[0]), 3);
     int beg = 0;
     if (header != "D2O")
     {
@@ -26,7 +26,7 @@ d2o_reader::impl::impl(std::ifstream & file, d2o_reader * owner) : _buffer { fil
         _buffer >> unk >> offset;
         _buffer.seekg(_buffer.tellg() + offset);
         beg = _buffer.tellg();
-        _buffer.read_bytes(header, 3);
+        _buffer.read_bytes<false>(reinterpret_cast<uint8_t *>(&header[0]), 3);
         if (header != "D2O")
             throw std::runtime_error { "corrupted d2os file "};
     }

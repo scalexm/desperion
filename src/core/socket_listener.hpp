@@ -51,10 +51,11 @@ private:
     };
 
     boost::asio::io_service _service;
+    std::unique_ptr<boost::asio::io_service::work> _work;
     std::unordered_map<uint16_t, session_handler> _handlers;
     
 public:
-    socket_listener() = default;
+    socket_listener();
     void spawn_threads(size_t);
     void stop();
 
@@ -67,6 +68,5 @@ public:
                                                                   port)).first->second;
         handler.listen<Session>();
     }
-
 };
 #endif

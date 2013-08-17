@@ -1,8 +1,8 @@
 //
 //  byte_buffer.hpp
-//  core
+//  Test
 //
-//  Created by Alexandre Martin on 30/07/13.
+//  Created by Alexandre Martin on 17/08/13.
 //  Copyright (c) 2013 alexm. All rights reserved.
 //
 
@@ -10,88 +10,46 @@
 #define core_byte_buffer_hpp
 
 #include <vector>
-#include <fstream>
-#include <string>
 #include <type_traits>
+#include <fstream>
+#include <boost/detail/endian.hpp>
 
-void swap_bytes(uint8_t *, size_t);
-void swap_bytes(uint8_t *, const uint8_t *, size_t);
+void reverse_bytes(uint8_t *, size_t);
 
-enum class endianness
+namespace policies
 {
-    LITTLE,
-    BIG,
-};
+    template<bool>
+    struct endianness;
 
+    template<>
+    struct endianness<true>
+    {
+        static void apply(uint8_t * bytes, size_t count)
+        {
+            reverse_bytes(bytes, count);
+        }
+    };
 
-/*
- - class implementing primitive byte buffer manipulations
- - internal endianness: big endian
- */
+    template<>
+    struct endianness<false>
+    {
+        static void apply(uint8_t * bytes, size_t count)
+        {
+        }
+    };
+}
 
 class byte_buffer
 {
 private:
-    size_t _rpos = 0, _wpos = 0;
     std::vector<uint8_t> _data;
+    size_t _wpos = 0, _rpos = 0;
 
 public:
-    static endianness ENDIANNESS;
-
-    byte_buffer();
+    byte_buffer() = default;
     explicit byte_buffer(std::vector<uint8_t>);
+    explicit byte_buffer(std::ifstream &&);
     explicit byte_buffer(std::ifstream &);
-    
-    void write_bytes(const uint8_t *, size_t);
-    void clear();
-    uint8_t & operator [](size_t);
-    const uint8_t & operator [](size_t) const;
-
-    template<class T>
-    void write(const T & value)
-    {
-        static_assert(std::is_arithmetic<T>::value, "read requires arithmetic type");
-        constexpr auto size = sizeof(T);
-        if (size > 1 && byte_buffer::ENDIANNESS == endianness::LITTLE)
-        {
-            uint8_t raw[size];
-            swap_bytes(raw, (const uint8_t*)&value, size);
-            write_bytes(raw, size);
-        }
-        else
-            write_bytes((const uint8_t*)&value, size);
-    }
-
-    template<class T>
-    void read(T & value)
-    {
-        read<T>(_rpos, value);
-        if (byte_buffer::ENDIANNESS == endianness::LITTLE)
-            swap_bytes((uint8_t*)&value, sizeof(T));
-        _rpos += sizeof(T);
-    }
-
-    template<class T>
-    void read(size_t pos, T & value)
-    {
-        static_assert(std::is_arithmetic<T>::value, "read requires arithmetic type");
-        auto size = sizeof(T);
-        value = (pos + size <= _data.size() ? *((T*)&_data[pos]) : 0);
-    }
-
-    template<class T>
-    void read_bytes(T & bytes, size_t count)
-    {
-        bytes.clear();
-        if (count == 0)
-            return;
-        if (_rpos + count <= _data.size())
-        {
-            bytes.resize(count);
-            memcpy((uint8_t*)&bytes[0], &_data[_rpos], count);
-        }
-        _rpos += count;
-    }
 
     size_t tellg() const
     { return _rpos; }
@@ -108,46 +66,101 @@ public:
     size_t size() const
     { return _data.size(); }
 
-    const uint8_t * data() const
-    { return _data.data(); }
+    void clear()
+    { _data.clear(); }
+
+    uint8_t & operator [](size_t pos)
+    { return _data[pos]; }
+
+    const uint8_t & operator [](size_t pos) const
+    { return _data[pos]; }
+
+    template<bool Apply>
+    void write_bytes(const uint8_t * bytes, size_t count)
+    {
+        if (bytes == nullptr || count == 0)
+            return;
+        if (_data.size() < _wpos + count)
+            _data.resize(_wpos + count);
+        memcpy(&_data[_wpos], bytes, count);
+#ifdef BOOST_LITTLE_ENDIAN
+        policies::endianness<Apply>::apply(&_data[_wpos], count);
+#endif
+        _wpos += count;
+    }
+
+    template<bool Apply>
+    void read_bytes(uint8_t * bytes, size_t count)
+    {
+        if (bytes == nullptr || count == 0)
+            return;
+        if (_rpos + count <= size())
+            memcpy(bytes, &_data[_rpos], count);
+#ifdef BOOST_LITTLE_ENDIAN
+        policies::endianness<Apply>::apply(bytes, count);
+#endif
+        _rpos += count;
+    }
 };
 
-
-/* write helpers */
-
 template<class T>
-byte_buffer & operator <<(byte_buffer & b, const T & v)
+inline void write(byte_buffer & buffer, const T & value)
 {
-    b.write(v);
-    return b;
+    static_assert(std::is_trivially_copyable<T>::value, "write requires trivially copyable type");
+    buffer.write_bytes<true>(reinterpret_cast<const uint8_t *>(&value), sizeof(T));
 }
 
-template<>
-byte_buffer & operator <<(byte_buffer &, const std::string &);
+template<class T>
+inline void read(byte_buffer & buffer, T & value)
+{
+    static_assert(std::is_trivially_copyable<T>::value, "read requires trivially copyable type");
+    buffer.read_bytes<true>(reinterpret_cast<uint8_t *>(&value), sizeof(T));
+}
 
-template<>
-byte_buffer & operator <<(byte_buffer &, const std::vector<uint8_t> &);
-template<>
-byte_buffer & operator <<(byte_buffer &, const std::vector<int8_t> &);
+template<class T>
+inline typename std::enable_if<std::is_trivially_copyable<T>::value,
+    byte_buffer &>::type
+operator <<(byte_buffer & buffer, const T & val)
+{
+    write(buffer, val);
+    return buffer;
+}
 
+template<class T>
+inline typename std::enable_if<!std::is_void<decltype(std::declval<T>().size())>::value,
+    byte_buffer &>::type
+operator <<(byte_buffer & buffer, const T & val)
+{
+    uint16_t size = static_cast<uint16_t>(val.size());
+    write(buffer, size);
+    buffer.write_bytes<false>(reinterpret_cast<const uint8_t *>(&val[0]), size);
+    return buffer;
+}
+
+template<class T>
+inline typename std::enable_if<std::is_trivially_copyable<T>::value,
+    byte_buffer &>::type
+operator >>(byte_buffer & buffer, T & val)
+{
+    read(buffer, val);
+    return buffer;
+}
+
+template<class T>
+inline typename std::enable_if<!std::is_void<decltype(std::declval<T>().size())>::value,
+    byte_buffer &>::type
+operator >>(byte_buffer & buffer, T & val)
+{
+    uint16_t size;
+    read(buffer, size);
+    val.resize(size);
+    buffer.read_bytes<false>(reinterpret_cast<uint8_t *>(&val[0]), size);
+    return buffer;
+}
+
+bool empty(const byte_buffer &);
+const uint8_t * data(const byte_buffer &);
 template<>
 byte_buffer & operator <<(byte_buffer &, const byte_buffer &);
-
-/* read helpers */
-
-template<class T>
-byte_buffer & operator >>(byte_buffer & b, T & v)
-{
-    b.read(v);
-    return b;
-}
-
-template<>
-byte_buffer & operator >>(byte_buffer &, std::string &);
-
-template<>
-byte_buffer & operator >>(byte_buffer &, std::vector<uint8_t> &);
-template<>
-byte_buffer & operator >>(byte_buffer &, std::vector<int8_t> &);
 
 #endif

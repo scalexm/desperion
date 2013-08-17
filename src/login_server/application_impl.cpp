@@ -7,9 +7,9 @@
 //
 
 #include "common.hpp"
+#include "../core/protocol/dofus.hpp"
 #include "../core/socket_listener.hpp"
 #include "../core/logger.hpp"
-#include "../core/network/dofus.hpp"
 #include "../core/utils.hpp"
 #include "../core/run_service.hpp"
 #include "world.hpp"
@@ -37,15 +37,13 @@ application::impl::~impl()
 void application::impl::start_database()
 {
     xml_configuration queries { { _config.get_property("queries_path", QUERIES_PATH_DEFAULT) } };
-
-    utils::color<utils::TBLUE>(std::cout) << "connecting to the local database..." << std::endl;
+    utils::color<utils::TBLUE>(std::cout) << "connecting to the database..." << std::endl;
     _db.init(_config.get_property("database_host", DATABASE_HOST_DEFAULT),
                   _config.get_property("database_port", DATABASE_PORT_DEFAULT),
                   _config.get_property("database_user", DATABASE_USER_DEFAULT),
                   _config.get_property("database_password", DATABASE_PASSWORD_DEFAULT),
                   _config.get_property("database_name", DATABASE_NAME_DEFAULT));
     std::cout << "connection successful!\n" << utils::cendl;
-    
     _db.load_queries(queries.get_properties());
 }
 
@@ -91,7 +89,7 @@ shutdown_type application::impl::run(int argc, const char ** argv)
         return shutdown_type::NORMAL;
     }
 
-    world::create().init();
+    _world.init();
     session::load_patch();
 
     socket_listener listener;

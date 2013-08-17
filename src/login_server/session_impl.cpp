@@ -13,41 +13,42 @@
 #include "game_server.hpp"
 #include "game_session.hpp"
 #include <set>
+#include "../core/protocol/dofus.hpp"
 #include "../core/sql_database.hpp"
-#include "../core/network/dofus.hpp"
-#include "../core/network/identifiers.hpp"
+#include "../core/protocol/identifiers.hpp"
 #include "../core/query_result.hpp"
 #include "../core/logger.hpp"
 #include "../core/xml_configuration.hpp"
-#include "../core/network/types/version/version.hpp"
-#include "../core/network/types/version/version_extended.hpp"
-#include "../core/network/messages/server/basic/system_message_display_message.hpp"
-#include "../core/network/messages/security/raw_data_message.hpp"
-#include "../core/network/messages/handshake/protocol_required.hpp"
-#include "../core/network/enums/server_status_enum.hpp"
-#include "../core/network/types/connection/game_server_informations.hpp"
-#include "../core/network/messages/connection/servers_list_message.hpp"
-#include "../core/network/messages/queues/login_queue_status_message.hpp"
-#include "../core/network/messages/connection/identification_message.hpp"
-#include "../core/network/messages/connection/identification_failed_message.hpp"
-#include "../core/network/messages/connection/identification_failed_for_bad_version_message.hpp"
-#include "../core/network/messages/connection/identification_failed_banned_message.hpp"
-#include "../core/network/messages/connection/identification_success_message.hpp"
-#include "../core/network/enums/server_connection_error_enum.hpp"
-#include "../core/network/enums/identification_failure_reason_enum.hpp"
-#include "../core/network/messages/game/basic/basic_no_operation_message.hpp"
-#include "../core/network/messages/connection/server_selection_message.hpp"
-#include "../core/network/messages/connection/selected_server_refused_message.hpp"
-#include "../core/network/messages/connection/selected_server_data_message.hpp"
-#include "../core/network/messages/connection/search/acquaintance_search_message.hpp"
-#include "../core/network/messages/connection/search/acquaintance_search_error_message.hpp"
-#include "../core/network/messages/connection/search/acquaintance_server_list_message.hpp"
-#include "../core/network/messages/connection/hello_connect_message.hpp"
+#include "../core/protocol/types/version/version.hpp"
+#include "../core/protocol/types/version/version_extended.hpp"
+#include "../core/protocol/messages/server/basic/system_message_display_message.hpp"
+#include "../core/protocol/messages/security/raw_data_message.hpp"
+#include "../core/protocol/messages/handshake/protocol_required.hpp"
+#include "../core/protocol/enums/server_status_enum.hpp"
+#include "../core/protocol/types/connection/game_server_informations.hpp"
+#include "../core/protocol/messages/connection/servers_list_message.hpp"
+#include "../core/protocol/messages/queues/login_queue_status_message.hpp"
+#include "../core/protocol/messages/connection/identification_message.hpp"
+#include "../core/protocol/messages/connection/identification_failed_message.hpp"
+#include "../core/protocol/messages/connection/identification_failed_for_bad_version_message.hpp"
+#include "../core/protocol/messages/connection/identification_failed_banned_message.hpp"
+#include "../core/protocol/messages/connection/identification_success_message.hpp"
+#include "../core/protocol/enums/server_connection_error_enum.hpp"
+#include "../core/protocol/enums/identification_failure_reason_enum.hpp"
+#include "../core/protocol/messages/game/basic/basic_no_operation_message.hpp"
+#include "../core/protocol/messages/connection/server_selection_message.hpp"
+#include "../core/protocol/messages/connection/selected_server_refused_message.hpp"
+#include "../core/protocol/messages/connection/selected_server_data_message.hpp"
+#include "../core/protocol/messages/connection/search/acquaintance_search_message.hpp"
+#include "../core/protocol/messages/connection/search/acquaintance_search_error_message.hpp"
+#include "../core/protocol/messages/connection/search/acquaintance_server_list_message.hpp"
+#include "../core/protocol/messages/connection/hello_connect_message.hpp"
 #include "../core/scope_guard.hpp"
 #include "config_defaults.hpp"
 #include "../core/utils.hpp"
 #include <ctime>
 #include <fstream>
+#include <chrono>
 
 std::string random_string(size_t);
 
@@ -136,24 +137,24 @@ session::impl::impl(session * owner) : _owner { owner },
 session::impl::~impl()
 {
     if (_account_data.guid != -1)
-        world::instance().delete_session(_account_data.guid);
+        g_world.delete_session(_account_data.guid);
     _idle_timer.cancel();
     _queue_timer.cancel();
 }
 
 void session::impl::send(const network::dofus_unit & message, bool disconnect)
 {
-    _owner->send(message, disconnect);
+    _owner->_executor.send(message, _owner->shared_from_this(), disconnect);
 }
 
 void session::impl::write(const network::dofus_unit & message)
 {
-    _owner->write(message);
+    _owner->_executor.write(message);
 }
 
 void session::impl::flush(bool disconnect)
 {
-    _owner->flush(disconnect);
+    _owner->_executor.flush(_owner->shared_from_this(), disconnect);
 }
 
 void session::impl::start()
@@ -163,31 +164,27 @@ void session::impl::start()
     write(network::hello_connect_message { "", { } });
     write(network::raw_data_message(_raw_data_patch));
     flush();
-    _owner->start_read();
+    _owner->_executor.start_read(_owner->shared_from_this());
 }
 
-bool session::impl::is_allowed(int16_t id) const
+void session::impl::process_data(const network_message & message)
 {
-    auto it = _handlers.find(id);
+    auto it = _handlers.find(message.opcode);
     if (it == end(_handlers))
-        return false;
+        return;
     switch (it->second.flag)
     {
         case req_flag::NOT_CONNECTED:
-            return _account_data.guid == -1 && _queue_size == 0;
+            if (_account_data.guid != -1 || _queue_size != 0)
+                return;
+            break;
         case req_flag::OUT_OF_QUEUE:
-            return _account_data.guid != -1 && _queue_size == 0;
+            if (_account_data.guid == -1 || _queue_size != 0)
+                return;
+            break;
     }
-    return false;
-}
-
-void session::impl::process_data(int16_t id, byte_buffer & packet)
-{
-    auto it = _handlers.find(id);
-    if (it == end(_handlers))
-        return;
     update_idle_timer();
-    (this->*it->second.handler)(packet);
+    (this->*it->second.handler)(*message.packet);
 }
 
 bool session::impl::can_select(int8_t state) const
@@ -222,7 +219,7 @@ network::game_server_informations_ptr session::impl::get_server_status(const gam
 
 void session::impl::send_servers_list()
 {
-    auto infos = world::instance().get_server_informations(_owner);
+    auto infos = g_world.get_server_informations(_owner);
     write(network::servers_list_message { infos });
     flush();
 }
@@ -312,7 +309,7 @@ void session::impl::handle_identification(const std::shared_ptr<network::identif
 
 void session::impl::finish_identification(int16_t logged, int16_t last_server, bool auto_connect)
 {
-    auto s = world::instance().get_session(_account_data.guid);
+    auto s = g_world.get_session(_account_data.guid);
     auto already_connected = false;
     if (s != nullptr)
     {
@@ -321,9 +318,9 @@ void session::impl::finish_identification(int16_t logged, int16_t last_server, b
         s->_impl->_account_data.guid = -1;
         s->send(network::basic_no_operation_message { }, true);
     }
-    else if (world::instance().get_game_server(logged) != nullptr)
+    else if (g_world.get_game_server(logged) != nullptr)
     {
-        auto gs = world::instance().get_game_session(logged);
+        auto gs = g_world.get_game_session(logged);
         if (gs != nullptr)
             gs->send_disconnect_player_message(_account_data.guid);
         else
@@ -332,10 +329,10 @@ void session::impl::finish_identification(int16_t logged, int16_t last_server, b
                         true);
         }
         already_connected = true;
-        world::instance().add_session(_owner);
+        g_world.add_session(_owner);
     }
     else
-        world::instance().add_session(_owner);
+        g_world.add_session(_owner);
     write(network::identification_success_message { _account_data.level > 0, already_connected,
         _account_data.login, _account_data.pseudo, _account_data.guid, 0,
         _account_data.secret_question, _subscription_end, 0 });
@@ -343,7 +340,7 @@ void session::impl::finish_identification(int16_t logged, int16_t last_server, b
     _queue_timer.cancel();
 
     if (auto_connect)
-        if (handle_server_selection(world::instance().get_game_server(last_server), true))
+        if (handle_server_selection(g_world.get_game_server(last_server), true))
             return;
     send_servers_list();
 }
@@ -351,7 +348,7 @@ void session::impl::finish_identification(int16_t logged, int16_t last_server, b
 void session::impl::handle_server_selection_message(byte_buffer & packet)
 {
     network::server_selection_message data { packet };
-    handle_server_selection(world::instance().get_game_server(data.server_id), false);
+    handle_server_selection(g_world.get_game_server(data.server_id), false);
 }
 
 bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
@@ -383,7 +380,7 @@ bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
     g_database.async_query([ticket, self, this, gs, quiet, state](result_ptr & qr,
                                                                   const std::string & e)
     {
-        auto session = world::instance().get_game_session(gs->id());
+        auto session = g_world.get_game_session(gs->id());
         bool sql_error = !e.empty();
         if (sql_error || session == nullptr) // very bad luck to get second condition true
         {

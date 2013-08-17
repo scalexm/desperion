@@ -32,3 +32,8 @@ xml_configuration & application::config()
 {
     return _impl->config();
 }
+
+class world & application::world()
+{
+    return _impl->world();
+}

@@ -2,61 +2,32 @@
 //  byte_buffer.cpp
 //  core
 //
-//  Created by Alexandre Martin on 30/07/13.
+//  Created by Alexandre Martin on 17/08/13.
 //  Copyright (c) 2013 alexm. All rights reserved.
 //
 
 #include "../common.hpp"
-#include "../byte_buffer.hpp"
+#include "byte_buffer.hpp"
 
-void swap_bytes(uint8_t * p, size_t n)
+void reverse_bytes(uint8_t * bytes, size_t count)
 {
     size_t lo, hi;
-    for (lo = 0, hi = n - 1; hi > lo; lo++, hi--)
+    for (lo = 0, hi = count - 1; hi > lo; lo++, hi--)
     {
-        auto temp = p[hi];
-        p[hi] = p[lo];
-        p[lo] = temp;
+        auto temp = bytes[hi];
+        bytes[hi] = bytes[lo];
+        bytes[lo] = temp;
     }
 }
 
-void swap_bytes(uint8_t * p, const uint8_t * r, size_t n)
-{
-    size_t lo, hi;
-    for (lo = 0, hi = n - 1; hi > lo; lo++, hi--)
-    {
-        p[hi] = r[lo];
-        p[lo] = r[hi];
-    }
-}
-
-namespace
-{
-    endianness get_endianness()
-    {
-        union
-        {
-            int i;
-            char c[sizeof(int)];
-        } x;
-        x.i = 1;
-        if (x.c[0] == 1)
-            return endianness::LITTLE;
-        else
-            return endianness::BIG;
-    }
-}
-
-endianness byte_buffer::ENDIANNESS = get_endianness(); // endianness at runtime
-
-byte_buffer::byte_buffer()
-{
-    _data.reserve(100);
-}
 
 byte_buffer::byte_buffer(std::vector<uint8_t> data) : _data { std::move(data) }
 {
-    
+}
+
+byte_buffer::byte_buffer(std::ifstream && file) : byte_buffer { file }
+{
+
 }
 
 byte_buffer::byte_buffer(std::ifstream & file)
@@ -65,111 +36,28 @@ byte_buffer::byte_buffer(std::ifstream & file)
         throw std::runtime_error { "bad file" };
     file.seekg(0, std::ifstream::end);
     size_t size = file.tellg();
-    if(size == 0)
-        return;
-    file.seekg(0, std::ifstream::beg);
-    _data.resize(size + 1);
-    file.read((char *)&_data[0], size);
-    _wpos = size + 1;
-}
-
-void byte_buffer::write_bytes(const uint8_t * bytes, size_t count)
-{
-    if (bytes == nullptr || count == 0)
-        return;
-    if (_data.size() < _wpos + count)
-        _data.resize(_wpos + count);
-    memcpy(&_data[_wpos], bytes, count);
-    _wpos += count;
-}
-
-void byte_buffer::clear()
-{
-    _data.clear();
-    _rpos = _wpos = 0;
-}
-
-uint8_t & byte_buffer::operator [](size_t pos)
-{
-    return _data[pos];
-}
-
-const uint8_t & byte_buffer::operator [](size_t pos) const
-{
-    return _data[pos];
-}
-
-namespace
-{
-    template<class T>
-    void write_bytes(byte_buffer & b, const T & v)
+    if(size != 0)
     {
-        uint16_t size = v.size();
-        b.write(size);
-        b.write_bytes((uint8_t*)&v[0], size);
-    }
-
-    template<class T>
-    void read_bytes(byte_buffer & b, T & v)
-    {
-        uint16_t size;
-        b.read(size);
-        b.read_bytes(v, size);
+        file.seekg(0, std::ifstream::beg);
+        _data.resize(size + 1);
+        file.read(reinterpret_cast<char *>(&_data[0]), size);
+        _wpos = size + 1;
     }
 }
 
-
-/* writing stuff */
-
-template<>
-byte_buffer & operator <<(byte_buffer & b, const std::string & v)
+bool empty(const byte_buffer & buffer)
 {
-    write_bytes(b, v);
-    return b;
+    return buffer.size() == 0;
+}
+
+const uint8_t * data(const byte_buffer & buffer)
+{
+    return empty(buffer) ? nullptr : &buffer[0];
 }
 
 template<>
-byte_buffer & operator <<(byte_buffer & b, const std::vector<uint8_t> & v)
+byte_buffer & operator <<(byte_buffer & buffer, const byte_buffer & val)
 {
-    write_bytes(b, v);
-    return b;
-}
-
-template<>
-byte_buffer & operator <<(byte_buffer & b, const std::vector<int8_t> & v)
-{
-    write_bytes(b, v);
-    return b;
-}
-
-template<>
-byte_buffer & operator <<(byte_buffer & b, const byte_buffer & v)
-{
-    auto size = v.size();
-    b.write_bytes(v.data(), size);
-    return b;
-}
-
-
-/* reading stuff */
-
-template<>
-byte_buffer & operator >>(byte_buffer & b, std::string & v)
-{
-    read_bytes(b, v);
-    return b;
-}
-
-template<>
-byte_buffer & operator >>(byte_buffer & b, std::vector<uint8_t> & v)
-{
-    read_bytes(b, v);
-    return b;
-}
-
-template<>
-byte_buffer & operator >>(byte_buffer & b, std::vector<int8_t> & v)
-{
-    read_bytes(b, v);
-    return b;
+    buffer.write_bytes<false>(&val[0], val.size());
+    return buffer;
 }

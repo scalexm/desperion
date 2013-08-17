@@ -23,6 +23,11 @@ socket_listener::session_handler::session_handler(boost::asio::io_service & ios,
 
 }
 
+socket_listener::socket_listener()
+    : _work { std::make_unique<boost::asio::io_service::work>(_service) }
+{
+}
+
 void socket_listener::spawn_threads(size_t threads)
 {
     for (auto a = 1; a < threads; ++a)
@@ -31,6 +36,7 @@ void socket_listener::spawn_threads(size_t threads)
 
 void socket_listener::stop()
 {
+    _work.reset();
     _service.stop();
     _handlers.clear();
 }

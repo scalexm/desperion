@@ -23,16 +23,14 @@ namespace network
     using game_server_informations_ptr = std::unique_ptr<game_server_informations>;
 }
 
-class world : public singleton<world>
+class world
 {
-    friend class singleton<world>;
 private:
     class impl;
     pimpl<impl> _impl;
 
-    world();
-
 public:
+    world();
     ~world();
     void init();
 

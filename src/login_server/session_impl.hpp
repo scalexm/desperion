@@ -14,18 +14,16 @@
 #include "../core/auth_queue.hpp"
 #include <unordered_map>
 
-class game_server;
-
-namespace network
-{
-    class game_server_informations;
-    class identification_message;
-    using game_server_informations_ptr = std::unique_ptr<game_server_informations>;
-}
-
 class session::impl
 {
 private:
+    enum class req_flag
+    {
+        NOT_CONNECTED,
+        CONNECTED,
+        OUT_OF_QUEUE,
+    };
+
     struct packet_handler
     {
         void (session::impl::*handler)(byte_buffer &);
@@ -57,21 +55,20 @@ private:
     void idle_callback(const boost::system::error_code &);
     void queue_callback(const boost::system::error_code &);
 
-    void send(const network::dofus_unit &, bool disconnect = false);
-    void write(const network::dofus_unit &);
-    void flush(bool disconnect = false);
-
 public:
     static void load_patch();
     impl(session *);
     ~impl();
     void start();
-    bool is_allowed(int16_t) const;
-    void process_data(int16_t, byte_buffer &);
+    void process_data(const network_message & message);
     bool can_select(int8_t) const;
     network::game_server_informations_ptr get_server_status(const game_server *) const;
     void handle_identification(const std::shared_ptr<network::identification_message> &);
     void finish_identification(int16_t, int16_t, bool);
+
+    void send(const network::dofus_unit &, bool disconnect = false);
+    void write(const network::dofus_unit &);
+    void flush(bool disconnect = false);
 
     bool is_subscriber() const
     { return _subscription_end > time(nullptr); }

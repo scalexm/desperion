@@ -8,8 +8,9 @@
 
 #include "common.hpp"
 #include "game_server.hpp"
+#include "application.hpp"
 #include "../core/sql_field.hpp"
-#include "../core/network/enums/server_status_enum.hpp"
+#include "../core/protocol/enums/server_status_enum.hpp"
 #include "world.hpp"
 #include "game_session.hpp"
 
@@ -22,7 +23,7 @@ game_server::game_server(int16_t id, const field_map & fields) : _id { id },
 
 int8_t game_server::get_state(uint8_t level, bool subscriber) const
 {
-    auto s = world::instance().get_game_session(_id);
+    auto s = g_world.get_game_session(_id);
     if(level < _min_level)
         return network::server_status::NOJOIN;
     else if(s == nullptr)

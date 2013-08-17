@@ -13,12 +13,14 @@
 #include "../core/pimpl_impl.hpp"
 #include "../core/sql_database.hpp"
 #include "../core/xml_configuration.hpp"
+#include "world.hpp"
 
 class application::impl
 {
 private:
     sql_database _db;
     xml_configuration _config;
+    class world _world;
     application * _owner;
 
 public:
@@ -33,6 +35,9 @@ public:
 
     xml_configuration & config()
     { return _config; }
+
+    class world & world()
+    { return _world; }
 };
 
 #endif

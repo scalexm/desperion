@@ -14,7 +14,7 @@
 #endif
 #include "application.hpp"
 
-int main(int argc, const char * argv[])
+int main(int argc, const char ** argv)
 {
     std::cout << "starting desperion" << std::endl;
     logger::create();

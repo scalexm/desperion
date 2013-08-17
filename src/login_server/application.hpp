@@ -15,6 +15,7 @@
 
 class sql_database;
 class xml_configuration;
+class world;
 
 class application : public abstract_application, public singleton<application>
 {
@@ -31,9 +32,11 @@ public:
     shutdown_type run(int, const char **) override;
     sql_database & database();
     xml_configuration & config();
+    class world & world();
 };
 
 #define g_database application::instance().database()
 #define g_config application::instance().config()
+#define g_world application::instance().world()
 
 #endif

@@ -45,7 +45,7 @@ bool d2o_writer::impl::has_class_definition(int id) const
 void d2o_writer::impl::write(std::ofstream & file) const
 {
     byte_buffer buffer;
-    buffer.write_bytes((const uint8_t *)"D2O", 3);
+    buffer.write_bytes<false>((const uint8_t *)"D2O", 3);
     buffer << 0;
     std::unordered_map<int, int> offsets;
     for (auto && it : _objects)
