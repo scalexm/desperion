@@ -111,14 +111,13 @@ const std::unordered_map<int16_t, game_session::packet_handler> game_session::_h
         req_flag::CONNECTED } }
 };
 
-std::shared_ptr<game_session> game_session::create(boost::asio::io_service & ios,
-                                                   boost::asio::io_service & ws)
+std::shared_ptr<game_session> game_session::create(boost::asio::ip::tcp::socket && socket)
 {
-    return std::shared_ptr<game_session> { new game_session { ios, ws } };
+    return std::shared_ptr<game_session> { new game_session { std::move(socket) } };
 }
 
-game_session::game_session(boost::asio::io_service & ios, boost::asio::io_service & ws)
-    : abstract_session { ios, ws }
+game_session::game_session(boost::asio::ip::tcp::socket && socket)
+    : dofus_session { std::move(socket), std::bind(&game_session::handle_error, this) }
 {
 
 }
@@ -132,22 +131,6 @@ game_session::~game_session()
     }
 }
 
-void game_session::send(const network::dofus_unit & packet, bool disconnect)
-{
-    _executor.send(packet, this->shared_from_this(), disconnect);
-}
-
-void game_session::write(const network::dofus_unit & packet)
-{
-    _executor.write(packet);
-}
-
-void game_session::flush(bool disconnect)
-{
-    _executor.flush(this->shared_from_this(), disconnect);
-}
-
-
 void game_session::start()
 {
     _salt = random_string(30);
@@ -155,28 +138,21 @@ void game_session::start()
     _executor.start_read(this->shared_from_this());
 }
 
-void game_session::process_data(const dofus_executor::message & message)
-{
-    auto it = _handlers.find(message.opcode);
-    if (it == end(_handlers))
-        return;
-    switch (it->second.flag)
-    {
-        case req_flag::NOT_CONNECTED:
-            if (_server == nullptr)
-                return;
-            break;
-        case req_flag::CONNECTED:
-            if (_server != nullptr)
-                return;
-            break;
-    }
-    (this->*it->second.handler)(*message.packet);
-}
-
 void game_session::send_disconnect_player_message(int id)
 {
     send(disconnect_player_message { id });
+}
+
+void game_session::handle_error()
+{
+    auto self = this->shared_from_this();
+    application::instance().service().post([self]() { });
+}
+
+void game_session::handle_new_message(int16_t opcode, std::shared_ptr<byte_buffer> packet)
+{
+    application::instance().execute(&game_session::process_data, this->shared_from_this(),
+                                    opcode, std::move(packet));
 }
 
 void game_session::handle_state_message(byte_buffer & packet)
@@ -223,4 +199,38 @@ void game_session::handle_connect_message(byte_buffer & packet)
     _server = gs;
     g_world.add_game_session(this);
     g_world.refresh_game_server(_server);
+}
+
+void game_session::process_data(int16_t opcode, std::shared_ptr<byte_buffer> & packet)
+{
+    auto it = _handlers.find(opcode);
+    if (it == end(_handlers))
+        return;
+    switch (it->second.flag)
+    {
+        case req_flag::NOT_CONNECTED:
+            if (_server == nullptr)
+                return;
+            break;
+        case req_flag::CONNECTED:
+            if (_server != nullptr)
+                return;
+            break;
+    }
+    (this->*it->second.handler)(*packet);
+}
+
+void game_session::send(const network::dofus_unit & packet, bool disconnect)
+{
+    _executor.send(packet, this->shared_from_this(), disconnect);
+}
+
+void game_session::write(const network::dofus_unit & packet)
+{
+    _executor.write(packet);
+}
+
+void game_session::flush(bool disconnect)
+{
+    _executor.flush(this->shared_from_this(), disconnect);
 }

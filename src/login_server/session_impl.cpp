@@ -167,9 +167,9 @@ void session::impl::start()
     _owner->_executor.start_read(_owner->shared_from_this());
 }
 
-void session::impl::process_data(const dofus_executor::message & message)
+void session::impl::process_data(int16_t opcode, byte_buffer & packet)
 {
-    auto it = _handlers.find(message.opcode);
+    auto it = _handlers.find(opcode);
     if (it == end(_handlers))
         return;
     switch (it->second.flag)
@@ -184,7 +184,7 @@ void session::impl::process_data(const dofus_executor::message & message)
             break;
     }
     update_idle_timer();
-    (this->*it->second.handler)(*message.packet);
+    (this->*it->second.handler)(packet);
 }
 
 bool session::impl::can_select(int8_t state) const
@@ -257,7 +257,7 @@ void session::impl::handle_identification(const std::shared_ptr<network::identif
                                         std::ref(_queue));
     });
     
-    if (is_ip_banned(_owner->_socket.remote_endpoint().address().to_string()))
+    if (is_ip_banned(_owner->_executor.socket().remote_endpoint().address().to_string()))
         return send(network::identification_failed_message { network::WRONG_CREDENTIALS }, true);
     
     byte_buffer credentials { data->credentials };
@@ -275,7 +275,9 @@ void session::impl::handle_identification(const std::shared_ptr<network::identif
 
     auto guid = fields.at("guid").get<int>();
     auto ban_end = fields.at("ban_end").get<time_t>();
-    if (ban_end > 0)
+    if (ban_end < 0)
+        return send(network::identification_failed_message { network::BANNED });
+    else if (ban_end > 0)
     {
         if (ban_end < time(nullptr))
             g_database.query({ sql_database::prepare("update_ban", guid) });
@@ -400,7 +402,7 @@ bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
             std::string ip;
             auto address = session->get_address();
             auto loopback = address.is_loopback()
-                && _owner->_socket.remote_endpoint().address().is_loopback();
+                && _owner->_executor.socket().remote_endpoint().address().is_loopback();
             send(network::selected_server_data_message { gs->id(),
                 loopback ? session->alternative_ip() : address.to_string(),
                 session->port(), true, ticket }, true);

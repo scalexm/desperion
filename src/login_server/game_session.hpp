@@ -14,7 +14,7 @@
 
 class game_server;
 
-class game_session : public base_type
+class game_session : public dofus_session, public std::enable_shared_from_this<game_session>
 {
 private:
     enum class req_flag
@@ -35,19 +35,23 @@ private:
     std::string _salt, _alternative_ip;
     uint16_t _port, _players = 0;
 
+// --- unsafe, called in socket_listener threads
+    void handle_error();
+    void handle_new_message(int16_t, std::shared_ptr<byte_buffer>) override;
+// ---
+    
     void handle_state_message(byte_buffer &);
     void handle_players_message(byte_buffer &);
     void handle_connect_message(byte_buffer &);
 
-    void process_data(const dofus_executor::message &) override;
+    void process_data(int16_t, std::shared_ptr<byte_buffer> &);
     void send(const network::dofus_unit &, bool disconnect = false);
     void write(const network::dofus_unit &);
     void flush(bool disconnect = false);
 
-    game_session(boost::asio::io_service &, boost::asio::io_service &);
+    game_session(boost::asio::ip::tcp::socket &&);
 public:
-    static std::shared_ptr<game_session> create(boost::asio::io_service &,
-                                                boost::asio::io_service &);
+    static std::shared_ptr<game_session> create(boost::asio::ip::tcp::socket &&);
     ~game_session();
     void start() override;
     void send_disconnect_player_message(int);
@@ -68,7 +72,7 @@ public:
     {return _players; }
 
     boost::asio::ip::address get_address() const
-    { return _socket.remote_endpoint().address(); }
+    { return _executor.socket().remote_endpoint().address(); }
 };
 
 #endif

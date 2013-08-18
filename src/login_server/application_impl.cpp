@@ -94,10 +94,10 @@ shutdown_type application::impl::run(int argc, const char ** argv)
 
     socket_listener listener;
     auto port = _config.get_property("server_port", SERVER_PORT_DEFAULT);
-    listener.listen<session>(port, _owner->_service);
+    listener.listen<session>(port);
 
     port = _config.get_property("system_port", SERVER_PORT_DEFAULT);
-    listener.listen<game_session>(port, _owner->_service);
+    listener.listen<game_session>(port);
 
     std::cout << "\nuptime " << _owner->uptime() << " microseconds" << std::endl;
 

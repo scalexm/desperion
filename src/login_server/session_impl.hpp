@@ -60,7 +60,7 @@ public:
     impl(session *);
     ~impl();
     void start();
-    void process_data(const dofus_executor::message & message);
+    void process_data(int16_t, byte_buffer &);
     bool can_select(int8_t) const;
     network::game_server_informations_ptr get_server_status(const game_server *) const;
     void handle_identification(const std::shared_ptr<network::identification_message> &);

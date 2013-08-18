@@ -11,6 +11,7 @@
 
 #include "../core/protocol/dofus_executor.hpp"
 #include "../core/pimpl.hpp"
+#include <boost/asio.hpp>
 #include <string>
 
 class game_server;
@@ -21,17 +22,23 @@ namespace network
     using game_server_informations_ptr = std::unique_ptr<game_server_informations>;
 }
 
-class session : public base_type
+class session : public dofus_session, public std::enable_shared_from_this<session>
 {
 private:
     class impl;
     pimpl<impl> _impl;
 
-    session(boost::asio::io_service &, boost::asio::io_service &);
-    void process_data(const dofus_executor::message &) override;
+    session(boost::asio::ip::tcp::socket &&);
+
+// --- unsafe, called in socket_listener threads
+    void handle_error();
+    void handle_new_message(int16_t, std::shared_ptr<byte_buffer>) override;
+// ---
+
     void handle_identification(const std::shared_ptr<network::identification_message> &);
     void finish_identification(int16_t, int16_t, bool);
 
+    void process_data(int16_t, std::shared_ptr<byte_buffer> &);
 public:
     struct account_data
     {
@@ -43,7 +50,7 @@ public:
     };
 
     static void load_patch();
-    static std::shared_ptr<session> create(boost::asio::io_service &, boost::asio::io_service &);
+    static std::shared_ptr<session> create(boost::asio::ip::tcp::socket &&);
 
     ~session();
     void start() override;

@@ -21,32 +21,29 @@ private:
     class session_handler : non_movable
     {
     private:
-        boost::asio::io_service & _main_service;
         boost::asio::ip::tcp::acceptor _acceptor;
+        boost::asio::ip::tcp::socket _current_socket;
 
         template<class Session>
-        void handle_accept(const boost::system::error_code & ec,
-                           std::shared_ptr<Session> & session)
+        void handle_accept(const boost::system::error_code & ec)
         {
             if (ec)
                 return;
-            session->socket().set_option(boost::asio::ip::tcp::no_delay(true));
-            session->start();
+            _current_socket.set_option(boost::asio::ip::tcp::no_delay(true));
+            Session::create(std::move(_current_socket))->start();
             listen<Session>();
         }
         
     public:
-        session_handler(boost::asio::io_service &, boost::asio::io_service &, uint16_t);
+        session_handler(boost::asio::io_service &, uint16_t);
 
         template<class Session>
         void listen()
         {
-            auto session = Session::create(_acceptor.get_io_service(), _main_service);
-            _acceptor.async_accept(session->socket(),
+            _acceptor.async_accept(_current_socket,
                                    std::bind(&session_handler::handle_accept<Session>,
                                              this,
-                                             std::placeholders::_1,
-                                             session));
+                                             std::placeholders::_1));
         }
     };
 
@@ -60,11 +57,11 @@ public:
     void stop();
 
     template<class Session>
-    void listen(uint16_t port, boost::asio::io_service & ws)
+    void listen(uint16_t port)
     {
         auto && handler = _handlers.emplace(std::piecewise_construct,
                                             std::forward_as_tuple(port),
-                                            std::forward_as_tuple(std::ref(_service), std::ref(ws),
+                                            std::forward_as_tuple(std::ref(_service),
                                                                   port)).first->second;
         handler.listen<Session>();
     }

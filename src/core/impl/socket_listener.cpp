@@ -11,9 +11,8 @@
 #include "../run_service.hpp"
 
 
-socket_listener::session_handler::session_handler(boost::asio::io_service & ios,
-                                                  boost::asio::io_service & ms, uint16_t port)
-    : _main_service(ms), _acceptor { ios }
+socket_listener::session_handler::session_handler(boost::asio::io_service & ios, uint16_t port)
+    : _acceptor { ios }, _current_socket { ios }
 {
     boost::asio::ip::tcp::endpoint ep { boost::asio::ip::tcp::v6(), port };
     _acceptor.open(ep.protocol());

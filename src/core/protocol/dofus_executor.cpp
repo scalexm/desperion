@@ -13,19 +13,6 @@
 
 namespace
 {
-    void hex_dump(const byte_buffer & buffer)
-    {
-        std::cout << std::hex;
-        auto data = ::data(buffer);
-        for (size_t a = 0; a < buffer.size(); ++a)
-        {
-            if (data[a] <= 0xf)
-                std::cout << "0";
-            std::cout << uint16_t { data[a] } << " ";
-        }
-        std::cout << std::dec << std::endl;
-    }
-
     uint8_t compute_type_len(size_t size)
     {
         if (size > 0xffff)
@@ -59,11 +46,17 @@ namespace
     }
 }
 
-void dofus_executor::start_read(std::shared_ptr<base_type> owner)
+dofus_executor::dofus_executor(boost::asio::ip::tcp::socket && socket,
+                               std::function<void()> handler)
+    : abstract_executor { std::move(socket) }, _handle_error { std::move(handler) }
 {
-    boost::asio::async_read(owner->_socket,
+}
+
+void dofus_executor::start_read(std::shared_ptr<dofus_session> owner)
+{
+    boost::asio::async_read(_socket,
                             boost::asio::buffer(&_header, sizeof(_header)),
-                            owner->_strand.wrap(std::bind(&dofus_executor::handle_read_header,
+                            _strand.wrap(std::bind(&dofus_executor::handle_read_header,
                                                    this,
                                                    std::placeholders::_1,
                                                    std::move(owner))));
@@ -79,21 +72,21 @@ void dofus_executor::format(std::shared_ptr<byte_buffer> & buffer,
 }
 
 void dofus_executor::send(const std::shared_ptr<byte_buffer> & packet,
-                          std::shared_ptr<base_type> owner, bool disconnect)
+                          std::shared_ptr<dofus_session> owner, bool disconnect)
 {
     if (disconnect)
         owner->_going_to_disconnect = true;
-    boost::asio::async_write(owner->_socket, boost::asio::buffer(data(*packet), packet->size()),
-                             owner->_strand.wrap(std::bind(&dofus_executor::handle_write,
-                                                           this,
-                                                           std::placeholders::_1,
-                                                           std::move(packet),
-                                                           std::move(owner),
-                                                           disconnect)));
+    boost::asio::async_write(_socket, boost::asio::buffer(data(*packet), packet->size()),
+                             _strand.wrap(std::bind(&dofus_executor::handle_write,
+                                                    this,
+                                                    std::placeholders::_1,
+                                                    std::move(packet),
+                                                    std::move(owner),
+                                                    disconnect)));
 }
 
 void dofus_executor::send(const network::dofus_unit & message,
-                          std::shared_ptr<base_type> owner, bool disconnect)
+                          std::shared_ptr<dofus_session> owner, bool disconnect)
 {
     auto packet = std::make_shared<byte_buffer>();
     dofus_executor::format(packet, message);
@@ -107,7 +100,7 @@ void dofus_executor::write(const network::dofus_unit & message)
     dofus_executor::format(_packet, message);
 }
 
-void dofus_executor::flush(std::shared_ptr<base_type> owner, bool disconnect)
+void dofus_executor::flush(std::shared_ptr<dofus_session> owner, bool disconnect)
 {
     if (!_packet || empty(*_packet))
         return;
@@ -115,31 +108,32 @@ void dofus_executor::flush(std::shared_ptr<base_type> owner, bool disconnect)
     _packet.reset();
 }
 
+
 /* handlers */
 
 void dofus_executor::handle_read_header(const boost::system::error_code & ec,
-                                        std::shared_ptr<base_type> & owner)
+                                        std::shared_ptr<dofus_session> & owner)
 {
     if (ec)
-        return owner->handle_error();
+        return _handle_error();
 
 #ifdef BOOST_LITTLE_ENDIAN
         reverse_bytes((uint8_t *)&_header, sizeof(_header));
 #endif
     _length.resize(_header & 3);
 
-    boost::asio::async_read(owner->_socket, boost::asio::buffer(_length),
-                            owner->_strand.wrap(std::bind(&dofus_executor::handle_read_length,
-                                                          this,
-                                                          std::placeholders::_1,
-                                                          std::move(owner))));
+    boost::asio::async_read(_socket, boost::asio::buffer(_length),
+                            _strand.wrap(std::bind(&dofus_executor::handle_read_length,
+                                                    this,
+                                                    std::placeholders::_1,
+                                                    std::move(owner))));
 }
 
 void dofus_executor::handle_read_length(const boost::system::error_code & ec,
-                                        std::shared_ptr<base_type> & owner)
+                                        std::shared_ptr<dofus_session> & owner)
 {
     if (ec)
-        return owner->handle_error();
+        return _handle_error();
 
     size_t length = 0;
     for (size_t a = 0; a < _length.size(); ++a)
@@ -147,24 +141,20 @@ void dofus_executor::handle_read_length(const boost::system::error_code & ec,
     _raw_data.resize(length);
     _length.clear();
 
-    boost::asio::async_read(owner->_socket, boost::asio::buffer(_raw_data),
-                            owner->_strand.wrap(std::bind(&dofus_executor::handle_read_raw_data,
-                                                          this,
-                                                          std::placeholders::_1,
-                                                          std::move(owner))));
+    boost::asio::async_read(_socket, boost::asio::buffer(_raw_data),
+                            _strand.wrap(std::bind(&dofus_executor::handle_read_raw_data,
+                                                    this,
+                                                    std::placeholders::_1,
+                                                    std::move(owner))));
 }
 
 void dofus_executor::handle_read_raw_data(const boost::system::error_code & ec,
-                                          std::shared_ptr<base_type> & owner)
+                                          std::shared_ptr<dofus_session> & owner)
 {
     if (ec)
-        return owner->handle_error();
+        return _handle_error();
 
-    struct message message;
-    message.opcode = _header >> 2;
-    message.packet = std::make_shared<byte_buffer>(_raw_data);
-    owner->handle_new_message(message);
-
+    owner->handle_new_message(_header >> 2, std::make_shared<byte_buffer>(_raw_data));
     _header = 0;
     _raw_data.clear();
     start_read(std::move(owner));
@@ -173,10 +163,10 @@ void dofus_executor::handle_read_raw_data(const boost::system::error_code & ec,
 // std::shared_ptr<byte_buffer> must outlive write execution
 void dofus_executor::handle_write(const boost::system::error_code & ec,
                                   std::shared_ptr<byte_buffer> &,
-                                  std::shared_ptr<base_type> & owner, bool disconnect)
+                                  std::shared_ptr<dofus_session> & owner, bool disconnect)
 {
     if (ec)
-        owner->handle_error();
+        _handle_error();
     else if (disconnect)
-        owner->close_socket();
+        close_socket();
 }
