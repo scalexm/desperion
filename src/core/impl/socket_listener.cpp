@@ -27,10 +27,15 @@ socket_listener::socket_listener()
 {
 }
 
+socket_listener::~socket_listener()
+{
+    stop();
+}
+
 void socket_listener::spawn_threads(size_t threads)
 {
     for (auto a = 1; a < threads; ++a)
-        std::thread { std::bind(run_service, std::ref(_service)) }.detach();
+        _threads.emplace_back(std::bind(run_service, std::ref(_service)));
 }
 
 void socket_listener::stop()
@@ -38,4 +43,7 @@ void socket_listener::stop()
     _work.reset();
     _service.stop();
     _handlers.clear();
+    for (auto && t : _threads)
+        t.join();
+    _threads.clear();
 }

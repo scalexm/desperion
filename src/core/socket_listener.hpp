@@ -14,6 +14,7 @@
 #include <functional>
 #include <thread>
 #include <unordered_map>
+#include <list>
 
 class socket_listener : non_movable
 {
@@ -48,11 +49,13 @@ private:
     };
 
     boost::asio::io_service _service;
+    std::list<std::thread> _threads;
     std::unique_ptr<boost::asio::io_service::work> _work;
     std::unordered_map<uint16_t, session_handler> _handlers;
     
 public:
     socket_listener();
+    ~socket_listener();
     void spawn_threads(size_t);
     void stop();
 

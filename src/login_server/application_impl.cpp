@@ -110,6 +110,6 @@ shutdown_type application::impl::run(int argc, const char ** argv)
     listener.stop();
     t.join();
 
-    return shutdown_type::NORMAL;
+    return _owner->get_shutdown();
 }
 
