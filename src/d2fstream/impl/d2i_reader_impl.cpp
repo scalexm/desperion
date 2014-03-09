@@ -3,7 +3,7 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../../core/common.hpp"

@@ -3,7 +3,7 @@
 #ifndef core_prisms_list_register_message_hpp
 #define core_prisms_list_register_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prisms_list_register_message : dofus_unit
     {

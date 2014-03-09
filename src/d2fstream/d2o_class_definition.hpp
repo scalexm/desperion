@@ -3,16 +3,19 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef d2fstream_d2o_class_definition_hpp
 #define d2fstream_d2o_class_definition_hpp
 
 #include "d2o_field.hpp"
+#include <unordered_map>
 #include <list>
 
-using data_fields = std::unordered_map<std::string, boost::any>;
+using void_ptr = std::unique_ptr<void>;
+using data_fields = std::list<void_ptr>;
+//using data_fields = std::unordered_map<std::string, void_ptr>;
 
 class d2o_class_definition
 {

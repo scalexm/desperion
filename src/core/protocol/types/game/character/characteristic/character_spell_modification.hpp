@@ -3,7 +3,7 @@
 #ifndef core_character_spell_modification_hpp
 #define core_character_spell_modification_hpp
 
-namespace network
+namespace protocol
 {
     struct character_spell_modification : dofus_unit
     {

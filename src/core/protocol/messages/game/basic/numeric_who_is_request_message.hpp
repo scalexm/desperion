@@ -3,7 +3,7 @@
 #ifndef core_numeric_who_is_request_message_hpp
 #define core_numeric_who_is_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct numeric_who_is_request_message : dofus_unit
     {

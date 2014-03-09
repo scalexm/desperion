@@ -3,7 +3,7 @@
 #ifndef core_challenge_fight_join_refused_message_hpp
 #define core_challenge_fight_join_refused_message_hpp
 
-namespace network
+namespace protocol
 {
     struct challenge_fight_join_refused_message : dofus_unit
     {

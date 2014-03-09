@@ -3,7 +3,7 @@
 #ifndef core_teleport_destinations_list_message_hpp
 #define core_teleport_destinations_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct teleport_destinations_list_message : dofus_unit
     {

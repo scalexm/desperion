@@ -3,7 +3,7 @@
 #ifndef core_object_item_information_with_quantity_hpp
 #define core_object_item_information_with_quantity_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_information_with_quantity : object_item_minimal_information
     {

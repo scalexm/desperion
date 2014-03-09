@@ -3,7 +3,7 @@
 #ifndef core_party_member_remove_message_hpp
 #define core_party_member_remove_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_member_remove_message : abstract_party_event_message
     {

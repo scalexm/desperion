@@ -3,7 +3,7 @@
 #ifndef core_part_info_message_hpp
 #define core_part_info_message_hpp
 
-namespace network
+namespace protocol
 {
     struct part_info_message : dofus_unit
     {

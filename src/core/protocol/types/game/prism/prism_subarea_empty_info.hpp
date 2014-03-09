@@ -3,7 +3,7 @@
 #ifndef core_prism_subarea_empty_info_hpp
 #define core_prism_subarea_empty_info_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_subarea_empty_info : dofus_unit
     {

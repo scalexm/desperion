@@ -3,7 +3,7 @@
 #ifndef core_objects_deleted_message_hpp
 #define core_objects_deleted_message_hpp
 
-namespace network
+namespace protocol
 {
     struct objects_deleted_message : dofus_unit
     {

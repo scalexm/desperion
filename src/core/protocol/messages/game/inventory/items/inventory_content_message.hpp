@@ -3,7 +3,7 @@
 #ifndef core_inventory_content_message_hpp
 #define core_inventory_content_message_hpp
 
-namespace network
+namespace protocol
 {
     struct inventory_content_message : dofus_unit
     {

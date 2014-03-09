@@ -3,7 +3,7 @@
 #ifndef core_team_enum_hpp
 #define core_team_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum team
     {

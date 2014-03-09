@@ -3,7 +3,7 @@
 #ifndef core_krosmaster_figure_hpp
 #define core_krosmaster_figure_hpp
 
-namespace network
+namespace protocol
 {
     struct krosmaster_figure : dofus_unit
     {

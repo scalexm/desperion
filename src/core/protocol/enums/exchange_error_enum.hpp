@@ -3,7 +3,7 @@
 #ifndef core_exchange_error_enum_hpp
 #define core_exchange_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum exchange_error
     {

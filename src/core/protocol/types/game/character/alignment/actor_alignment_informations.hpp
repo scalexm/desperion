@@ -3,7 +3,7 @@
 #ifndef core_actor_alignment_informations_hpp
 #define core_actor_alignment_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct actor_alignment_informations : dofus_unit
     {

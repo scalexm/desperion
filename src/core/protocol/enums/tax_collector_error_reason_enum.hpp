@@ -3,7 +3,7 @@
 #ifndef core_tax_collector_error_reason_enum_hpp
 #define core_tax_collector_error_reason_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum tax_collector_error_reason
     {

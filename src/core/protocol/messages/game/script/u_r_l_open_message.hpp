@@ -3,7 +3,7 @@
 #ifndef core_u_r_l_open_message_hpp
 #define core_u_r_l_open_message_hpp
 
-namespace network
+namespace protocol
 {
     struct u_r_l_open_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_job_allow_multi_craft_request_set_message_hpp
 #define core_job_allow_multi_craft_request_set_message_hpp
 
-namespace network
+namespace protocol
 {
     struct job_allow_multi_craft_request_set_message : dofus_unit
     {

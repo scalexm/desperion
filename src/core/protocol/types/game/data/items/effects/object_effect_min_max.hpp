@@ -3,7 +3,7 @@
 #ifndef core_object_effect_min_max_hpp
 #define core_object_effect_min_max_hpp
 
-namespace network
+namespace protocol
 {
     struct object_effect_min_max : object_effect
     {

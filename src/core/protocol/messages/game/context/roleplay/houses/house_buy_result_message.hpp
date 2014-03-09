@@ -3,7 +3,7 @@
 #ifndef core_house_buy_result_message_hpp
 #define core_house_buy_result_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_buy_result_message : dofus_unit
     {

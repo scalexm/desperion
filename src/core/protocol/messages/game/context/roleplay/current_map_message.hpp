@@ -3,7 +3,7 @@
 #ifndef core_current_map_message_hpp
 #define core_current_map_message_hpp
 
-namespace network
+namespace protocol
 {
     struct current_map_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_game_data_play_farm_object_animation_message_hpp
 #define core_game_data_play_farm_object_animation_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_data_play_farm_object_animation_message : dofus_unit
     {

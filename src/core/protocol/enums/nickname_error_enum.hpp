@@ -3,7 +3,7 @@
 #ifndef core_nickname_error_enum_hpp
 #define core_nickname_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum nickname_error
     {

@@ -3,7 +3,7 @@
 #ifndef core_guild_member_hpp
 #define core_guild_member_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_member : character_minimal_informations
     {

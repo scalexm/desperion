@@ -3,7 +3,7 @@
 #ifndef core_title_gained_message_hpp
 #define core_title_gained_message_hpp
 
-namespace network
+namespace protocol
 {
     struct title_gained_message : dofus_unit
     {

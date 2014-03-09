@@ -3,7 +3,7 @@
 #ifndef core_npc_generic_action_failure_message_hpp
 #define core_npc_generic_action_failure_message_hpp
 
-namespace network
+namespace protocol
 {
     struct npc_generic_action_failure_message : dofus_unit
     {

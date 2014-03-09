@@ -3,7 +3,7 @@
 #ifndef core_compass_update_party_member_message_hpp
 #define core_compass_update_party_member_message_hpp
 
-namespace network
+namespace protocol
 {
     struct compass_update_party_member_message : compass_update_message
     {

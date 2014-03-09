@@ -3,7 +3,7 @@
 #ifndef core_paddock_item_hpp
 #define core_paddock_item_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_item : object_item_in_role_play
     {

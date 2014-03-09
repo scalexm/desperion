@@ -3,7 +3,7 @@
 #ifndef core_fight_triggered_effect_hpp
 #define core_fight_triggered_effect_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_triggered_effect : abstract_fight_dispellable_effect
     {

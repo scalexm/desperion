@@ -3,7 +3,7 @@
 #ifndef core_house_sold_message_hpp
 #define core_house_sold_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_sold_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_login_queue_status_message_hpp
 #define core_login_queue_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct login_queue_status_message : dofus_unit
     {

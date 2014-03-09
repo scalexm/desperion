@@ -3,7 +3,7 @@
 #ifndef core_contact_look_message_hpp
 #define core_contact_look_message_hpp
 
-namespace network
+namespace protocol
 {
     struct contact_look_message : dofus_unit
     {

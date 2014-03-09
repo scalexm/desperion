@@ -3,7 +3,7 @@
 #ifndef core_acquaintance_search_message_hpp
 #define core_acquaintance_search_message_hpp
 
-namespace network
+namespace protocol
 {
     struct acquaintance_search_message : dofus_unit
     {

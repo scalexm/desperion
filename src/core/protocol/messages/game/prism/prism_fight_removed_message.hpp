@@ -3,7 +3,7 @@
 #ifndef core_prism_fight_removed_message_hpp
 #define core_prism_fight_removed_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_fight_removed_message : dofus_unit
     {

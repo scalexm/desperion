@@ -3,7 +3,7 @@
 #ifndef core_guild_house_update_information_message_hpp
 #define core_guild_house_update_information_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_house_update_information_message : dofus_unit
     {

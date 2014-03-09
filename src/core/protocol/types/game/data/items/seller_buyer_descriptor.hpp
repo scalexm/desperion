@@ -3,7 +3,7 @@
 #ifndef core_seller_buyer_descriptor_hpp
 #define core_seller_buyer_descriptor_hpp
 
-namespace network
+namespace protocol
 {
     struct seller_buyer_descriptor : dofus_unit
     {

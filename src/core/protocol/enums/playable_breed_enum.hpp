@@ -3,7 +3,7 @@
 #ifndef core_playable_breed_enum_hpp
 #define core_playable_breed_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum playable_breed
     {

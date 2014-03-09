@@ -3,7 +3,7 @@
 #ifndef core_quest_started_message_hpp
 #define core_quest_started_message_hpp
 
-namespace network
+namespace protocol
 {
     struct quest_started_message : dofus_unit
     {

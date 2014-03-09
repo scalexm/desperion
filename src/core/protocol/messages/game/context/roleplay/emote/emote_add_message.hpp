@@ -3,7 +3,7 @@
 #ifndef core_emote_add_message_hpp
 #define core_emote_add_message_hpp
 
-namespace network
+namespace protocol
 {
     struct emote_add_message : dofus_unit
     {

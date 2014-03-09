@@ -3,7 +3,7 @@
 #ifndef core_mood_smiley_result_message_hpp
 #define core_mood_smiley_result_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mood_smiley_result_message : dofus_unit
     {

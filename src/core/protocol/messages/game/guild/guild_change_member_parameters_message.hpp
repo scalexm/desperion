@@ -3,7 +3,7 @@
 #ifndef core_guild_change_member_parameters_message_hpp
 #define core_guild_change_member_parameters_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_change_member_parameters_message : dofus_unit
     {

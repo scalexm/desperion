@@ -3,7 +3,7 @@
 #ifndef core_slave_switch_context_message_hpp
 #define core_slave_switch_context_message_hpp
 
-namespace network
+namespace protocol
 {
     struct slave_switch_context_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_spell_item_hpp
 #define core_spell_item_hpp
 
-namespace network
+namespace protocol
 {
     struct spell_item : item
     {

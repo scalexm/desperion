@@ -3,7 +3,7 @@
 #ifndef core_startup_actions_execute_message_hpp
 #define core_startup_actions_execute_message_hpp
 
-namespace network
+namespace protocol
 {
     struct startup_actions_execute_message : dofus_unit
     {

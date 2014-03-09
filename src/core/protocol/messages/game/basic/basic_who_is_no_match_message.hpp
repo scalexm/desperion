@@ -3,7 +3,7 @@
 #ifndef core_basic_who_is_no_match_message_hpp
 #define core_basic_who_is_no_match_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_who_is_no_match_message : dofus_unit
     {

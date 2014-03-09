@@ -3,7 +3,7 @@
 #ifndef core_party_locate_members_message_hpp
 #define core_party_locate_members_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_locate_members_message : abstract_party_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_protected_entity_waiting_for_help_info_hpp
 #define core_protected_entity_waiting_for_help_info_hpp
 
-namespace network
+namespace protocol
 {
     struct protected_entity_waiting_for_help_info : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_paddock_content_informations_hpp
 #define core_paddock_content_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_content_informations : paddock_informations
     {

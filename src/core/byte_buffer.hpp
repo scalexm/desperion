@@ -1,9 +1,9 @@
 //
 //  byte_buffer.hpp
-//  Test
+//  core
 //
 //  Created by Alexandre Martin on 17/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_byte_buffer_hpp
@@ -16,27 +16,33 @@
 
 void reverse_bytes(uint8_t *, size_t);
 
-namespace policies
+namespace detail
 {
-    template<bool>
-    struct endianness;
-
-    template<>
-    struct endianness<true>
+    namespace policies
     {
-        static void apply(uint8_t * bytes, size_t count)
-        {
-            reverse_bytes(bytes, count);
-        }
-    };
+        template<bool>
+        struct endianness;
 
-    template<>
-    struct endianness<false>
-    {
-        static void apply(uint8_t * bytes, size_t count)
+        template<>
+        struct endianness<true>
         {
-        }
-    };
+            static void apply(uint8_t * bytes, size_t count)
+            {
+                reverse_bytes(bytes, count);
+            }
+        };
+
+        template<>
+        struct endianness<false>
+        {
+            static void apply(uint8_t * bytes, size_t count)
+            {
+            }
+        };
+    }
+
+    template<class T>
+    using copy_req = std::is_trivially_copyable<T>;
 }
 
 class byte_buffer
@@ -84,7 +90,7 @@ public:
             _data.resize(_wpos + count);
         memcpy(&_data[_wpos], bytes, count);
 #ifdef BOOST_LITTLE_ENDIAN
-        policies::endianness<Apply>::apply(&_data[_wpos], count);
+        detail::policies::endianness<Apply>::apply(&_data[_wpos], count);
 #endif
         _wpos += count;
     }
@@ -97,7 +103,7 @@ public:
         if (_rpos + count <= size())
             memcpy(bytes, &_data[_rpos], count);
 #ifdef BOOST_LITTLE_ENDIAN
-        policies::endianness<Apply>::apply(bytes, count);
+        detail::policies::endianness<Apply>::apply(bytes, count);
 #endif
         _rpos += count;
     }
@@ -106,20 +112,30 @@ public:
 template<class T>
 inline void write(byte_buffer & buffer, const T & value)
 {
-    static_assert(std::is_trivially_copyable<T>::value, "write requires trivially copyable type");
+    static_assert(detail::copy_req<T>::value, "write requires trivially copyable type");
     buffer.write_bytes<true>(reinterpret_cast<const uint8_t *>(&value), sizeof(T));
 }
 
 template<class T>
 inline void read(byte_buffer & buffer, T & value)
 {
-    static_assert(std::is_trivially_copyable<T>::value, "read requires trivially copyable type");
+    static_assert(detail::copy_req<T>::value, "read requires trivially copyable type");
     buffer.read_bytes<true>(reinterpret_cast<uint8_t *>(&value), sizeof(T));
 }
 
+namespace detail
+{
+    template<class T>
+    using val_req = std::enable_if<copy_req<T>::value,
+        byte_buffer &>;
+
+    template<class T>
+    using vect_req = std::enable_if<!std::is_void<decltype(std::declval<T>().size())>::value,
+        byte_buffer &>;
+}
+
 template<class T>
-inline typename std::enable_if<std::is_trivially_copyable<T>::value,
-    byte_buffer &>::type
+inline typename detail::val_req<T>::type
 operator <<(byte_buffer & buffer, const T & val)
 {
     write(buffer, val);
@@ -127,8 +143,7 @@ operator <<(byte_buffer & buffer, const T & val)
 }
 
 template<class T>
-inline typename std::enable_if<!std::is_void<decltype(std::declval<T>().size())>::value,
-    byte_buffer &>::type
+inline typename detail::vect_req<T>::type
 operator <<(byte_buffer & buffer, const T & val)
 {
     uint16_t size = static_cast<uint16_t>(val.size());
@@ -138,8 +153,7 @@ operator <<(byte_buffer & buffer, const T & val)
 }
 
 template<class T>
-inline typename std::enable_if<std::is_trivially_copyable<T>::value,
-    byte_buffer &>::type
+inline typename detail::val_req<T>::type
 operator >>(byte_buffer & buffer, T & val)
 {
     read(buffer, val);
@@ -147,8 +161,7 @@ operator >>(byte_buffer & buffer, T & val)
 }
 
 template<class T>
-inline typename std::enable_if<!std::is_void<decltype(std::declval<T>().size())>::value,
-    byte_buffer &>::type
+inline typename detail::vect_req<T>::type
 operator >>(byte_buffer & buffer, T & val)
 {
     uint16_t size;

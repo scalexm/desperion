@@ -3,7 +3,7 @@
 #ifndef core_map_coordinates_extended_hpp
 #define core_map_coordinates_extended_hpp
 
-namespace network
+namespace protocol
 {
     struct map_coordinates_extended : map_coordinates_and_id
     {

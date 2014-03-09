@@ -3,7 +3,7 @@
 #ifndef core_stats_upgrade_request_message_hpp
 #define core_stats_upgrade_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct stats_upgrade_request_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_atlas_point_informations_message_hpp
 #define core_atlas_point_informations_message_hpp
 
-namespace network
+namespace protocol
 {
     struct atlas_point_informations_message : dofus_unit
     {

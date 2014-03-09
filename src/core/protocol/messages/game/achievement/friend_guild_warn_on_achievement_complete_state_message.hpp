@@ -3,7 +3,7 @@
 #ifndef core_friend_guild_warn_on_achievement_complete_state_message_hpp
 #define core_friend_guild_warn_on_achievement_complete_state_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_guild_warn_on_achievement_complete_state_message : dofus_unit
     {

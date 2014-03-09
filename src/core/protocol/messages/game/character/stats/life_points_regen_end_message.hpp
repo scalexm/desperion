@@ -3,7 +3,7 @@
 #ifndef core_life_points_regen_end_message_hpp
 #define core_life_points_regen_end_message_hpp
 
-namespace network
+namespace protocol
 {
     struct life_points_regen_end_message : update_life_points_message
     {

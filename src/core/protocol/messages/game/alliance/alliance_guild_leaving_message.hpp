@@ -3,7 +3,7 @@
 #ifndef core_alliance_guild_leaving_message_hpp
 #define core_alliance_guild_leaving_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_guild_leaving_message : dofus_unit
     {

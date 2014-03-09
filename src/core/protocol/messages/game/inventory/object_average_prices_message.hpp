@@ -3,7 +3,7 @@
 #ifndef core_object_average_prices_message_hpp
 #define core_object_average_prices_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_average_prices_message : dofus_unit
     {

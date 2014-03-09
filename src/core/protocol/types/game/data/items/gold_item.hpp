@@ -3,7 +3,7 @@
 #ifndef core_gold_item_hpp
 #define core_gold_item_hpp
 
-namespace network
+namespace protocol
 {
     struct gold_item : item
     {

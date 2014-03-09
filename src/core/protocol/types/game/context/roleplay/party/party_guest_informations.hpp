@@ -3,7 +3,7 @@
 #ifndef core_party_guest_informations_hpp
 #define core_party_guest_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct party_guest_informations : dofus_unit
     {

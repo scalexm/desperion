@@ -3,13 +3,13 @@
 //  core
 //
 //  Created by Alexandre Martin on 08/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_identifiers_hpp
 #define core_identifiers_hpp
 
-namespace network
+namespace protocol
 {
     enum opcode
     {

@@ -3,7 +3,7 @@
 #ifndef core_admin_command_message_hpp
 #define core_admin_command_message_hpp
 
-namespace network
+namespace protocol
 {
     struct admin_command_message : dofus_unit
     {

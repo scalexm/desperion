@@ -3,7 +3,7 @@
 #ifndef core_additional_tax_collector_informations_hpp
 #define core_additional_tax_collector_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct additional_tax_collector_informations : dofus_unit
     {

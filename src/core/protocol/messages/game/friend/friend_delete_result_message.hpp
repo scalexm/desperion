@@ -3,7 +3,7 @@
 #ifndef core_friend_delete_result_message_hpp
 #define core_friend_delete_result_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_delete_result_message : dofus_unit
     {

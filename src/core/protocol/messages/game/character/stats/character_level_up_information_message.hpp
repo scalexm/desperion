@@ -3,7 +3,7 @@
 #ifndef core_character_level_up_information_message_hpp
 #define core_character_level_up_information_message_hpp
 
-namespace network
+namespace protocol
 {
     struct character_level_up_information_message : character_level_up_message
     {

@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "common.hpp"
@@ -71,7 +71,7 @@ void world::refresh_game_server(const game_server * gs)
     _impl->refresh_game_server(gs);
 }
 
-std::vector<network::game_server_informations_ptr> world::get_server_informations(session * s) const
+std::vector<protocol::game_server_informations_ptr> world::get_server_informations(session * s) const
 {
     return _impl->get_server_informations(s);
 }

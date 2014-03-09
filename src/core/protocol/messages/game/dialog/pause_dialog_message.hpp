@@ -3,7 +3,7 @@
 #ifndef core_pause_dialog_message_hpp
 #define core_pause_dialog_message_hpp
 
-namespace network
+namespace protocol
 {
     struct pause_dialog_message : dofus_unit
     {

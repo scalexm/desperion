@@ -3,7 +3,7 @@
 #ifndef core_prisms_list_update_message_hpp
 #define core_prisms_list_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prisms_list_update_message : prisms_list_message
     {

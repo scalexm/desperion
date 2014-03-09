@@ -3,7 +3,7 @@
 #ifndef core_alliance_modification_valid_message_hpp
 #define core_alliance_modification_valid_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_modification_valid_message : dofus_unit
     {

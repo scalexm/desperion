@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "common.hpp"
@@ -25,12 +25,12 @@ int8_t game_server::get_state(uint8_t level, bool subscriber) const
 {
     auto s = g_world.get_game_session(_id);
     if(level < _min_level)
-        return network::server_status::NOJOIN;
+        return protocol::server_status::NOJOIN;
     else if(s == nullptr)
-        return network::server_status::OFFLINE;
-    else if(s->state() == network::server_status::ONLINE && s->players() >= _players_limit
+        return protocol::server_status::OFFLINE;
+    else if(s->state() == protocol::server_status::ONLINE && s->players() >= _players_limit
             && !subscriber)
-        return network::server_status::FULL;
+        return protocol::server_status::FULL;
     return s->state();
 }
 

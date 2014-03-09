@@ -3,7 +3,7 @@
 #ifndef core_storage_inventory_content_message_hpp
 #define core_storage_inventory_content_message_hpp
 
-namespace network
+namespace protocol
 {
     struct storage_inventory_content_message : inventory_content_message
     {

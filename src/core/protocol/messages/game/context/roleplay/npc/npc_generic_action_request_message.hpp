@@ -3,7 +3,7 @@
 #ifndef core_npc_generic_action_request_message_hpp
 #define core_npc_generic_action_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct npc_generic_action_request_message : dofus_unit
     {

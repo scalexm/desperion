@@ -3,7 +3,7 @@
 #ifndef core_fight_loot_hpp
 #define core_fight_loot_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_loot : dofus_unit
     {

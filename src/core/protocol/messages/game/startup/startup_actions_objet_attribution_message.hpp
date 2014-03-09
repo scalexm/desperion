@@ -3,7 +3,7 @@
 #ifndef core_startup_actions_objet_attribution_message_hpp
 #define core_startup_actions_objet_attribution_message_hpp
 
-namespace network
+namespace protocol
 {
     struct startup_actions_objet_attribution_message : dofus_unit
     {

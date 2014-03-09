@@ -3,7 +3,7 @@
 //  core
 //
 //  Created by Alexandre Martin on 30/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../common.hpp"
@@ -48,7 +48,7 @@ void sql_database::init(const std::string & host, uint16_t port, const std::stri
     {
         auto temp = PQsetdbLogin(host.c_str(), boost::lexical_cast<std::string>(port).c_str(),
                                  nullptr, nullptr, name.c_str(), user.c_str(), password.c_str());
-        auto guard = make_guard(std::bind(&PQfinish, temp));
+        auto guard = make_scope_guard(std::bind(&PQfinish, temp));
         if (PQstatus(temp) == CONNECTION_BAD)
             throw sql_error { "connection failed due to: "_s + PQerrorMessage(temp) };
         guard.dismiss();
@@ -61,11 +61,11 @@ void sql_database::init(const std::string & host, uint16_t port, const std::stri
 void sql_database::load_queries(const std::unordered_map<std::string, std::string> & queries)
 {
     auto & c = get_free_connection();
-    auto guard = make_guard(std::bind(&std::mutex::unlock, &c.lock));
+    auto guard = make_scope_guard(std::bind(&std::mutex::unlock, &c.lock));
     for(auto && it : queries)
     {
         auto res = PQprepare(c.conn, it.first.c_str(), it.second.c_str(), 0, nullptr);
-        auto res_guard = make_guard(std::bind(PQclear, res));
+        auto res_guard = make_scope_guard(std::bind(PQclear, res));
         auto status = PQresultStatus(res);
         if (status == PGRES_FATAL_ERROR)
         {
@@ -112,10 +112,10 @@ query_result sql_database::send_query(connection & c, const query_list & sql, st
 }
 
 void sql_database::async_send_query(boost::asio::io_service::work &,
-                                    sql_callback cb, const query_list & sql)
+                                    sql_callback & cb, const query_list & sql)
 {
     auto & c = get_free_connection();
-    auto guard = make_guard(std::bind(&std::mutex::unlock, &c.lock));
+    auto guard = make_scope_guard(std::bind(&std::mutex::unlock, &c.lock));
     std::string error;
     auto qres = std::make_shared<query_result>(send_query(c, sql, error));
     _main_service.post(std::bind(cb, std::move(qres), error));
@@ -126,7 +126,7 @@ query_result sql_database::query(const query_list & sql)
     if (sql.empty())
         return { };
     auto & c = get_free_connection();
-    auto guard = make_guard(std::bind(&std::mutex::unlock, &c.lock));
+    auto guard = make_scope_guard(std::bind(&std::mutex::unlock, &c.lock));
     std::string error;
     auto result = send_query(c, sql, error);
     if (!error.empty())
@@ -142,6 +142,6 @@ void sql_database::async_query(sql_callback cb, query_list sql)
     _service.post(std::bind(&sql_database::async_send_query,
                             this,
                             boost::asio::io_service::work { _main_service },
-                            cb,
+                            std::move(cb),
                             std::move(sql)));
 }

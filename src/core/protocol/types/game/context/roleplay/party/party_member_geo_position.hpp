@@ -3,7 +3,7 @@
 #ifndef core_party_member_geo_position_hpp
 #define core_party_member_geo_position_hpp
 
-namespace network
+namespace protocol
 {
     struct party_member_geo_position : dofus_unit
     {

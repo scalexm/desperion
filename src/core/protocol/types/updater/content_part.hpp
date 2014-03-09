@@ -3,7 +3,7 @@
 #ifndef core_content_part_hpp
 #define core_content_part_hpp
 
-namespace network
+namespace protocol
 {
     struct content_part : dofus_unit
     {

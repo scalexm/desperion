@@ -3,7 +3,7 @@
 #ifndef core_abstract_game_action_fight_targeted_ability_message_hpp
 #define core_abstract_game_action_fight_targeted_ability_message_hpp
 
-namespace network
+namespace protocol
 {
     struct abstract_game_action_fight_targeted_ability_message : abstract_game_action_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_character_informations_hpp
 #define core_game_role_play_character_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_character_informations : game_role_play_humanoid_informations
     {

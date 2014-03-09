@@ -3,7 +3,7 @@
 #ifndef core_directions_enum_hpp
 #define core_directions_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum directions
     {

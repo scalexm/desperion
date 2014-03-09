@@ -3,7 +3,7 @@
 #ifndef core_already_connected_message_hpp
 #define core_already_connected_message_hpp
 
-namespace network
+namespace protocol
 {
     struct already_connected_message : dofus_unit
     {

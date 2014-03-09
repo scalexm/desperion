@@ -3,7 +3,7 @@
 #ifndef core_game_context_actor_informations_hpp
 #define core_game_context_actor_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_context_actor_informations : dofus_unit
     {

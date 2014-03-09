@@ -3,7 +3,7 @@
 #ifndef core_challenge_target_update_message_hpp
 #define core_challenge_target_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct challenge_target_update_message : dofus_unit
     {

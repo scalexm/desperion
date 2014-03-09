@@ -3,7 +3,7 @@
 #ifndef core_console_message_hpp
 #define core_console_message_hpp
 
-namespace network
+namespace protocol
 {
     struct console_message : dofus_unit
     {

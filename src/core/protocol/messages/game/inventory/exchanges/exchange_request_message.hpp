@@ -3,7 +3,7 @@
 #ifndef core_exchange_request_message_hpp
 #define core_exchange_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_request_message : dofus_unit
     {

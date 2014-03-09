@@ -3,7 +3,7 @@
 #ifndef core_update_map_players_agressable_status_message_hpp
 #define core_update_map_players_agressable_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct update_map_players_agressable_status_message : dofus_unit
     {

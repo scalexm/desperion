@@ -3,7 +3,7 @@
 #ifndef core_version_hpp
 #define core_version_hpp
 
-namespace network
+namespace protocol
 {
     struct version : dofus_unit
     {

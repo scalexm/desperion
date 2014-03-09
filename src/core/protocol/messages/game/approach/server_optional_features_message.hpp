@@ -3,7 +3,7 @@
 #ifndef core_server_optional_features_message_hpp
 #define core_server_optional_features_message_hpp
 
-namespace network
+namespace protocol
 {
     struct server_optional_features_message : dofus_unit
     {

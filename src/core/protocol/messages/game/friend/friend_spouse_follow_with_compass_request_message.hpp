@@ -3,7 +3,7 @@
 #ifndef core_friend_spouse_follow_with_compass_request_message_hpp
 #define core_friend_spouse_follow_with_compass_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_spouse_follow_with_compass_request_message : dofus_unit
     {

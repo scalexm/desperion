@@ -3,7 +3,7 @@
 #ifndef core_character_deletion_error_message_hpp
 #define core_character_deletion_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct character_deletion_error_message : dofus_unit
     {

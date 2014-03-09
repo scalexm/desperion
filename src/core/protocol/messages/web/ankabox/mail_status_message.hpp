@@ -3,7 +3,7 @@
 #ifndef core_mail_status_message_hpp
 #define core_mail_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mail_status_message : dofus_unit
     {

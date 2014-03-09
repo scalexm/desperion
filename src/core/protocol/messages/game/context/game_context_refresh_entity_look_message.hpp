@@ -3,7 +3,7 @@
 #ifndef core_game_context_refresh_entity_look_message_hpp
 #define core_game_context_refresh_entity_look_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_context_refresh_entity_look_message : dofus_unit
     {

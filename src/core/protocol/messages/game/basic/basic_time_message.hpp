@@ -3,7 +3,7 @@
 #ifndef core_basic_time_message_hpp
 #define core_basic_time_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_time_message : dofus_unit
     {

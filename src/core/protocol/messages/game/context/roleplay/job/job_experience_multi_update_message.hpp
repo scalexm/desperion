@@ -3,7 +3,7 @@
 #ifndef core_job_experience_multi_update_message_hpp
 #define core_job_experience_multi_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct job_experience_multi_update_message : dofus_unit
     {

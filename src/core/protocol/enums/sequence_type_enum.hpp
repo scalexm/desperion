@@ -3,7 +3,7 @@
 #ifndef core_sequence_type_enum_hpp
 #define core_sequence_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum sequence_type
     {

@@ -3,7 +3,7 @@
 #ifndef core_guild_level_up_message_hpp
 #define core_guild_level_up_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_level_up_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_exchange_replay_count_modified_message_hpp
 #define core_exchange_replay_count_modified_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_replay_count_modified_message : dofus_unit
     {

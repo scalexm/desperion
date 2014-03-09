@@ -3,7 +3,7 @@
 #ifndef core_game_fight_monster_with_alignment_informations_hpp
 #define core_game_fight_monster_with_alignment_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_monster_with_alignment_informations : game_fight_monster_informations
     {

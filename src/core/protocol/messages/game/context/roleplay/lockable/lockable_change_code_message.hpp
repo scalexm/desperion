@@ -3,7 +3,7 @@
 #ifndef core_lockable_change_code_message_hpp
 #define core_lockable_change_code_message_hpp
 
-namespace network
+namespace protocol
 {
     struct lockable_change_code_message : dofus_unit
     {

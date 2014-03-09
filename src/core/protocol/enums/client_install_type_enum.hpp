@@ -3,7 +3,7 @@
 #ifndef core_client_install_type_enum_hpp
 #define core_client_install_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum client_install_type
     {

@@ -3,7 +3,7 @@
 #ifndef core_map_fight_count_message_hpp
 #define core_map_fight_count_message_hpp
 
-namespace network
+namespace protocol
 {
     struct map_fight_count_message : dofus_unit
     {

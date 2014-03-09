@@ -3,7 +3,7 @@
 #ifndef core_game_entity_disposition_error_message_hpp
 #define core_game_entity_disposition_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_entity_disposition_error_message : dofus_unit
     {

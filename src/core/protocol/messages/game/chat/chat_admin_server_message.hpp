@@ -3,7 +3,7 @@
 #ifndef core_chat_admin_server_message_hpp
 #define core_chat_admin_server_message_hpp
 
-namespace network
+namespace protocol
 {
     struct chat_admin_server_message : chat_server_message
     {

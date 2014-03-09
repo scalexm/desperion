@@ -3,7 +3,7 @@
 #ifndef core_challenge_dungeon_stacked_bonus_message_hpp
 #define core_challenge_dungeon_stacked_bonus_message_hpp
 
-namespace network
+namespace protocol
 {
     struct challenge_dungeon_stacked_bonus_message : dofus_unit
     {

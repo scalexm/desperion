@@ -3,7 +3,7 @@
 #ifndef core_game_hierarchy_enum_hpp
 #define core_game_hierarchy_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum game_hierarchy
     {

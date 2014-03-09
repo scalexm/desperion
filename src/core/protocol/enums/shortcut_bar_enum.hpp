@@ -3,7 +3,7 @@
 #ifndef core_shortcut_bar_enum_hpp
 #define core_shortcut_bar_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum shortcut_bar
     {

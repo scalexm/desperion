@@ -3,7 +3,7 @@
 #ifndef core_fight_team_member_with_alliance_character_informations_hpp
 #define core_fight_team_member_with_alliance_character_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_team_member_with_alliance_character_informations : fight_team_member_character_informations
     {

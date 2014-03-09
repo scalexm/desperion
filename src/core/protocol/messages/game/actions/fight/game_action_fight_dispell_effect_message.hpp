@@ -3,7 +3,7 @@
 #ifndef core_game_action_fight_dispell_effect_message_hpp
 #define core_game_action_fight_dispell_effect_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_action_fight_dispell_effect_message : game_action_fight_dispell_message
     {

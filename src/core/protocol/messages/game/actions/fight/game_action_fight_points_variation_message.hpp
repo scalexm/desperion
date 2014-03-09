@@ -3,7 +3,7 @@
 #ifndef core_game_action_fight_points_variation_message_hpp
 #define core_game_action_fight_points_variation_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_action_fight_points_variation_message : abstract_game_action_message
     {

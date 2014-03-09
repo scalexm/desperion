@@ -3,7 +3,7 @@
 #ifndef core_notification_update_flag_message_hpp
 #define core_notification_update_flag_message_hpp
 
-namespace network
+namespace protocol
 {
     struct notification_update_flag_message : dofus_unit
     {

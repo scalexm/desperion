@@ -3,7 +3,7 @@
 #ifndef core_identification_success_with_login_token_message_hpp
 #define core_identification_success_with_login_token_message_hpp
 
-namespace network
+namespace protocol
 {
     struct identification_success_with_login_token_message : identification_success_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_object_set_position_message_hpp
 #define core_object_set_position_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_set_position_message : dofus_unit
     {

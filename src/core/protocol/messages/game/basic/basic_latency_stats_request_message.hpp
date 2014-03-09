@@ -3,7 +3,7 @@
 #ifndef core_basic_latency_stats_request_message_hpp
 #define core_basic_latency_stats_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_latency_stats_request_message : dofus_unit
     {

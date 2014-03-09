@@ -3,7 +3,7 @@
 #ifndef core_exchange_ok_multi_craft_message_hpp
 #define core_exchange_ok_multi_craft_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_ok_multi_craft_message : dofus_unit
     {

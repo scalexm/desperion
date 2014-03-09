@@ -3,7 +3,7 @@
 #ifndef core_abstract_fight_dispellable_effect_hpp
 #define core_abstract_fight_dispellable_effect_hpp
 
-namespace network
+namespace protocol
 {
     struct abstract_fight_dispellable_effect : dofus_unit
     {

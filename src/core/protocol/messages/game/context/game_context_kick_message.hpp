@@ -3,7 +3,7 @@
 #ifndef core_game_context_kick_message_hpp
 #define core_game_context_kick_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_context_kick_message : dofus_unit
     {

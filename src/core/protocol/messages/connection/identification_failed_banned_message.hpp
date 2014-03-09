@@ -3,7 +3,7 @@
 #ifndef core_identification_failed_banned_message_hpp
 #define core_identification_failed_banned_message_hpp
 
-namespace network
+namespace protocol
 {
     struct identification_failed_banned_message : identification_failed_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_chat_error_enum_hpp
 #define core_chat_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum chat_error
     {

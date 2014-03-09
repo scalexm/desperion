@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_delayed_action_message_hpp
 #define core_game_role_play_delayed_action_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_delayed_action_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_fight_team_light_informations_hpp
 #define core_fight_team_light_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_team_light_informations : abstract_fight_team_informations
     {

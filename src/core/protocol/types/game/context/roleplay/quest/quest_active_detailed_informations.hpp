@@ -3,7 +3,7 @@
 #ifndef core_quest_active_detailed_informations_hpp
 #define core_quest_active_detailed_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct quest_active_detailed_informations : quest_active_informations
     {

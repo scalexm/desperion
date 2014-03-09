@@ -3,7 +3,7 @@
 #ifndef core_friend_add_failure_message_hpp
 #define core_friend_add_failure_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_add_failure_message : dofus_unit
     {

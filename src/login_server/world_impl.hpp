@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef login_server_world_impl_hpp
@@ -36,7 +36,7 @@ public:
 
     const game_server * get_game_server(int16_t) const;
     void refresh_game_server(const game_server *);
-    std::vector<network::game_server_informations_ptr> get_server_informations(session *) const;
+    std::vector<protocol::game_server_informations_ptr> get_server_informations(session *) const;
 
     uint16_t get_players() const
     { return _sessions.size(); }

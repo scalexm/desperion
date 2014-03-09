@@ -3,7 +3,7 @@
 #ifndef core_party_abdicate_throne_message_hpp
 #define core_party_abdicate_throne_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_abdicate_throne_message : abstract_party_message
     {

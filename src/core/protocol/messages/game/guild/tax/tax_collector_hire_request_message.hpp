@@ -3,7 +3,7 @@
 #ifndef core_tax_collector_hire_request_message_hpp
 #define core_tax_collector_hire_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct tax_collector_hire_request_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_entity_talk_message_hpp
 #define core_entity_talk_message_hpp
 
-namespace network
+namespace protocol
 {
     struct entity_talk_message : dofus_unit
     {

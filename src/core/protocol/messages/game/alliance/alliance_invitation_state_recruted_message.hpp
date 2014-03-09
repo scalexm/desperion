@@ -3,7 +3,7 @@
 #ifndef core_alliance_invitation_state_recruted_message_hpp
 #define core_alliance_invitation_state_recruted_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_invitation_state_recruted_message : dofus_unit
     {

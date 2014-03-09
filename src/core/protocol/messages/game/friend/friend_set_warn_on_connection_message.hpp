@@ -3,7 +3,7 @@
 #ifndef core_friend_set_warn_on_connection_message_hpp
 #define core_friend_set_warn_on_connection_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_set_warn_on_connection_message : dofus_unit
     {

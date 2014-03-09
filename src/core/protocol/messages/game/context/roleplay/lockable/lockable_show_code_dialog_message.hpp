@@ -3,7 +3,7 @@
 #ifndef core_lockable_show_code_dialog_message_hpp
 #define core_lockable_show_code_dialog_message_hpp
 
-namespace network
+namespace protocol
 {
     struct lockable_show_code_dialog_message : dofus_unit
     {

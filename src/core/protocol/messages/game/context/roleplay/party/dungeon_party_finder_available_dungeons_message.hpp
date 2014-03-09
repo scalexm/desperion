@@ -3,7 +3,7 @@
 #ifndef core_dungeon_party_finder_available_dungeons_message_hpp
 #define core_dungeon_party_finder_available_dungeons_message_hpp
 
-namespace network
+namespace protocol
 {
     struct dungeon_party_finder_available_dungeons_message : dofus_unit
     {

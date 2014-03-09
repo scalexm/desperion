@@ -3,7 +3,7 @@
 #ifndef core_fight_common_informations_hpp
 #define core_fight_common_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_common_informations : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_fight_result_experience_data_hpp
 #define core_fight_result_experience_data_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_result_experience_data : fight_result_additional_data
     {

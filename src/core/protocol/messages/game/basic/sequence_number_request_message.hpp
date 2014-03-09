@@ -3,7 +3,7 @@
 #ifndef core_sequence_number_request_message_hpp
 #define core_sequence_number_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct sequence_number_request_message : dofus_unit
     {

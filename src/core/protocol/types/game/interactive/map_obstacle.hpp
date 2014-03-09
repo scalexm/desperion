@@ -3,7 +3,7 @@
 #ifndef core_map_obstacle_hpp
 #define core_map_obstacle_hpp
 
-namespace network
+namespace protocol
 {
     struct map_obstacle : dofus_unit
     {

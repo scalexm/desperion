@@ -3,7 +3,7 @@
 #ifndef core_bid_exchanger_object_info_hpp
 #define core_bid_exchanger_object_info_hpp
 
-namespace network
+namespace protocol
 {
     struct bid_exchanger_object_info : dofus_unit
     {

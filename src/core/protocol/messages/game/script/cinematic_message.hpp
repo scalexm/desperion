@@ -3,7 +3,7 @@
 #ifndef core_cinematic_message_hpp
 #define core_cinematic_message_hpp
 
-namespace network
+namespace protocol
 {
     struct cinematic_message : dofus_unit
     {

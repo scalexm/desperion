@@ -3,7 +3,7 @@
 #ifndef core_job_experience_hpp
 #define core_job_experience_hpp
 
-namespace network
+namespace protocol
 {
     struct job_experience : dofus_unit
     {

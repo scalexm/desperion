@@ -3,7 +3,7 @@
 #ifndef core_friends_get_list_message_hpp
 #define core_friends_get_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friends_get_list_message : dofus_unit
     {

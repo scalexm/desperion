@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_arena_fighter_status_message_hpp
 #define core_game_role_play_arena_fighter_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_arena_fighter_status_message : dofus_unit
     {

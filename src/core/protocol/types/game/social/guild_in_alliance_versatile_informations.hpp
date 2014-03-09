@@ -3,7 +3,7 @@
 #ifndef core_guild_in_alliance_versatile_informations_hpp
 #define core_guild_in_alliance_versatile_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_in_alliance_versatile_informations : guild_versatile_informations
     {

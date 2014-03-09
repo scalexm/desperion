@@ -3,7 +3,7 @@
 #ifndef core_stated_element_hpp
 #define core_stated_element_hpp
 
-namespace network
+namespace protocol
 {
     struct stated_element : dofus_unit
     {

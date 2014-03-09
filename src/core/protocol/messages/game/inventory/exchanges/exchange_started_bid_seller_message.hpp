@@ -3,7 +3,7 @@
 #ifndef core_exchange_started_bid_seller_message_hpp
 #define core_exchange_started_bid_seller_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_started_bid_seller_message : dofus_unit
     {

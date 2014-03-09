@@ -3,7 +3,7 @@
 #ifndef core_channel_enabling_change_message_hpp
 #define core_channel_enabling_change_message_hpp
 
-namespace network
+namespace protocol
 {
     struct channel_enabling_change_message : dofus_unit
     {

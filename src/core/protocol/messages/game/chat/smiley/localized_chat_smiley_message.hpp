@@ -3,7 +3,7 @@
 #ifndef core_localized_chat_smiley_message_hpp
 #define core_localized_chat_smiley_message_hpp
 
-namespace network
+namespace protocol
 {
     struct localized_chat_smiley_message : chat_smiley_message
     {

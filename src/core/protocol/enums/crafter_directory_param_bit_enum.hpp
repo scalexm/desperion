@@ -3,7 +3,7 @@
 #ifndef core_crafter_directory_param_bit_enum_hpp
 #define core_crafter_directory_param_bit_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum crafter_directory_param_bit
     {

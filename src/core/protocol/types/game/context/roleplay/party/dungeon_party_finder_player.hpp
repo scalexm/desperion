@@ -3,7 +3,7 @@
 #ifndef core_dungeon_party_finder_player_hpp
 #define core_dungeon_party_finder_player_hpp
 
-namespace network
+namespace protocol
 {
     struct dungeon_party_finder_player : dofus_unit
     {

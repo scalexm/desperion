@@ -3,7 +3,7 @@
 #ifndef core_console_message_type_enum_hpp
 #define core_console_message_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum console_message_type
     {

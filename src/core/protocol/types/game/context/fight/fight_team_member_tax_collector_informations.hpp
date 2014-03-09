@@ -3,7 +3,7 @@
 #ifndef core_fight_team_member_tax_collector_informations_hpp
 #define core_fight_team_member_tax_collector_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_team_member_tax_collector_informations : fight_team_member_informations
     {

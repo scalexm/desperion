@@ -3,7 +3,7 @@
 #ifndef core_teleport_on_same_map_message_hpp
 #define core_teleport_on_same_map_message_hpp
 
-namespace network
+namespace protocol
 {
     struct teleport_on_same_map_message : dofus_unit
     {

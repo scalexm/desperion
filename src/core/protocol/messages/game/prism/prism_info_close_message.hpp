@@ -3,7 +3,7 @@
 #ifndef core_prism_info_close_message_hpp
 #define core_prism_info_close_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_info_close_message : dofus_unit
     {

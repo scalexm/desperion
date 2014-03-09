@@ -3,7 +3,7 @@
 #ifndef core_job_description_hpp
 #define core_job_description_hpp
 
-namespace network
+namespace protocol
 {
     struct job_description : dofus_unit
     {

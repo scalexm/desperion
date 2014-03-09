@@ -3,7 +3,7 @@
 #ifndef core_exchange_set_craft_recipe_message_hpp
 #define core_exchange_set_craft_recipe_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_set_craft_recipe_message : dofus_unit
     {

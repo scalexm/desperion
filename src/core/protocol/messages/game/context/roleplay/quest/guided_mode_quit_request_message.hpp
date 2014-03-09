@@ -3,7 +3,7 @@
 #ifndef core_guided_mode_quit_request_message_hpp
 #define core_guided_mode_quit_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guided_mode_quit_request_message : dofus_unit
     {

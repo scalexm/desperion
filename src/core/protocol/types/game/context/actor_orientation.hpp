@@ -3,7 +3,7 @@
 #ifndef core_actor_orientation_hpp
 #define core_actor_orientation_hpp
 
-namespace network
+namespace protocol
 {
     struct actor_orientation : dofus_unit
     {

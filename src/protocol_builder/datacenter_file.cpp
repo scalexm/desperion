@@ -3,7 +3,7 @@
 //  protocol_builder
 //
 //  Created by Alexandre Martin on 16/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "datacenter_file.hpp"

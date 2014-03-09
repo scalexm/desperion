@@ -3,7 +3,7 @@
 #ifndef core_object_use_message_hpp
 #define core_object_use_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_use_message : dofus_unit
     {

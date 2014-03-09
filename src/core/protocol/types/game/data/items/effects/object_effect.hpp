@@ -3,7 +3,7 @@
 #ifndef core_object_effect_hpp
 #define core_object_effect_hpp
 
-namespace network
+namespace protocol
 {
     struct object_effect : dofus_unit
     {

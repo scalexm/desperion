@@ -3,7 +3,7 @@
 #ifndef core_show_cell_spectator_message_hpp
 #define core_show_cell_spectator_message_hpp
 
-namespace network
+namespace protocol
 {
     struct show_cell_spectator_message : show_cell_message
     {

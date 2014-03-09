@@ -3,7 +3,7 @@
 #ifndef core_mount_client_data_hpp
 #define core_mount_client_data_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_client_data : dofus_unit
     {

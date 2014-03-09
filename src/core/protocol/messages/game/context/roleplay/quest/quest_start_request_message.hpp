@@ -3,7 +3,7 @@
 #ifndef core_quest_start_request_message_hpp
 #define core_quest_start_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct quest_start_request_message : dofus_unit
     {

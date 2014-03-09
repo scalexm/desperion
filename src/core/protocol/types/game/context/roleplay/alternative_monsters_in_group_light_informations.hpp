@@ -3,7 +3,7 @@
 #ifndef core_alternative_monsters_in_group_light_informations_hpp
 #define core_alternative_monsters_in_group_light_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct alternative_monsters_in_group_light_informations : dofus_unit
     {

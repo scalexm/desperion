@@ -3,7 +3,7 @@
 #ifndef core_social_contact_category_enum_hpp
 #define core_social_contact_category_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum social_contact_category
     {

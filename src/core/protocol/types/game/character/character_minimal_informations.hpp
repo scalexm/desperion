@@ -3,7 +3,7 @@
 #ifndef core_character_minimal_informations_hpp
 #define core_character_minimal_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct character_minimal_informations : abstract_character_information
     {

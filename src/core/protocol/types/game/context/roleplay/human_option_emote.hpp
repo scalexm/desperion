@@ -3,7 +3,7 @@
 #ifndef core_human_option_emote_hpp
 #define core_human_option_emote_hpp
 
-namespace network
+namespace protocol
 {
     struct human_option_emote : human_option
     {

@@ -3,7 +3,7 @@
 #ifndef core_server_connection_error_enum_hpp
 #define core_server_connection_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum server_connection_error
     {

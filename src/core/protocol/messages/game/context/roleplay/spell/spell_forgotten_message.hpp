@@ -3,7 +3,7 @@
 #ifndef core_spell_forgotten_message_hpp
 #define core_spell_forgotten_message_hpp
 
-namespace network
+namespace protocol
 {
     struct spell_forgotten_message : dofus_unit
     {

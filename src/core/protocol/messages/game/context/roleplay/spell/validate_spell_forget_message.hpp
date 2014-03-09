@@ -3,7 +3,7 @@
 #ifndef core_validate_spell_forget_message_hpp
 #define core_validate_spell_forget_message_hpp
 
-namespace network
+namespace protocol
 {
     struct validate_spell_forget_message : dofus_unit
     {

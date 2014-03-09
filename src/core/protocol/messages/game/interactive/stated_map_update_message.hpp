@@ -3,7 +3,7 @@
 #ifndef core_stated_map_update_message_hpp
 #define core_stated_map_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct stated_map_update_message : dofus_unit
     {

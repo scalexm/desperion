@@ -3,7 +3,7 @@
 #ifndef core_protocol_required_hpp
 #define core_protocol_required_hpp
 
-namespace network
+namespace protocol
 {
     struct protocol_required : dofus_unit
     {

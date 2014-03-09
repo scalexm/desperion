@@ -3,7 +3,7 @@
 #ifndef core_game_server_informations_hpp
 #define core_game_server_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_server_informations : dofus_unit
     {

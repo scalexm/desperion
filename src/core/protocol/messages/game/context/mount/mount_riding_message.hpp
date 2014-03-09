@@ -3,7 +3,7 @@
 #ifndef core_mount_riding_message_hpp
 #define core_mount_riding_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_riding_message : dofus_unit
     {

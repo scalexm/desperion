@@ -3,7 +3,7 @@
 #ifndef core_chat_server_copy_message_hpp
 #define core_chat_server_copy_message_hpp
 
-namespace network
+namespace protocol
 {
     struct chat_server_copy_message : chat_abstract_server_message
     {

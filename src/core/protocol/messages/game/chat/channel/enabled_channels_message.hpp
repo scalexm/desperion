@@ -3,7 +3,7 @@
 #ifndef core_enabled_channels_message_hpp
 #define core_enabled_channels_message_hpp
 
-namespace network
+namespace protocol
 {
     struct enabled_channels_message : dofus_unit
     {

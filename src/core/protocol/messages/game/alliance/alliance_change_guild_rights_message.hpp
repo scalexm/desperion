@@ -3,7 +3,7 @@
 #ifndef core_alliance_change_guild_rights_message_hpp
 #define core_alliance_change_guild_rights_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_change_guild_rights_message : dofus_unit
     {

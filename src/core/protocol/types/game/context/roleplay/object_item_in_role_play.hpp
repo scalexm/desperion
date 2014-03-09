@@ -3,7 +3,7 @@
 #ifndef core_object_item_in_role_play_hpp
 #define core_object_item_in_role_play_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_in_role_play : dofus_unit
     {

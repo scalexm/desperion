@@ -3,7 +3,7 @@
 #ifndef core_object_item_to_sell_in_bid_hpp
 #define core_object_item_to_sell_in_bid_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_to_sell_in_bid : object_item_to_sell
     {

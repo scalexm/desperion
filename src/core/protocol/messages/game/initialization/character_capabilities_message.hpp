@@ -3,7 +3,7 @@
 #ifndef core_character_capabilities_message_hpp
 #define core_character_capabilities_message_hpp
 
-namespace network
+namespace protocol
 {
     struct character_capabilities_message : dofus_unit
     {

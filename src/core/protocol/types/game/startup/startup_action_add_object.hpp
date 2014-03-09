@@ -3,7 +3,7 @@
 #ifndef core_startup_action_add_object_hpp
 #define core_startup_action_add_object_hpp
 
-namespace network
+namespace protocol
 {
     struct startup_action_add_object : dofus_unit
     {

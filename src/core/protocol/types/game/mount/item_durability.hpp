@@ -3,7 +3,7 @@
 #ifndef core_item_durability_hpp
 #define core_item_durability_hpp
 
-namespace network
+namespace protocol
 {
     struct item_durability : dofus_unit
     {

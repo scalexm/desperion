@@ -3,7 +3,7 @@
 #ifndef core_guild_member_online_status_message_hpp
 #define core_guild_member_online_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_member_online_status_message : dofus_unit
     {

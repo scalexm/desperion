@@ -3,7 +3,7 @@
 #ifndef core_guild_insider_fact_sheet_informations_hpp
 #define core_guild_insider_fact_sheet_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_insider_fact_sheet_informations : guild_fact_sheet_informations
     {

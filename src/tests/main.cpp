@@ -3,7 +3,7 @@
 //  tests
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #define BOOST_AUTO_TEST_MAIN

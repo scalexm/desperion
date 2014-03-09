@@ -3,7 +3,7 @@
 #ifndef core_object_item_quantity_hpp
 #define core_object_item_quantity_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_quantity : item
     {

@@ -3,7 +3,7 @@
 #ifndef core_stop_to_listen_running_fight_request_message_hpp
 #define core_stop_to_listen_running_fight_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct stop_to_listen_running_fight_request_message : dofus_unit
     {

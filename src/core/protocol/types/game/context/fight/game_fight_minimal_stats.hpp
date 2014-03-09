@@ -3,7 +3,7 @@
 #ifndef core_game_fight_minimal_stats_hpp
 #define core_game_fight_minimal_stats_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_minimal_stats : dofus_unit
     {

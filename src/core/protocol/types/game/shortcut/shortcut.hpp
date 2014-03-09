@@ -3,7 +3,7 @@
 #ifndef core_shortcut_hpp
 #define core_shortcut_hpp
 
-namespace network
+namespace protocol
 {
     struct shortcut : dofus_unit
     {

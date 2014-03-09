@@ -3,7 +3,7 @@
 #ifndef core_server_status_enum_hpp
 #define core_server_status_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum server_status
     {

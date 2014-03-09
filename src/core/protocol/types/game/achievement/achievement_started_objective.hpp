@@ -3,7 +3,7 @@
 #ifndef core_achievement_started_objective_hpp
 #define core_achievement_started_objective_hpp
 
-namespace network
+namespace protocol
 {
     struct achievement_started_objective : achievement_objective
     {

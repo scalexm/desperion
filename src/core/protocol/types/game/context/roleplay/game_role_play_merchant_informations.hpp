@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_merchant_informations_hpp
 #define core_game_role_play_merchant_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_merchant_informations : game_role_play_named_actor_informations
     {

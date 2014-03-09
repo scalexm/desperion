@@ -3,7 +3,7 @@
 #ifndef core_show_cell_request_message_hpp
 #define core_show_cell_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct show_cell_request_message : dofus_unit
     {

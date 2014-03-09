@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_arena_fight_answer_message_hpp
 #define core_game_role_play_arena_fight_answer_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_arena_fight_answer_message : dofus_unit
     {

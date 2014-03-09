@@ -3,7 +3,7 @@
 #ifndef core_storage_object_remove_message_hpp
 #define core_storage_object_remove_message_hpp
 
-namespace network
+namespace protocol
 {
     struct storage_object_remove_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_acquaintance_server_list_message_hpp
 #define core_acquaintance_server_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct acquaintance_server_list_message : dofus_unit
     {

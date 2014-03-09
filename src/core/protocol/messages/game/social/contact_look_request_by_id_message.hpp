@@ -3,7 +3,7 @@
 #ifndef core_contact_look_request_by_id_message_hpp
 #define core_contact_look_request_by_id_message_hpp
 
-namespace network
+namespace protocol
 {
     struct contact_look_request_by_id_message : contact_look_request_message
     {

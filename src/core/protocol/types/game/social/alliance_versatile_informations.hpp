@@ -3,7 +3,7 @@
 #ifndef core_alliance_versatile_informations_hpp
 #define core_alliance_versatile_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_versatile_informations : dofus_unit
     {

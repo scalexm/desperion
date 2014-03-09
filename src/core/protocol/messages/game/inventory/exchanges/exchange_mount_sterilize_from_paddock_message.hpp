@@ -3,7 +3,7 @@
 #ifndef core_exchange_mount_sterilize_from_paddock_message_hpp
 #define core_exchange_mount_sterilize_from_paddock_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_mount_sterilize_from_paddock_message : dofus_unit
     {

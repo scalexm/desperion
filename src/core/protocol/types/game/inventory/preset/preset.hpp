@@ -3,7 +3,7 @@
 #ifndef core_preset_hpp
 #define core_preset_hpp
 
-namespace network
+namespace protocol
 {
     struct preset : dofus_unit
     {

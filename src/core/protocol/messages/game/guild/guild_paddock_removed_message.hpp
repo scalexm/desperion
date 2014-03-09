@@ -3,7 +3,7 @@
 #ifndef core_guild_paddock_removed_message_hpp
 #define core_guild_paddock_removed_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_paddock_removed_message : dofus_unit
     {

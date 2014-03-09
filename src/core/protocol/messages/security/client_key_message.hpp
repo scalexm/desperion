@@ -3,7 +3,7 @@
 #ifndef core_client_key_message_hpp
 #define core_client_key_message_hpp
 
-namespace network
+namespace protocol
 {
     struct client_key_message : dofus_unit
     {

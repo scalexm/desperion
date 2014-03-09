@@ -3,7 +3,7 @@
 #ifndef core_guild_joined_message_hpp
 #define core_guild_joined_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_joined_message : dofus_unit
     {

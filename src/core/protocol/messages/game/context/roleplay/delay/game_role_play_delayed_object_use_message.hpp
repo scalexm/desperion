@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_delayed_object_use_message_hpp
 #define core_game_role_play_delayed_object_use_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_delayed_object_use_message : game_role_play_delayed_action_message
     {

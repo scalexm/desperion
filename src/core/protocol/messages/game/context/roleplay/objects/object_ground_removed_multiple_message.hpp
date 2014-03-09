@@ -3,7 +3,7 @@
 #ifndef core_object_ground_removed_multiple_message_hpp
 #define core_object_ground_removed_multiple_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_ground_removed_multiple_message : dofus_unit
     {

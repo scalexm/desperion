@@ -3,7 +3,7 @@
 #ifndef core_numerical_value_type_enum_hpp
 #define core_numerical_value_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum numerical_value_type
     {

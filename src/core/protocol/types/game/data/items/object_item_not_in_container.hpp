@@ -3,7 +3,7 @@
 #ifndef core_object_item_not_in_container_hpp
 #define core_object_item_not_in_container_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_not_in_container : item
     {

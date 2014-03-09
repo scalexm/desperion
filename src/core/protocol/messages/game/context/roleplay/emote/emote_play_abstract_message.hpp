@@ -3,7 +3,7 @@
 #ifndef core_emote_play_abstract_message_hpp
 #define core_emote_play_abstract_message_hpp
 
-namespace network
+namespace protocol
 {
     struct emote_play_abstract_message : dofus_unit
     {

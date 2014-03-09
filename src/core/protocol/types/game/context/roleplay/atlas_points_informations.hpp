@@ -3,7 +3,7 @@
 #ifndef core_atlas_points_informations_hpp
 #define core_atlas_points_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct atlas_points_informations : dofus_unit
     {

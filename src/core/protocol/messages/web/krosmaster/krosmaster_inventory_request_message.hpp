@@ -3,7 +3,7 @@
 #ifndef core_krosmaster_inventory_request_message_hpp
 #define core_krosmaster_inventory_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct krosmaster_inventory_request_message : dofus_unit
     {

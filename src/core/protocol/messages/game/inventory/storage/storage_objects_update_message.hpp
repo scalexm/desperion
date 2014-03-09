@@ -3,7 +3,7 @@
 #ifndef core_storage_objects_update_message_hpp
 #define core_storage_objects_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct storage_objects_update_message : dofus_unit
     {

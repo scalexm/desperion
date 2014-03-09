@@ -3,7 +3,7 @@
 #ifndef core_sub_entity_binding_point_category_enum_hpp
 #define core_sub_entity_binding_point_category_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum sub_entity_binding_point_category
     {

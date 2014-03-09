@@ -3,13 +3,11 @@
 //  core
 //
 //  Created by Alexandre Martin on 30/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_pimpl_hpp
 #define core_pimpl_hpp
-
-// see gotw c++11 updated pimpl idiom
 
 template<class T>
 class pimpl

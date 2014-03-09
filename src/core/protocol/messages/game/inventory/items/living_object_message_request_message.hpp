@@ -3,7 +3,7 @@
 #ifndef core_living_object_message_request_message_hpp
 #define core_living_object_message_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct living_object_message_request_message : dofus_unit
     {

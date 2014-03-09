@@ -3,7 +3,7 @@
 #ifndef core_update_life_points_message_hpp
 #define core_update_life_points_message_hpp
 
-namespace network
+namespace protocol
 {
     struct update_life_points_message : dofus_unit
     {

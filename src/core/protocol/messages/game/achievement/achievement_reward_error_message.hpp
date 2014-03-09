@@ -3,7 +3,7 @@
 #ifndef core_achievement_reward_error_message_hpp
 #define core_achievement_reward_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct achievement_reward_error_message : dofus_unit
     {

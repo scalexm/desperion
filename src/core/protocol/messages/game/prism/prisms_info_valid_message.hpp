@@ -3,7 +3,7 @@
 #ifndef core_prisms_info_valid_message_hpp
 #define core_prisms_info_valid_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prisms_info_valid_message : dofus_unit
     {

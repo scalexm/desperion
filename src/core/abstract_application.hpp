@@ -3,7 +3,7 @@
 //  core
 //
 //  Created by Alexandre Martin on 04/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_abstract_application_hpp
@@ -22,10 +22,7 @@ enum class shutdown_type
 
 class abstract_application
 {
-private:
-    class impl;
 public:
-    virtual shutdown_type run(int, const char **) = 0;
     void shutdown(shutdown_type s);
 
     int64_t uptime() const
@@ -47,7 +44,6 @@ protected:
     std::condition_variable _condition;
 
     abstract_application();
-    virtual ~abstract_application() = default;
 
     void set_title(const std::string &);
 

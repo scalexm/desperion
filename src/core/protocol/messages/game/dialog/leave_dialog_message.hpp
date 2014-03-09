@@ -3,7 +3,7 @@
 #ifndef core_leave_dialog_message_hpp
 #define core_leave_dialog_message_hpp
 
-namespace network
+namespace protocol
 {
     struct leave_dialog_message : dofus_unit
     {

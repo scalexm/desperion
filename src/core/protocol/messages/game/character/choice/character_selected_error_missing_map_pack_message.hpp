@@ -3,7 +3,7 @@
 #ifndef core_character_selected_error_missing_map_pack_message_hpp
 #define core_character_selected_error_missing_map_pack_message_hpp
 
-namespace network
+namespace protocol
 {
     struct character_selected_error_missing_map_pack_message : character_selected_error_message
     {

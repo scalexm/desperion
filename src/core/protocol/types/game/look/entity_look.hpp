@@ -3,7 +3,7 @@
 #ifndef core_entity_look_hpp
 #define core_entity_look_hpp
 
-namespace network
+namespace protocol
 {
     struct entity_look : dofus_unit
     {

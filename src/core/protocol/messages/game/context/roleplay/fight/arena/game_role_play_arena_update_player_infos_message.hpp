@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_arena_update_player_infos_message_hpp
 #define core_game_role_play_arena_update_player_infos_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_arena_update_player_infos_message : dofus_unit
     {

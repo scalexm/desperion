@@ -3,7 +3,7 @@
 #ifndef core_game_fight_update_team_message_hpp
 #define core_game_fight_update_team_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_update_team_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_party_invitation_member_informations_hpp
 #define core_party_invitation_member_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct party_invitation_member_informations : character_base_informations
     {

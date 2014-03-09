@@ -3,7 +3,7 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../../core/common.hpp"
@@ -21,11 +21,6 @@ d2o_writer::~d2o_writer()
 void d2o_writer::add_class_definition(int id, const d2o_class_definition & c)
 {
     _impl->add_class_definition(id, c);
-}
-
-void d2o_writer::add_object(int id, const data_object & obj)
-{
-    add_object(id, data_object { obj });
 }
 
 void d2o_writer::add_object(int id, data_object && obj)

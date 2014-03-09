@@ -3,7 +3,7 @@
 #ifndef core_game_context_remove_multiple_elements_with_events_message_hpp
 #define core_game_context_remove_multiple_elements_with_events_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_context_remove_multiple_elements_with_events_message : game_context_remove_multiple_elements_message
     {

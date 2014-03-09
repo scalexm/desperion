@@ -3,7 +3,7 @@
 #ifndef core_house_buy_request_message_hpp
 #define core_house_buy_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_buy_request_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_version_extended_hpp
 #define core_version_extended_hpp
 
-namespace network
+namespace protocol
 {
     struct version_extended : version
     {

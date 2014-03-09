@@ -3,7 +3,7 @@
 #ifndef core_character_base_informations_hpp
 #define core_character_base_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct character_base_informations : character_minimal_plus_look_informations
     {

@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 08/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "common.hpp"
@@ -72,10 +72,10 @@ shutdown_type application::impl::run(int argc, const char ** argv)
         << "| '--'  , | '---, ,---| | | ,----` | '---, | ,-\\  \\  .--||--, | '--' | ||   \\||\n"
         << "`------`  `-----' `-----` `-`      `-----' `-`  '--' `------` `------` ``    `'\n";
     utils::color<utils::TGREEN>(std::cout)
-        << "Dofus v" << network::DOFUS_VERSION_MAJOR << "." << network::DOFUS_VERSION_MINOR << "."
-        << network::DOFUS_VERSION_RELEASE << "." << network::DOFUS_VERSION_REVISION << "."
-        << network::DOFUS_VERSION_PATCH << "/" << network::DOFUS_VERSION_BUILD_TYPE << ", protocol "
-        << network::PROTOCOL_BUILD << "/" << network::PROTOCOL_REQUIRED_BUILD << "\n"
+        << "Dofus v" << protocol::DOFUS_VERSION_MAJOR << "." << protocol::DOFUS_VERSION_MINOR << "."
+        << protocol::DOFUS_VERSION_RELEASE << "." << protocol::DOFUS_VERSION_REVISION << "."
+        << protocol::DOFUS_VERSION_PATCH << "/" << protocol::DOFUS_VERSION_BUILD_TYPE << ", protocol "
+        << protocol::PROTOCOL_BUILD << "/" << protocol::PROTOCOL_REQUIRED_BUILD << "\n"
 
         << "login server v" << version.str() << ", build date: " << __DATE__
         << " " << __TIME__ << "\n" << utils::cendl;

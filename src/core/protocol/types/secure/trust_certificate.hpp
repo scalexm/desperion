@@ -3,7 +3,7 @@
 #ifndef core_trust_certificate_hpp
 #define core_trust_certificate_hpp
 
-namespace network
+namespace protocol
 {
     struct trust_certificate : dofus_unit
     {

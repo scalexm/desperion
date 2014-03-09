@@ -3,7 +3,7 @@
 #ifndef core_identification_account_force_message_hpp
 #define core_identification_account_force_message_hpp
 
-namespace network
+namespace protocol
 {
     struct identification_account_force_message : identification_message
     {

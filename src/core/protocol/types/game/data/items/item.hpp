@@ -3,7 +3,7 @@
 #ifndef core_item_hpp
 #define core_item_hpp
 
-namespace network
+namespace protocol
 {
     struct item : dofus_unit
     {

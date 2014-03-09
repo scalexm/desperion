@@ -3,7 +3,7 @@
 //  core
 //
 //  Created by Alexandre Martin on 30/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef DEBUG
@@ -11,6 +11,9 @@
 #include "../common.hpp"
 #include "../statistics_center.hpp"
 #include "../utils.hpp"
+#include <vector>
+#include <fstream>
+#include <sstream>
 
 statistics_center::statistics_center(int major, int minor, int release)
     : _major { major }, _minor { minor }, _release { release }
@@ -24,7 +27,10 @@ statistics_center::statistics_center(int major, int minor, int release)
         while (std::getline(file, line))
         {
             std::vector<uint64_t> table;
-            utils::split<' '>(table, line, utils::split_int);
+            utils::split<' '>(line, [&table](std::string && str)
+                              {
+                                  table.emplace_back(atoi(str.c_str()));
+                              });
             if (table.size() < 3)
                 continue;
             _times[table[0]] = std::make_pair(table[1], table[2]);

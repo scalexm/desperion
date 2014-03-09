@@ -3,7 +3,7 @@
 #ifndef core_game_context_remove_element_with_event_message_hpp
 #define core_game_context_remove_element_with_event_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_context_remove_element_with_event_message : game_context_remove_element_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_title_lost_message_hpp
 #define core_title_lost_message_hpp
 
-namespace network
+namespace protocol
 {
     struct title_lost_message : dofus_unit
     {

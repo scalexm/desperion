@@ -3,7 +3,7 @@
 #ifndef core_mount_equiped_error_enum_hpp
 #define core_mount_equiped_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum mount_equiped_error
     {

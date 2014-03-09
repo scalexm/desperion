@@ -3,7 +3,7 @@
 //  core
 //
 //  Created by Alexandre Martin on 17/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../common.hpp"
@@ -11,8 +11,7 @@
 
 void reverse_bytes(uint8_t * bytes, size_t count)
 {
-    size_t lo, hi;
-    for (lo = 0, hi = count - 1; hi > lo; lo++, hi--)
+    for (size_t lo = 0, hi = count - 1; hi > lo; ++lo, --hi)
     {
         auto temp = bytes[hi];
         bytes[hi] = bytes[lo];

@@ -3,7 +3,7 @@
 #ifndef core_get_parts_list_message_hpp
 #define core_get_parts_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct get_parts_list_message : dofus_unit
     {

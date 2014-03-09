@@ -3,7 +3,7 @@
 #ifndef core_shortcut_bar_add_request_message_hpp
 #define core_shortcut_bar_add_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct shortcut_bar_add_request_message : dofus_unit
     {

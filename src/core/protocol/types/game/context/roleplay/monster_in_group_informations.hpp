@@ -3,7 +3,7 @@
 #ifndef core_monster_in_group_informations_hpp
 #define core_monster_in_group_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct monster_in_group_informations : monster_in_group_light_informations
     {

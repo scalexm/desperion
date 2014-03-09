@@ -3,7 +3,7 @@
 #ifndef core_teleport_to_buddy_offer_message_hpp
 #define core_teleport_to_buddy_offer_message_hpp
 
-namespace network
+namespace protocol
 {
     struct teleport_to_buddy_offer_message : dofus_unit
     {

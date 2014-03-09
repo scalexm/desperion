@@ -3,7 +3,7 @@
 #ifndef core_shortcut_object_item_hpp
 #define core_shortcut_object_item_hpp
 
-namespace network
+namespace protocol
 {
     struct shortcut_object_item : shortcut_object
     {

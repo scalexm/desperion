@@ -3,7 +3,7 @@
 #ifndef core_abstract_game_action_with_ack_message_hpp
 #define core_abstract_game_action_with_ack_message_hpp
 
-namespace network
+namespace protocol
 {
     struct abstract_game_action_with_ack_message : abstract_game_action_message
     {

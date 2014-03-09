@@ -3,7 +3,7 @@
 #ifndef core_exchange_show_vendor_tax_message_hpp
 #define core_exchange_show_vendor_tax_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_show_vendor_tax_message : dofus_unit
     {

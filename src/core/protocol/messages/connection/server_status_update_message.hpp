@@ -3,7 +3,7 @@
 #ifndef core_server_status_update_message_hpp
 #define core_server_status_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct server_status_update_message : dofus_unit
     {

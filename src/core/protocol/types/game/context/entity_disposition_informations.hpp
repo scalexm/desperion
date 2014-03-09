@@ -3,7 +3,7 @@
 #ifndef core_entity_disposition_informations_hpp
 #define core_entity_disposition_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct entity_disposition_informations : dofus_unit
     {

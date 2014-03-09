@@ -3,7 +3,7 @@
 #ifndef core_paddock_private_informations_hpp
 #define core_paddock_private_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_private_informations : paddock_abandonned_informations
     {

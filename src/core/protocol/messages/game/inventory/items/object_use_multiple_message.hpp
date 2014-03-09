@@ -3,7 +3,7 @@
 #ifndef core_object_use_multiple_message_hpp
 #define core_object_use_multiple_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_use_multiple_message : object_use_message
     {

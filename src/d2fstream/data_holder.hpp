@@ -3,18 +3,19 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef d2fstream_data_holder_hpp
 #define d2fstream_data_holder_hpp
 
-#include <boost/any.hpp>
 #include <vector>
+#include <unordered_map>
 
 class d2o_writer;
 
-using data_fields = std::unordered_map<std::string, boost::any>;
+using void_ptr = std::unique_ptr<void>;
+using data_fields = std::unordered_map<std::string, void_ptr>;
 using data_object = std::pair<int, data_fields>;
 
 class data_holder
@@ -23,42 +24,42 @@ protected:
     data_holder() = default;
 
     template<class T>
-    void acquire(std::vector<T> & val, boost::any & obj)
+    void acquire(std::vector<T> & val, void_ptr & obj)
     {
-        auto && vec = boost::any_cast<std::vector<boost::any>>(obj);
-        val.resize(vec.size());
-        for (size_t a = 0; a < vec.size(); ++a)
-            acquire(val[a], vec[a]);
+        auto vec = static_cast<std::vector<void_ptr>*>(obj.get());
+        val.resize(vec->size());
+        for (size_t a = 0; a < vec->size(); ++a)
+            acquire(val[a], (*vec)[a]);
     }
 
     template<class T>
     typename std::enable_if<!std::is_base_of<data_holder, T>::value, void>::type
-    acquire(T & val, boost::any & obj)
-    { val = boost::any_cast<T>(obj); }
+    acquire(T & val, void_ptr & obj)
+    { val = std::move(*static_cast<T*>(obj.get())); }
 
     template<class T>
     typename std::enable_if<std::is_base_of<data_holder, T>::value, void>::type
-    acquire(T & val, boost::any & obj)
-    {  val = boost::any_cast<data_object>(obj); }
+    acquire(T & val, void_ptr & obj)
+    {  val = std::move(*static_cast<data_object*>(obj.get())); }
 
     template<class T>
-    void release(std::vector<T> & val, boost::any & obj, const d2o_writer & file)
+    void release(std::vector<T> & val, void_ptr & obj, const d2o_writer & file)
     {
-        std::vector<boost::any> vec(val.size());
+        std::vector<void_ptr> vec(val.size());
         for (size_t a = 0; a < val.size(); ++a)
             release(val[a], vec[a], file);
-        obj = std::move(vec);
+        obj = std::make_unique<std::vector<void_ptr>>(std::move(vec));
     }
 
     template<class T>
     typename std::enable_if<!std::is_base_of<data_holder, T>::value, void>::type
-    release(T & val, boost::any & obj, const d2o_writer &)
-    { obj = std::move(val); }
+    release(T & val, void_ptr & obj, const d2o_writer &)
+    { obj = std::make_unique<T>(std::move(val)); }
 
     template<class T>
     typename std::enable_if<std::is_base_of<data_holder, T>::value, void>::type
-    release(T & val, boost::any & obj, const d2o_writer & file)
-    { obj = val.to_d2o(file); }
+    release(T & val, void_ptr & obj, const d2o_writer & file)
+    { obj = std::make_unique<data_object>(val.to_d2o(file)); }
 };
 
 #endif

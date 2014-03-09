@@ -3,7 +3,7 @@
 #ifndef core_party_new_member_message_hpp
 #define core_party_new_member_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_new_member_message : party_update_message
     {

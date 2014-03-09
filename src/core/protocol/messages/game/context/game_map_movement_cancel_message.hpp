@@ -3,7 +3,7 @@
 #ifndef core_game_map_movement_cancel_message_hpp
 #define core_game_map_movement_cancel_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_map_movement_cancel_message : dofus_unit
     {

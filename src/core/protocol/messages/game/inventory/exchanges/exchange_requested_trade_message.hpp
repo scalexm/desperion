@@ -3,7 +3,7 @@
 #ifndef core_exchange_requested_trade_message_hpp
 #define core_exchange_requested_trade_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_requested_trade_message : exchange_requested_message
     {

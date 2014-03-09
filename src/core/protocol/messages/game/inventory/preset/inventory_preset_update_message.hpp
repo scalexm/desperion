@@ -3,7 +3,7 @@
 #ifndef core_inventory_preset_update_message_hpp
 #define core_inventory_preset_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct inventory_preset_update_message : dofus_unit
     {

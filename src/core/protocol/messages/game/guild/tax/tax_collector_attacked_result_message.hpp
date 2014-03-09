@@ -3,7 +3,7 @@
 #ifndef core_tax_collector_attacked_result_message_hpp
 #define core_tax_collector_attacked_result_message_hpp
 
-namespace network
+namespace protocol
 {
     struct tax_collector_attacked_result_message : dofus_unit
     {

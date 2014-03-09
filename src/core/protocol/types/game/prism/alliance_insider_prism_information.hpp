@@ -3,7 +3,7 @@
 #ifndef core_alliance_insider_prism_information_hpp
 #define core_alliance_insider_prism_information_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_insider_prism_information : prism_information
     {

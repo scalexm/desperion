@@ -3,7 +3,7 @@
 #ifndef core_alliance_kick_request_message_hpp
 #define core_alliance_kick_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_kick_request_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_prism_use_request_message_hpp
 #define core_prism_use_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_use_request_message : dofus_unit
     {

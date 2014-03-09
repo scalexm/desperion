@@ -3,7 +3,7 @@
 #ifndef core_alliance_insider_info_request_message_hpp
 #define core_alliance_insider_info_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_insider_info_request_message : dofus_unit
     {

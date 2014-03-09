@@ -3,7 +3,7 @@
 #ifndef core_exchange_bid_house_list_message_hpp
 #define core_exchange_bid_house_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_bid_house_list_message : dofus_unit
     {

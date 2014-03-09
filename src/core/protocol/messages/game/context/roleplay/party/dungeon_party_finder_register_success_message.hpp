@@ -3,7 +3,7 @@
 #ifndef core_dungeon_party_finder_register_success_message_hpp
 #define core_dungeon_party_finder_register_success_message_hpp
 
-namespace network
+namespace protocol
 {
     struct dungeon_party_finder_register_success_message : dofus_unit
     {

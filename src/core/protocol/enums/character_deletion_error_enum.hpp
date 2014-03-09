@@ -3,7 +3,7 @@
 #ifndef core_character_deletion_error_enum_hpp
 #define core_character_deletion_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum character_deletion_error
     {

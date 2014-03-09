@@ -3,7 +3,7 @@
 #ifndef core_game_fight_spell_cooldown_hpp
 #define core_game_fight_spell_cooldown_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_spell_cooldown : dofus_unit
     {

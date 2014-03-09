@@ -3,14 +3,13 @@
 //  core
 //
 //  Created by Alexandre Martin on 30/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_query_result_hpp
 #define core_query_result_hpp
 
 #include "sql_field.hpp"
-#include "non_movable.hpp"
 #include <libpq/libpq-fe.h>
 #include <unordered_map>
 #include <vector>

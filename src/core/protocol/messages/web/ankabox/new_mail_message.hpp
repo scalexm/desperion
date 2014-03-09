@@ -3,7 +3,7 @@
 #ifndef core_new_mail_message_hpp
 #define core_new_mail_message_hpp
 
-namespace network
+namespace protocol
 {
     struct new_mail_message : mail_status_message
     {

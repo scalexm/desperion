@@ -3,7 +3,7 @@
 #ifndef core_alliance_facts_error_message_hpp
 #define core_alliance_facts_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_facts_error_message : dofus_unit
     {

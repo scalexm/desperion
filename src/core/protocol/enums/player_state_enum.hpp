@@ -3,7 +3,7 @@
 #ifndef core_player_state_enum_hpp
 #define core_player_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum player_state
     {

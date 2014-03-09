@@ -3,7 +3,7 @@
 #ifndef core_notification_by_server_message_hpp
 #define core_notification_by_server_message_hpp
 
-namespace network
+namespace protocol
 {
     struct notification_by_server_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_updatable_mount_boost_enum_hpp
 #define core_updatable_mount_boost_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum updatable_mount_boost
     {

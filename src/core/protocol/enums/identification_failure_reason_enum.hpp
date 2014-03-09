@@ -3,7 +3,7 @@
 #ifndef core_identification_failure_reason_enum_hpp
 #define core_identification_failure_reason_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum identification_failure_reason
     {

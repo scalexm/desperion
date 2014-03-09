@@ -3,7 +3,7 @@
 #ifndef core_party_leave_message_hpp
 #define core_party_leave_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_leave_message : abstract_party_message
     {

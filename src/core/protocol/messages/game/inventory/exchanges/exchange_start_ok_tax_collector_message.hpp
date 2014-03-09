@@ -3,7 +3,7 @@
 #ifndef core_exchange_start_ok_tax_collector_message_hpp
 #define core_exchange_start_ok_tax_collector_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_start_ok_tax_collector_message : dofus_unit
     {

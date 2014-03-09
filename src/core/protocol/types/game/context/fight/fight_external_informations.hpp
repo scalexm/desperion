@@ -3,7 +3,7 @@
 #ifndef core_fight_external_informations_hpp
 #define core_fight_external_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_external_informations : dofus_unit
     {

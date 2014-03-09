@@ -3,7 +3,7 @@
 #ifndef core_game_action_fight_invisibility_state_enum_hpp
 #define core_game_action_fight_invisibility_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum game_action_fight_invisibility_state
     {

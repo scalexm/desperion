@@ -3,7 +3,7 @@
 #ifndef core_map_complementary_informations_data_in_house_message_hpp
 #define core_map_complementary_informations_data_in_house_message_hpp
 
-namespace network
+namespace protocol
 {
     struct map_complementary_informations_data_in_house_message : map_complementary_informations_data_message
     {

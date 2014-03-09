@@ -3,7 +3,7 @@
 #ifndef core_basic_no_operation_message_hpp
 #define core_basic_no_operation_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_no_operation_message : dofus_unit
     {

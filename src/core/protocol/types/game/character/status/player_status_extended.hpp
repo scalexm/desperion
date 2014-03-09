@@ -3,7 +3,7 @@
 #ifndef core_player_status_extended_hpp
 #define core_player_status_extended_hpp
 
-namespace network
+namespace protocol
 {
     struct player_status_extended : player_status
     {

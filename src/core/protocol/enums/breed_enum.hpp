@@ -3,7 +3,7 @@
 #ifndef core_breed_enum_hpp
 #define core_breed_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum breed
     {

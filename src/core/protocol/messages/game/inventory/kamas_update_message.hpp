@@ -3,7 +3,7 @@
 #ifndef core_kamas_update_message_hpp
 #define core_kamas_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct kamas_update_message : dofus_unit
     {

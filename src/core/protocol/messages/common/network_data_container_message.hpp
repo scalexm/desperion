@@ -3,7 +3,7 @@
 #ifndef core_network_data_container_message_hpp
 #define core_network_data_container_message_hpp
 
-namespace network
+namespace protocol
 {
     struct network_data_container_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_social_group_invitation_state_enum_hpp
 #define core_social_group_invitation_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum social_group_invitation_state
     {

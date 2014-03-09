@@ -3,7 +3,7 @@
 #ifndef core_dungeon_party_finder_room_content_update_message_hpp
 #define core_dungeon_party_finder_room_content_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct dungeon_party_finder_room_content_update_message : dofus_unit
     {

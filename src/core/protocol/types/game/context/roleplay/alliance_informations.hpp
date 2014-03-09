@@ -3,7 +3,7 @@
 #ifndef core_alliance_informations_hpp
 #define core_alliance_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_informations : basic_named_alliance_informations
     {

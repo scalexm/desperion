@@ -3,7 +3,7 @@
 #ifndef core_mount_un_set_message_hpp
 #define core_mount_un_set_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_un_set_message : dofus_unit
     {

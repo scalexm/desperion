@@ -3,7 +3,7 @@
 #ifndef core_house_guild_share_request_message_hpp
 #define core_house_guild_share_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_guild_share_request_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_paddock_buy_request_message_hpp
 #define core_paddock_buy_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_buy_request_message : dofus_unit
     {

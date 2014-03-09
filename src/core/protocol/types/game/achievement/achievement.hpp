@@ -3,7 +3,7 @@
 #ifndef core_achievement_hpp
 #define core_achievement_hpp
 
-namespace network
+namespace protocol
 {
     struct achievement : dofus_unit
     {

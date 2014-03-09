@@ -3,7 +3,7 @@
 #ifndef core_alliance_invited_message_hpp
 #define core_alliance_invited_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_invited_message : dofus_unit
     {

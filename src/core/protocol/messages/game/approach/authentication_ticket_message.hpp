@@ -3,7 +3,7 @@
 #ifndef core_authentication_ticket_message_hpp
 #define core_authentication_ticket_message_hpp
 
-namespace network
+namespace protocol
 {
     struct authentication_ticket_message : dofus_unit
     {

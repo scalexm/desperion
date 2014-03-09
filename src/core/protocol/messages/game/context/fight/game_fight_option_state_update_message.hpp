@@ -3,7 +3,7 @@
 #ifndef core_game_fight_option_state_update_message_hpp
 #define core_game_fight_option_state_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_option_state_update_message : dofus_unit
     {

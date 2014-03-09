@@ -3,7 +3,7 @@
 #ifndef core_game_fight_turn_start_slave_message_hpp
 #define core_game_fight_turn_start_slave_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_turn_start_slave_message : game_fight_turn_start_message
     {

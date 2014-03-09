@@ -3,7 +3,7 @@
 #ifndef core_dialog_type_enum_hpp
 #define core_dialog_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum dialog_type
     {

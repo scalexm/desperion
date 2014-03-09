@@ -3,7 +3,7 @@
 #ifndef core_fight_result_player_list_entry_hpp
 #define core_fight_result_player_list_entry_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_result_player_list_entry : fight_result_fighter_list_entry
     {

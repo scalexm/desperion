@@ -3,7 +3,7 @@
 #ifndef core_party_join_error_enum_hpp
 #define core_party_join_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum party_join_error
     {

@@ -3,7 +3,7 @@
 #ifndef core_download_set_speed_request_message_hpp
 #define core_download_set_speed_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct download_set_speed_request_message : dofus_unit
     {

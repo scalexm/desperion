@@ -3,7 +3,7 @@
 #ifndef core_error_map_not_found_message_hpp
 #define core_error_map_not_found_message_hpp
 
-namespace network
+namespace protocol
 {
     struct error_map_not_found_message : dofus_unit
     {

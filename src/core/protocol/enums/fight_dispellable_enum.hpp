@@ -3,7 +3,7 @@
 #ifndef core_fight_dispellable_enum_hpp
 #define core_fight_dispellable_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum fight_dispellable
     {

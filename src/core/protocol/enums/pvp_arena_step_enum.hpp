@@ -3,7 +3,7 @@
 #ifndef core_pvp_arena_step_enum_hpp
 #define core_pvp_arena_step_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum pvp_arena_step
     {

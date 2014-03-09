@@ -3,7 +3,7 @@
 #ifndef core_debug_in_client_message_hpp
 #define core_debug_in_client_message_hpp
 
-namespace network
+namespace protocol
 {
     struct debug_in_client_message : dofus_unit
     {

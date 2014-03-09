@@ -3,7 +3,7 @@
 #ifndef core_party_type_enum_hpp
 #define core_party_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum party_type
     {

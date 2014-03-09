@@ -3,7 +3,7 @@
 #ifndef core_friend_spouse_join_request_message_hpp
 #define core_friend_spouse_join_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_spouse_join_request_message : dofus_unit
     {

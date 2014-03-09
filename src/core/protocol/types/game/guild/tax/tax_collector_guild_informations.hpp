@@ -3,7 +3,7 @@
 #ifndef core_tax_collector_guild_informations_hpp
 #define core_tax_collector_guild_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct tax_collector_guild_informations : tax_collector_complementary_informations
     {

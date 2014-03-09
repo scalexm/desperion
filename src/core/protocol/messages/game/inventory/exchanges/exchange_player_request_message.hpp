@@ -3,7 +3,7 @@
 #ifndef core_exchange_player_request_message_hpp
 #define core_exchange_player_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_player_request_message : exchange_request_message
     {

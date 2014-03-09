@@ -3,7 +3,7 @@
 #ifndef core_object_added_message_hpp
 #define core_object_added_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_added_message : dofus_unit
     {

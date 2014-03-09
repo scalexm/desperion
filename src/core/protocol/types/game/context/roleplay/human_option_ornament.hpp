@@ -3,7 +3,7 @@
 #ifndef core_human_option_ornament_hpp
 #define core_human_option_ornament_hpp
 
-namespace network
+namespace protocol
 {
     struct human_option_ornament : human_option
     {

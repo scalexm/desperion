@@ -3,7 +3,7 @@
 #ifndef core_mount_sterilize_request_message_hpp
 #define core_mount_sterilize_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_sterilize_request_message : dofus_unit
     {

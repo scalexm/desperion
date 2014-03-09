@@ -3,7 +3,7 @@
 //  core
 //
 //  Created by Alexandre Martin on 30/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_sql_database_hpp
@@ -62,7 +62,7 @@ private:
     std::vector<connection> _connections;
     
     query_result send_query(connection &, const query_list &, std::string &);
-    void async_send_query(boost::asio::io_service::work & work, sql_callback, const query_list &);
+    void async_send_query(boost::asio::io_service::work & work, sql_callback &, const query_list &);
     connection & get_free_connection();
 
     template<class T>

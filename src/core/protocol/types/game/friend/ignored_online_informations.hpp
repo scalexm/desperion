@@ -3,7 +3,7 @@
 #ifndef core_ignored_online_informations_hpp
 #define core_ignored_online_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct ignored_online_informations : ignored_informations
     {

@@ -3,7 +3,7 @@
 #ifndef core_alliance_rights_bit_enum_hpp
 #define core_alliance_rights_bit_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum alliance_rights_bit
     {

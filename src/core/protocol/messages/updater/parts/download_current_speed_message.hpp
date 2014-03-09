@@ -3,7 +3,7 @@
 #ifndef core_download_current_speed_message_hpp
 #define core_download_current_speed_message_hpp
 
-namespace network
+namespace protocol
 {
     struct download_current_speed_message : dofus_unit
     {

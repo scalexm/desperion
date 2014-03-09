@@ -3,7 +3,7 @@
 #ifndef core_party_member_arena_informations_hpp
 #define core_party_member_arena_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct party_member_arena_informations : party_member_informations
     {

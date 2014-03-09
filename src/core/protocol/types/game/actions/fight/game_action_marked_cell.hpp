@@ -3,7 +3,7 @@
 #ifndef core_game_action_marked_cell_hpp
 #define core_game_action_marked_cell_hpp
 
-namespace network
+namespace protocol
 {
     struct game_action_marked_cell : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_game_action_fight_dodge_point_loss_message_hpp
 #define core_game_action_fight_dodge_point_loss_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_action_fight_dodge_point_loss_message : abstract_game_action_message
     {

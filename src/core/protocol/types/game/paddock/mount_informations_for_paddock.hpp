@@ -3,7 +3,7 @@
 #ifndef core_mount_informations_for_paddock_hpp
 #define core_mount_informations_for_paddock_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_informations_for_paddock : dofus_unit
     {

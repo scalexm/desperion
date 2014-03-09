@@ -3,7 +3,7 @@
 #ifndef core_koh_update_message_hpp
 #define core_koh_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct koh_update_message : dofus_unit
     {

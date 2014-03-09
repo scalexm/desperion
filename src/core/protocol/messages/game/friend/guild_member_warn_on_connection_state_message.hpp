@@ -3,7 +3,7 @@
 #ifndef core_guild_member_warn_on_connection_state_message_hpp
 #define core_guild_member_warn_on_connection_state_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_member_warn_on_connection_state_message : dofus_unit
     {

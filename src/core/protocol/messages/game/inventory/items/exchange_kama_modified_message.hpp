@@ -3,7 +3,7 @@
 #ifndef core_exchange_kama_modified_message_hpp
 #define core_exchange_kama_modified_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_kama_modified_message : exchange_object_message
     {

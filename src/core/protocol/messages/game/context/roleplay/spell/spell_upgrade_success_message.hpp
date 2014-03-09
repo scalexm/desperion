@@ -3,7 +3,7 @@
 #ifndef core_spell_upgrade_success_message_hpp
 #define core_spell_upgrade_success_message_hpp
 
-namespace network
+namespace protocol
 {
     struct spell_upgrade_success_message : dofus_unit
     {

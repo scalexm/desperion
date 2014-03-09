@@ -3,7 +3,7 @@
 #ifndef core_object_item_to_sell_in_npc_shop_hpp
 #define core_object_item_to_sell_in_npc_shop_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_to_sell_in_npc_shop : object_item_minimal_information
     {

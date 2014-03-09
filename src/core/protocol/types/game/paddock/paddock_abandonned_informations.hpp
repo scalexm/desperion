@@ -3,7 +3,7 @@
 #ifndef core_paddock_abandonned_informations_hpp
 #define core_paddock_abandonned_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_abandonned_informations : paddock_buyable_informations
     {

@@ -3,7 +3,7 @@
 #ifndef core_character_base_characteristic_hpp
 #define core_character_base_characteristic_hpp
 
-namespace network
+namespace protocol
 {
     struct character_base_characteristic : dofus_unit
     {

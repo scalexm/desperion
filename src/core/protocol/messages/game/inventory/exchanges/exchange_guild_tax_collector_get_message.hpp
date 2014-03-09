@@ -3,7 +3,7 @@
 #ifndef core_exchange_guild_tax_collector_get_message_hpp
 #define core_exchange_guild_tax_collector_get_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_guild_tax_collector_get_message : dofus_unit
     {

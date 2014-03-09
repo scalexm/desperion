@@ -3,7 +3,7 @@
 #ifndef core_quest_step_info_message_hpp
 #define core_quest_step_info_message_hpp
 
-namespace network
+namespace protocol
 {
     struct quest_step_info_message : dofus_unit
     {

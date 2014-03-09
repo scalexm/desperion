@@ -3,7 +3,7 @@
 #ifndef core_friend_spouse_online_informations_hpp
 #define core_friend_spouse_online_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_spouse_online_informations : friend_spouse_informations
     {

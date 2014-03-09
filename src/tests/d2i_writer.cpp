@@ -3,7 +3,7 @@
 //  tests
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../core/common.hpp"
@@ -14,7 +14,7 @@
 
 BOOST_AUTO_TEST_SUITE(d2i_writer_suite)
 
-BOOST_AUTO_TEST_CASE(misc)
+BOOST_AUTO_TEST_CASE(d2i_writer_misc)
 {
     d2i_writer writer;
     writer.add_text(1, "salut");

@@ -3,7 +3,7 @@
 #ifndef core_titles_and_ornaments_list_message_hpp
 #define core_titles_and_ornaments_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct titles_and_ornaments_list_message : dofus_unit
     {

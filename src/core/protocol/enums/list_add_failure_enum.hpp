@@ -3,7 +3,7 @@
 #ifndef core_list_add_failure_enum_hpp
 #define core_list_add_failure_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum list_add_failure
     {

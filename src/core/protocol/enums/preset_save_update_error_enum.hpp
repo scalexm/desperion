@@ -3,7 +3,7 @@
 #ifndef core_preset_save_update_error_enum_hpp
 #define core_preset_save_update_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum preset_save_update_error
     {

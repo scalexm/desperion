@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_player_fight_friendly_answered_message_hpp
 #define core_game_role_play_player_fight_friendly_answered_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_player_fight_friendly_answered_message : dofus_unit
     {

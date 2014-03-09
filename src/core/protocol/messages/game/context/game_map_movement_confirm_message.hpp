@@ -3,7 +3,7 @@
 #ifndef core_game_map_movement_confirm_message_hpp
 #define core_game_map_movement_confirm_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_map_movement_confirm_message : dofus_unit
     {

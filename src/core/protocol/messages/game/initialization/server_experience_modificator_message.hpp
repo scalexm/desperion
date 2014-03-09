@@ -3,7 +3,7 @@
 #ifndef core_server_experience_modificator_message_hpp
 #define core_server_experience_modificator_message_hpp
 
-namespace network
+namespace protocol
 {
     struct server_experience_modificator_message : dofus_unit
     {

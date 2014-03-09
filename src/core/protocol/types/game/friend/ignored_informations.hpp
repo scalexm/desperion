@@ -3,7 +3,7 @@
 #ifndef core_ignored_informations_hpp
 #define core_ignored_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct ignored_informations : abstract_contact_informations
     {

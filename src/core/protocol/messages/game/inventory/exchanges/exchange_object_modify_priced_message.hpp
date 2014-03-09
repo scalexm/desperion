@@ -3,7 +3,7 @@
 #ifndef core_exchange_object_modify_priced_message_hpp
 #define core_exchange_object_modify_priced_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_object_modify_priced_message : exchange_object_move_priced_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_mount_released_message_hpp
 #define core_mount_released_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_released_message : dofus_unit
     {

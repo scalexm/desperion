@@ -3,7 +3,7 @@
 #ifndef core_set_enable_a_v_a_request_message_hpp
 #define core_set_enable_a_v_a_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct set_enable_a_v_a_request_message : dofus_unit
     {

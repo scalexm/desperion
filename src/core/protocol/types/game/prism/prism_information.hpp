@@ -3,7 +3,7 @@
 #ifndef core_prism_information_hpp
 #define core_prism_information_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_information : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_inventory_weight_message_hpp
 #define core_inventory_weight_message_hpp
 
-namespace network
+namespace protocol
 {
     struct inventory_weight_message : dofus_unit
     {

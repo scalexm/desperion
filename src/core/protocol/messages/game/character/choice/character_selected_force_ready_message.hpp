@@ -3,7 +3,7 @@
 #ifndef core_character_selected_force_ready_message_hpp
 #define core_character_selected_force_ready_message_hpp
 
-namespace network
+namespace protocol
 {
     struct character_selected_force_ready_message : dofus_unit
     {

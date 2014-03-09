@@ -3,7 +3,7 @@
 #ifndef core_friend_update_message_hpp
 #define core_friend_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_update_message : dofus_unit
     {

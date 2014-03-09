@@ -3,7 +3,7 @@
 #ifndef core_object_effect_dice_hpp
 #define core_object_effect_dice_hpp
 
-namespace network
+namespace protocol
 {
     struct object_effect_dice : object_effect
     {

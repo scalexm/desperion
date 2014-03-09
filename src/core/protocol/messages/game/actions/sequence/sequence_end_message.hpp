@@ -3,7 +3,7 @@
 #ifndef core_sequence_end_message_hpp
 #define core_sequence_end_message_hpp
 
-namespace network
+namespace protocol
 {
     struct sequence_end_message : dofus_unit
     {

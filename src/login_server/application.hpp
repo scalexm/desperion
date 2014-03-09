@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef login_server_application_hpp
@@ -29,7 +29,7 @@ private:
 public:
     ~application();
 
-    shutdown_type run(int, const char **) override;
+    shutdown_type run(int, const char **);
     sql_database & database();
     xml_configuration & config();
     class world & world();

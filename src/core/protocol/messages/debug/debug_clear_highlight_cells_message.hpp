@@ -3,7 +3,7 @@
 #ifndef core_debug_clear_highlight_cells_message_hpp
 #define core_debug_clear_highlight_cells_message_hpp
 
-namespace network
+namespace protocol
 {
     struct debug_clear_highlight_cells_message : dofus_unit
     {

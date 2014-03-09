@@ -3,7 +3,7 @@
 #ifndef core_paddock_informations_for_sell_hpp
 #define core_paddock_informations_for_sell_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_informations_for_sell : dofus_unit
     {

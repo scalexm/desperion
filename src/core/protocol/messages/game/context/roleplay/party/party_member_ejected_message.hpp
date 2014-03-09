@@ -3,7 +3,7 @@
 #ifndef core_party_member_ejected_message_hpp
 #define core_party_member_ejected_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_member_ejected_message : party_member_remove_message
     {

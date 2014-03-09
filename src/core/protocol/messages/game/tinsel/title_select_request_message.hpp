@@ -3,7 +3,7 @@
 #ifndef core_title_select_request_message_hpp
 #define core_title_select_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct title_select_request_message : dofus_unit
     {

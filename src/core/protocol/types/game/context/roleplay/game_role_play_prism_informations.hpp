@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_prism_informations_hpp
 #define core_game_role_play_prism_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_prism_informations : game_role_play_actor_informations
     {

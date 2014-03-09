@@ -3,7 +3,7 @@
 //  tests
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../core/common.hpp"
@@ -13,7 +13,7 @@
 
 BOOST_AUTO_TEST_SUITE(byte_buffer_suite)
 
-BOOST_AUTO_TEST_CASE(misc)
+BOOST_AUTO_TEST_CASE(byte_buffer_misc)
 {
     byte_buffer b;
     BOOST_REQUIRE_EQUAL( b.size(), 0 );

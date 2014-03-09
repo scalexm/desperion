@@ -3,7 +3,7 @@
 #ifndef core_spouse_status_message_hpp
 #define core_spouse_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct spouse_status_message : dofus_unit
     {

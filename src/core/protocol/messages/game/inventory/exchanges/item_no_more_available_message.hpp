@@ -3,7 +3,7 @@
 #ifndef core_item_no_more_available_message_hpp
 #define core_item_no_more_available_message_hpp
 
-namespace network
+namespace protocol
 {
     struct item_no_more_available_message : dofus_unit
     {

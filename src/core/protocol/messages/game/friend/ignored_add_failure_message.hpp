@@ -3,7 +3,7 @@
 #ifndef core_ignored_add_failure_message_hpp
 #define core_ignored_add_failure_message_hpp
 
-namespace network
+namespace protocol
 {
     struct ignored_add_failure_message : dofus_unit
     {

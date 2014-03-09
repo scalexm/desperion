@@ -3,7 +3,7 @@
 #ifndef core_character_report_message_hpp
 #define core_character_report_message_hpp
 
-namespace network
+namespace protocol
 {
     struct character_report_message : dofus_unit
     {

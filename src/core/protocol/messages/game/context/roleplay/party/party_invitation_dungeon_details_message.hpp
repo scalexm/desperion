@@ -3,7 +3,7 @@
 #ifndef core_party_invitation_dungeon_details_message_hpp
 #define core_party_invitation_dungeon_details_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_invitation_dungeon_details_message : party_invitation_details_message
     {

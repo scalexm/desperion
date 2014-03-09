@@ -3,7 +3,7 @@
 #ifndef core_quest_objective_informations_with_completion_hpp
 #define core_quest_objective_informations_with_completion_hpp
 
-namespace network
+namespace protocol
 {
     struct quest_objective_informations_with_completion : quest_objective_informations
     {

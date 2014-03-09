@@ -3,7 +3,7 @@
 #ifndef core_guild_characs_upgrade_request_message_hpp
 #define core_guild_characs_upgrade_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_characs_upgrade_request_message : dofus_unit
     {

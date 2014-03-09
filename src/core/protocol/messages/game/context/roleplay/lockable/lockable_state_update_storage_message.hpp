@@ -3,7 +3,7 @@
 #ifndef core_lockable_state_update_storage_message_hpp
 #define core_lockable_state_update_storage_message_hpp
 
-namespace network
+namespace protocol
 {
     struct lockable_state_update_storage_message : lockable_state_update_abstract_message
     {

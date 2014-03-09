@@ -3,7 +3,7 @@
 #ifndef core_interactive_element_skill_hpp
 #define core_interactive_element_skill_hpp
 
-namespace network
+namespace protocol
 {
     struct interactive_element_skill : dofus_unit
     {

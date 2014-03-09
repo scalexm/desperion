@@ -3,7 +3,7 @@
 #ifndef core_object_item_minimal_information_hpp
 #define core_object_item_minimal_information_hpp
 
-namespace network
+namespace protocol
 {
     struct object_item_minimal_information : item
     {

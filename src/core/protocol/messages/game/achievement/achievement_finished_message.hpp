@@ -3,7 +3,7 @@
 #ifndef core_achievement_finished_message_hpp
 #define core_achievement_finished_message_hpp
 
-namespace network
+namespace protocol
 {
     struct achievement_finished_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_craft_result_enum_hpp
 #define core_craft_result_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum craft_result
     {

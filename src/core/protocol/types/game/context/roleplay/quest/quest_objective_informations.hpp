@@ -3,7 +3,7 @@
 #ifndef core_quest_objective_informations_hpp
 #define core_quest_objective_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct quest_objective_informations : dofus_unit
     {

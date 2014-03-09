@@ -3,7 +3,7 @@
 #ifndef core_prism_geolocalized_information_hpp
 #define core_prism_geolocalized_information_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_geolocalized_information : prism_subarea_empty_info
     {

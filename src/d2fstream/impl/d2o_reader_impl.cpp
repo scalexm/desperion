@@ -3,7 +3,7 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../../core/common.hpp"
@@ -51,7 +51,8 @@ d2o_reader::impl::impl(std::ifstream & file, d2o_reader * owner) : _buffer { fil
         _buffer >> class_id >> class_name >> package_name;
         _classes.emplace(std::piecewise_construct,
                          std::forward_as_tuple(class_id),
-                         std::forward_as_tuple(class_name, package_name, _buffer));
+                         std::forward_as_tuple(std::move(class_name), std::move(package_name),
+                                               _buffer));
     }
 }
 

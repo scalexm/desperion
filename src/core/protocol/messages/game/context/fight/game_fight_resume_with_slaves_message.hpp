@@ -3,7 +3,7 @@
 #ifndef core_game_fight_resume_with_slaves_message_hpp
 #define core_game_fight_resume_with_slaves_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_resume_with_slaves_message : game_fight_resume_message
     {

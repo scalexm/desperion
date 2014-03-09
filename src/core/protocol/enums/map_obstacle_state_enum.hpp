@@ -3,7 +3,7 @@
 #ifndef core_map_obstacle_state_enum_hpp
 #define core_map_obstacle_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum map_obstacle_state
     {

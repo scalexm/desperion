@@ -3,7 +3,7 @@
 #ifndef core_party_cannot_join_error_message_hpp
 #define core_party_cannot_join_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_cannot_join_error_message : abstract_party_message
     {

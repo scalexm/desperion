@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "common.hpp"
@@ -54,14 +54,14 @@ std::string random_string(size_t);
 
 namespace
 {
-    bool verify_version(const network::version_extended_ptr & v)
+    bool verify_version(const protocol::version_extended_ptr & v)
     {
-        return v->major == network::DOFUS_VERSION_MAJOR
-            && v->minor == network::DOFUS_VERSION_MINOR
-            && v->release == network::DOFUS_VERSION_RELEASE
-            && v->revision == network::DOFUS_VERSION_REVISION
-            && v->patch == network::DOFUS_VERSION_PATCH
-            && v->build_type == network::DOFUS_VERSION_BUILD_TYPE;
+        return v->major == protocol::DOFUS_VERSION_MAJOR
+            && v->minor == protocol::DOFUS_VERSION_MINOR
+            && v->release == protocol::DOFUS_VERSION_RELEASE
+            && v->revision == protocol::DOFUS_VERSION_REVISION
+            && v->patch == protocol::DOFUS_VERSION_PATCH
+            && v->build_type == protocol::DOFUS_VERSION_BUILD_TYPE;
     }
 
     bool is_ip_banned(const std::string & address)
@@ -87,15 +87,15 @@ namespace
 
 const std::unordered_map<int16_t, session::impl::packet_handler> session::impl::_handlers
 {
-    { network::opcode::CMSG_IDENTIFICATION , { &impl::handle_identification_message,
+    { protocol::opcode::CMSG_IDENTIFICATION , { &impl::handle_identification_message,
         req_flag::NOT_CONNECTED } },
-    { network::opcode::CMSG_SERVER_SELECTION, { &impl::handle_server_selection_message,
+    { protocol::opcode::CMSG_SERVER_SELECTION, { &impl::handle_server_selection_message,
         req_flag::OUT_OF_QUEUE } },
-    { network::opcode::CMSG_ACQUAINTANCE_SEARCH, { &impl::handle_acquaintance_search_message,
+    { protocol::opcode::CMSG_ACQUAINTANCE_SEARCH, { &impl::handle_acquaintance_search_message,
         req_flag::OUT_OF_QUEUE } }
 };
 
-auth_queue<session, network::identification_message> session::impl::_queue
+auth_queue<session, protocol::identification_message> session::impl::_queue
 {
     &session::handle_identification
 };
@@ -142,28 +142,17 @@ session::impl::~impl()
     _queue_timer.cancel();
 }
 
-void session::impl::send(const network::dofus_unit & message, bool disconnect)
-{
-    _owner->_executor.send(message, _owner->shared_from_this(), disconnect);
-}
-
-void session::impl::write(const network::dofus_unit & message)
-{
-    _owner->_executor.write(message);
-}
-
-void session::impl::flush(bool disconnect)
-{
-    _owner->_executor.flush(_owner->shared_from_this(), disconnect);
-}
-
 void session::impl::start()
 {
     update_idle_timer();
-    write(network::protocol_required { network::PROTOCOL_REQUIRED_BUILD, network::PROTOCOL_BUILD });
-    write(network::hello_connect_message { "", { } });
-    write(network::raw_data_message(_raw_data_patch));
-    flush();
+    auto guard = _owner->make_guard();
+    guard.write(protocol::protocol_required
+    {
+        protocol::PROTOCOL_REQUIRED_BUILD,
+        protocol::PROTOCOL_BUILD
+    });
+    guard.write(protocol::hello_connect_message { "", { } });
+    guard.write(protocol::raw_data_message(_raw_data_patch));
     _owner->_executor.start_read(_owner->shared_from_this());
 }
 
@@ -191,54 +180,57 @@ bool session::impl::can_select(int8_t state) const
 {
     switch (state)
     {
-        case network::OFFLINE:
-        case network::STARTING:
-        case network::STATUS_UNKNOWN:
-        case network::SAVING:
-        case network::STOPING:
-        case network::NOJOIN:
+        case protocol::OFFLINE:
+        case protocol::STARTING:
+        case protocol::STATUS_UNKNOWN:
+        case protocol::SAVING:
+        case protocol::STOPING:
+        case protocol::NOJOIN:
             return false;
-        case network::ONLINE:
+        case protocol::ONLINE:
             return true;
-        case network::FULL:
+        case protocol::FULL:
             return is_subscriber();
     }
     return false;
 }
 
-network::game_server_informations_ptr session::impl::get_server_status(const game_server * gs) const
+protocol::game_server_informations_ptr session::impl::get_server_status(const game_server * g) const
 {
-    auto state = gs->get_state(_account_data.level, is_subscriber());
-    auto it = _counts.find(gs->id());
+    auto state = g->get_state(_account_data.level, is_subscriber());
+    auto it = _counts.find(g->id());
     auto characters_count = it == end(_counts) ? 0 : it->second.count;
-    return std::make_unique<network::game_server_informations>(gs->id(), state, 0,
+    return std::make_unique<protocol::game_server_informations>(g->id(), state, 0,
                                                                can_select(state),
                                                                characters_count,
                                                                0);
 }
 
-void session::impl::send_servers_list()
+void session::impl::send_servers_list(flush_guard & guard)
 {
     auto infos = g_world.get_server_informations(_owner);
-    write(network::servers_list_message { infos });
-    flush();
+    guard.write(protocol::servers_list_message { infos });
 }
 
 void session::impl::handle_identification_message(byte_buffer & packet)
 {
-    auto data = std::make_shared<network::identification_message>(packet);
+    auto data = std::make_shared<protocol::identification_message>(packet);
+    auto guard = _owner->make_guard(true);
     if (g_config.get_property("server_maintenance", SERVER_MAINTENANCE_DEFAULT))
-        return send(network::identification_failed_message { network::IN_MAINTENANCE }, true);
+        return guard.write(protocol::identification_failed_message { protocol::IN_MAINTENANCE });
     else if (!verify_version(data->version))
     {
-        auto version = std::make_unique<network::version>(network::DOFUS_VERSION_MAJOR,
-                                                          network::DOFUS_VERSION_MINOR,
-                                                          network::DOFUS_VERSION_RELEASE,
-                                                          network::DOFUS_VERSION_REVISION,
-                                                          network::DOFUS_VERSION_PATCH,
-                                                          network::DOFUS_VERSION_BUILD_TYPE);
-        return send(network::identification_failed_for_bad_version_message { network::BAD_VERSION,
-            std::move(version) }, true);
+        auto version = std::make_unique<protocol::version>(protocol::DOFUS_VERSION_MAJOR,
+                                                          protocol::DOFUS_VERSION_MINOR,
+                                                          protocol::DOFUS_VERSION_RELEASE,
+                                                          protocol::DOFUS_VERSION_REVISION,
+                                                          protocol::DOFUS_VERSION_PATCH,
+                                                          protocol::DOFUS_VERSION_BUILD_TYPE);
+        return guard.write(protocol::identification_failed_for_bad_version_message
+        {
+            protocol::BAD_VERSION,
+            std::move(version)
+        });
     }
     std::weak_ptr<session> ptr { std::static_pointer_cast<session>(_owner->shared_from_this()) };
     auto result = _queue.push({ std::move(ptr), std::move(data) },
@@ -248,41 +240,51 @@ void session::impl::handle_identification_message(byte_buffer & packet)
         queue_callback({ });
 }
 
-void session::impl::handle_identification(const std::shared_ptr<network::identification_message>
+void session::impl::handle_identification(const std::shared_ptr<protocol::identification_message>
                                           & data)
 {
-    auto guard = make_guard([this]()
+    auto queue_guard = make_scope_guard([this]()
     {
-        application::instance().execute(&auth_queue<session, network::identification_message>::next,
+        application::instance().execute(&auth_queue<session,
+                                            protocol::identification_message>::next,
                                         std::ref(_queue));
     });
+
+    auto guard = _owner->make_guard(true);
     
     if (is_ip_banned(_owner->_executor.socket().remote_endpoint().address().to_string()))
-        return send(network::identification_failed_message { network::WRONG_CREDENTIALS }, true);
+        return guard.write(protocol::identification_failed_message { protocol::WRONG_CREDENTIALS });
     
     byte_buffer credentials { data->credentials };
     std::string login, password;
     credentials >> login >> password;
     auto qr = g_database.query({ sql_database::prepare("load_account", login) });
     if (!qr)
-        return send(network::identification_failed_message { network::WRONG_CREDENTIALS }, true);
+        return guard.write(protocol::identification_failed_message { protocol::WRONG_CREDENTIALS });
     
     auto && fields = qr.fetch();
     auto salt = fields.at("salt").get<std::string>();
     if (fields.at("password").get<std::string>() !=
         utils::compute_md5_digest(utils::compute_md5_digest(password) + salt))
-        return send(network::identification_failed_message { network::WRONG_CREDENTIALS }, true);
+        return guard.write(protocol::identification_failed_message { protocol::WRONG_CREDENTIALS });
 
     auto guid = fields.at("guid").get<int>();
     auto ban_end = fields.at("ban_end").get<time_t>();
+
     if (ban_end < 0)
-        return send(network::identification_failed_message { network::BANNED });
+        return guard.write(protocol::identification_failed_message { protocol::BANNED });
     else if (ban_end > 0)
     {
         if (ban_end < time(nullptr))
             g_database.query({ sql_database::prepare("update_ban", guid) });
         else
-            return send(network::identification_failed_banned_message { network::BANNED, ban_end });
+        {
+            return guard.write(protocol::identification_failed_banned_message
+            {
+                protocol::BANNED,
+                ban_end
+            });
+        }
     }
 
     _subscription_end = fields.at("subscription_end").get<time_t>();
@@ -318,7 +320,7 @@ void session::impl::finish_identification(int16_t logged, int16_t last_server, b
         already_connected = true;
         // if we don't set guid to -1, s deletion will call world::delete_session(guid)
         s->_impl->_account_data.guid = -1;
-        s->send(network::basic_no_operation_message { }, true);
+        s->make_guard(true).write(protocol::basic_no_operation_message { });
     }
     else if (g_world.get_game_server(logged) != nullptr)
     {
@@ -327,33 +329,38 @@ void session::impl::finish_identification(int16_t logged, int16_t last_server, b
             gs->send_disconnect_player_message(_account_data.guid);
         else
         {
-            return send(network::identification_failed_message { network::UNKNOWN_AUTH_ERROR },
-                        true);
+            return _owner->make_guard(true).write(protocol::identification_failed_message
+            {
+                protocol::UNKNOWN_AUTH_ERROR
+            });
         }
         already_connected = true;
         g_world.add_session(_owner);
     }
     else
         g_world.add_session(_owner);
-    write(network::identification_success_message { _account_data.level > 0, already_connected,
-        _account_data.login, _account_data.pseudo, _account_data.guid, 0,
+
+    auto guard = _owner->make_guard();
+    guard.write(protocol::identification_success_message { _account_data.level > 0,
+        already_connected, _account_data.login, _account_data.pseudo, _account_data.guid, 0,
         _account_data.secret_question, _subscription_end, 0 });
     _queue_counter = _queue_size = 0;
     _queue_timer.cancel();
 
     if (auto_connect)
-        if (handle_server_selection(g_world.get_game_server(last_server), true))
+        if (handle_server_selection(g_world.get_game_server(last_server), true, guard))
             return;
-    send_servers_list();
+    send_servers_list(guard);
 }
 
 void session::impl::handle_server_selection_message(byte_buffer & packet)
 {
-    network::server_selection_message data { packet };
-    handle_server_selection(g_world.get_game_server(data.server_id), false);
+    protocol::server_selection_message data { packet };
+    auto guard = _owner->make_guard();
+    handle_server_selection(g_world.get_game_server(data.server_id), false, guard);
 }
 
-bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
+bool session::impl::handle_server_selection(const game_server * gs, bool quiet, flush_guard & guard)
 {
     if (gs == nullptr)
         return false;
@@ -361,18 +368,18 @@ bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
     auto state = gs->get_state(_account_data.level, is_subscriber());
     if (!can_select(state))
     {
-        int8_t reason = network::SERVER_CONNECTION_ERROR_DUE_TO_STATUS;
+        int8_t reason = protocol::SERVER_CONNECTION_ERROR_DUE_TO_STATUS;
         switch (state)
         {
-            case network::FULL:
-                reason = network::SERVER_CONNECTION_ERROR_SUBSCRIBERS_ONLY;
+            case protocol::FULL:
+                reason = protocol::SERVER_CONNECTION_ERROR_SUBSCRIBERS_ONLY;
                 break;
-            case network::STATUS_UNKNOWN:
-                reason = network::SERVER_CONNECTION_ERROR_NO_REASON;
+            case protocol::STATUS_UNKNOWN:
+                reason = protocol::SERVER_CONNECTION_ERROR_NO_REASON;
                 break;
         }
         if (!quiet)
-            write(network::selected_server_refused_message { gs->id(), reason, state });
+            guard.write(protocol::selected_server_refused_message { gs->id(), reason, state });
         return false;
     }
 
@@ -384,18 +391,19 @@ bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
     {
         auto session = g_world.get_game_session(gs->id());
         bool sql_error = !e.empty();
-        if (sql_error || session == nullptr) // very bad luck to get second condition true
+        if (sql_error || session == nullptr) // one needs very bad luck to get second condition true
         {
             if (sql_error)
                 log_to("error") << "sql error: " << e << "\n";
             _owner->_going_to_disconnect = false;
+            auto guard = self->make_guard();
             if (!quiet)
             {
-                send(network::selected_server_refused_message { gs->id(),
-                    network::SERVER_CONNECTION_ERROR_NO_REASON, state });
+                guard.write(protocol::selected_server_refused_message { gs->id(),
+                    protocol::SERVER_CONNECTION_ERROR_NO_REASON, state });
             }
             else
-                send_servers_list();
+                send_servers_list(guard);
         }
         else
         {
@@ -403,9 +411,13 @@ bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
             auto address = session->get_address();
             auto loopback = address.is_loopback()
                 && _owner->_executor.socket().remote_endpoint().address().is_loopback();
-            send(network::selected_server_data_message { gs->id(),
+            auto guard = self->make_guard(true);
+            guard.write(protocol::selected_server_data_message
+            {
+                gs->id(),
                 loopback ? session->alternative_ip() : address.to_string(),
-                session->port(), true, ticket }, true);
+                session->port(), true, ticket
+            });
                 
         }
     }, { sql_database::prepare("update_ticket", ticket, _account_data.guid) });
@@ -414,18 +426,19 @@ bool session::impl::handle_server_selection(const game_server * gs, bool quiet)
 
 void session::impl::handle_acquaintance_search_message(byte_buffer & packet)
 {
-    network::acquaintance_search_message data { packet };
+    protocol::acquaintance_search_message data { packet };
     auto self = _owner->shared_from_this();
     auto lower_nickname = boost::algorithm::to_lower_copy(data.nickname);
     g_database.async_query([self, this](result_ptr & qr, const std::string & e)
     {
+        auto guard = self->make_guard();
         if (!e.empty())
         {
             log_to("error") << "sql error: " << e << "\n";
-            send(network::acquaintance_search_error_message { 1 });
+            guard.write(protocol::acquaintance_search_error_message { 1 });
         }
         else if (!*qr)
-            send(network::acquaintance_search_error_message { 2 });
+            guard.write(protocol::acquaintance_search_error_message { 2 });
         else
         {
             std::set<int16_t> results;
@@ -435,7 +448,7 @@ void session::impl::handle_acquaintance_search_message(byte_buffer & packet)
                 auto && fields = qr->fetch();
                 results.insert(fields.at("server_id").get<int16_t>());
             } while (qr->next_row());
-            send(network::acquaintance_server_list_message(results));
+            guard.write(protocol::acquaintance_server_list_message(results));
         }
     }, { sql_database::prepare("acquaintance_search", lower_nickname) });
 }
@@ -452,7 +465,7 @@ void session::impl::idle_callback(const boost::system::error_code & ec)
 {
     if (ec)
         return;
-    _owner->send(network::system_message_display_message { true, 1, { } }, true);
+    _owner->make_guard(true).write(protocol::system_message_display_message { true, 1, { } });
 }
 
 void session::impl::queue_callback(const boost::system::error_code & ec)

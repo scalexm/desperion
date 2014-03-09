@@ -3,7 +3,7 @@
 #ifndef core_exchange_item_auto_craft_stoped_message_hpp
 #define core_exchange_item_auto_craft_stoped_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_item_auto_craft_stoped_message : dofus_unit
     {

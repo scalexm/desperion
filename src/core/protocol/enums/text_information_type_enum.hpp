@@ -3,7 +3,7 @@
 #ifndef core_text_information_type_enum_hpp
 #define core_text_information_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum text_information_type
     {

@@ -3,7 +3,7 @@
 #ifndef core_ornament_selected_message_hpp
 #define core_ornament_selected_message_hpp
 
-namespace network
+namespace protocol
 {
     struct ornament_selected_message : dofus_unit
     {

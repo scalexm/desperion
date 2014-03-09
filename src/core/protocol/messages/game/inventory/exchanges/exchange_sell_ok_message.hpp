@@ -3,7 +3,7 @@
 #ifndef core_exchange_sell_ok_message_hpp
 #define core_exchange_sell_ok_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_sell_ok_message : dofus_unit
     {

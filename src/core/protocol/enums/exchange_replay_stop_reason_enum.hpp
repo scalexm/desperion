@@ -3,7 +3,7 @@
 #ifndef core_exchange_replay_stop_reason_enum_hpp
 #define core_exchange_replay_stop_reason_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum exchange_replay_stop_reason
     {

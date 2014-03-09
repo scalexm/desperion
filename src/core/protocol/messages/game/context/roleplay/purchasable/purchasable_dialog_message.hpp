@@ -3,7 +3,7 @@
 #ifndef core_purchasable_dialog_message_hpp
 #define core_purchasable_dialog_message_hpp
 
-namespace network
+namespace protocol
 {
     struct purchasable_dialog_message : dofus_unit
     {

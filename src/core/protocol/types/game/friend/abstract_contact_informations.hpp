@@ -3,7 +3,7 @@
 #ifndef core_abstract_contact_informations_hpp
 #define core_abstract_contact_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct abstract_contact_informations : dofus_unit
     {

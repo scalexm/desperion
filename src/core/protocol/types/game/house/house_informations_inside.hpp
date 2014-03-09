@@ -3,7 +3,7 @@
 #ifndef core_house_informations_inside_hpp
 #define core_house_informations_inside_hpp
 
-namespace network
+namespace protocol
 {
     struct house_informations_inside : dofus_unit
     {

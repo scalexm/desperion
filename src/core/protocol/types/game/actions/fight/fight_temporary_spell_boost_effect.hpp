@@ -3,7 +3,7 @@
 #ifndef core_fight_temporary_spell_boost_effect_hpp
 #define core_fight_temporary_spell_boost_effect_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_temporary_spell_boost_effect : fight_temporary_boost_effect
     {

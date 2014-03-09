@@ -3,7 +3,7 @@
 #ifndef core_credentials_acknowledgement_message_hpp
 #define core_credentials_acknowledgement_message_hpp
 
-namespace network
+namespace protocol
 {
     struct credentials_acknowledgement_message : dofus_unit
     {

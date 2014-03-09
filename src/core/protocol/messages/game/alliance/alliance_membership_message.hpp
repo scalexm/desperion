@@ -3,7 +3,7 @@
 #ifndef core_alliance_membership_message_hpp
 #define core_alliance_membership_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_membership_message : alliance_joined_message
     {

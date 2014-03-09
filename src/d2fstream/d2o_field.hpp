@@ -3,16 +3,16 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef d2fstream_d2o_field_hpp
 #define d2fstream_d2o_field_hpp
 
 #include <vector>
-#include <unordered_map>
 #include <string>
-#include <boost/any.hpp>
+
+using void_ptr = std::unique_ptr<void>;
 
 class byte_buffer;
 class d2o_reader;
@@ -29,13 +29,19 @@ enum d2o_field_type
     D2O_FIELD_TYPE_VECTOR = -99,
 };
 
+inline size_t hash(const std::string & str)
+{
+    static std::hash<std::string> hash_fn;
+    return hash_fn(str);
+}
+
 class d2o_field
 {
 public:
     using type_vector = std::vector<std::pair<std::string, int>>;
 private:
-    using read_method = boost::any(d2o_field::*)(d2o_reader *, byte_buffer &, int) const;
-    using write_method = void(d2o_field::*)(d2o_writer *, byte_buffer &, const boost::any &,
+    using read_method = void_ptr(d2o_field::*)(d2o_reader *, byte_buffer &, int) const;
+    using write_method = void(d2o_field::*)(d2o_writer *, byte_buffer &, const void_ptr &,
                                             int) const;
 
     type_vector _vector_types;
@@ -45,33 +51,33 @@ private:
     read_method get_read_method(int) const;
     write_method get_write_method(int) const;
 
-    boost::any read_object(d2o_reader *, byte_buffer &, int) const;
-    boost::any read_vector(d2o_reader *, byte_buffer &, int) const;
-    boost::any read_int(d2o_reader *, byte_buffer &, int) const;
-    boost::any read_bool(d2o_reader *, byte_buffer &, int) const;
-    boost::any read_string(d2o_reader *, byte_buffer &, int) const;
-    boost::any read_number(d2o_reader *, byte_buffer &, int) const;
-    boost::any read_uint(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_object(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_vector(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_int(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_bool(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_string(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_number(d2o_reader *, byte_buffer &, int) const;
+    void_ptr read_uint(d2o_reader *, byte_buffer &, int) const;
 
-    void write_object(d2o_writer *, byte_buffer &, const boost::any &, int) const;
-    void write_vector(d2o_writer *, byte_buffer &, const boost::any &, int) const;
-    void write_int(d2o_writer *, byte_buffer &, const boost::any &, int) const;
-    void write_bool(d2o_writer *, byte_buffer &, const boost::any &, int) const;
-    void write_string(d2o_writer *, byte_buffer &, const boost::any &, int) const;
-    void write_number(d2o_writer *, byte_buffer &, const boost::any &, int) const;
-    void write_uint(d2o_writer *, byte_buffer &, const boost::any &, int) const;
+    void write_object(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
+    void write_vector(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
+    void write_int(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
+    void write_bool(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
+    void write_string(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
+    void write_number(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
+    void write_uint(d2o_writer *, byte_buffer &, const void_ptr &, int) const;
 
 public:
     d2o_field(std::string, int, type_vector);
     d2o_field(std::string, int, byte_buffer &);
 
-    boost::any read(d2o_reader *, byte_buffer &) const;
-    void write(d2o_writer *, byte_buffer &, const boost::any &) const;
+    void_ptr read(d2o_reader *, byte_buffer &) const;
+    void write(d2o_writer *, byte_buffer &, const void_ptr &) const;
 
     void pack(byte_buffer &) const;
 
-    const std::string & name() const
-    { return _name; }
+    const char * name() const
+    { return _name.c_str(); }
 
     int type() const
     { return _type; }

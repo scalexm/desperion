@@ -3,7 +3,7 @@
 #ifndef core_shortcut_smiley_hpp
 #define core_shortcut_smiley_hpp
 
-namespace network
+namespace protocol
 {
     struct shortcut_smiley : shortcut
     {

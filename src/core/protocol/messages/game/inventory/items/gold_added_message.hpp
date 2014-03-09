@@ -3,7 +3,7 @@
 #ifndef core_gold_added_message_hpp
 #define core_gold_added_message_hpp
 
-namespace network
+namespace protocol
 {
     struct gold_added_message : dofus_unit
     {

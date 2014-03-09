@@ -3,7 +3,7 @@
 #ifndef core_on_connection_event_message_hpp
 #define core_on_connection_event_message_hpp
 
-namespace network
+namespace protocol
 {
     struct on_connection_event_message : dofus_unit
     {

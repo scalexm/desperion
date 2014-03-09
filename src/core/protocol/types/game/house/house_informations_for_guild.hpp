@@ -3,7 +3,7 @@
 #ifndef core_house_informations_for_guild_hpp
 #define core_house_informations_for_guild_hpp
 
-namespace network
+namespace protocol
 {
     struct house_informations_for_guild : dofus_unit
     {

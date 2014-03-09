@@ -3,7 +3,7 @@
 #ifndef core_aggressable_status_enum_hpp
 #define core_aggressable_status_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum aggressable_status
     {

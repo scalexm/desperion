@@ -3,7 +3,7 @@
 #ifndef core_identified_entity_disposition_informations_hpp
 #define core_identified_entity_disposition_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct identified_entity_disposition_informations : entity_disposition_informations
     {

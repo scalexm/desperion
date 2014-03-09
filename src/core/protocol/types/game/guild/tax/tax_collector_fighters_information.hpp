@@ -3,7 +3,7 @@
 #ifndef core_tax_collector_fighters_information_hpp
 #define core_tax_collector_fighters_information_hpp
 
-namespace network
+namespace protocol
 {
     struct tax_collector_fighters_information : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_object_found_while_recolting_message_hpp
 #define core_object_found_while_recolting_message_hpp
 
-namespace network
+namespace protocol
 {
     struct object_found_while_recolting_message : dofus_unit
     {

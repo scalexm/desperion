@@ -3,7 +3,7 @@
 #ifndef core_mount_data_error_message_hpp
 #define core_mount_data_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_data_error_message : dofus_unit
     {

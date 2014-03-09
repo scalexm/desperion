@@ -3,7 +3,7 @@
 #ifndef core_skill_action_description_craft_hpp
 #define core_skill_action_description_craft_hpp
 
-namespace network
+namespace protocol
 {
     struct skill_action_description_craft : skill_action_description
     {

@@ -3,7 +3,7 @@
 #ifndef core_human_informations_hpp
 #define core_human_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct human_informations : dofus_unit
     {

@@ -3,7 +3,7 @@
 //  d2fstream
 //
 //  Created by Alexandre Martin on 31/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../../core/common.hpp"
@@ -34,7 +34,7 @@ data_fields d2o_class_definition::read(d2o_reader * owner, byte_buffer & buffer)
 {
     data_fields fields;
     for (auto && it : _fields)
-        fields.emplace(it.name(), it.read(owner, buffer));
+        fields.emplace_back(it.read(owner, buffer));
     return fields;
 }
 
@@ -46,8 +46,8 @@ void d2o_class_definition::add_field(const d2o_field & field)
 void d2o_class_definition::write(d2o_writer * owner, byte_buffer & buffer,
                                  const data_fields & fields) const
 {
-    for (auto && it : _fields)
-        it.write(owner, buffer, fields.at(it.name()));
+    //for (auto && it : _fields)
+        //it.write(owner, buffer, fields.at(it.name()));
 }
 
 void d2o_class_definition::pack(byte_buffer & buffer, int id) const

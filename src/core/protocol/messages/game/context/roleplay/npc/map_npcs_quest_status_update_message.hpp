@@ -3,7 +3,7 @@
 #ifndef core_map_npcs_quest_status_update_message_hpp
 #define core_map_npcs_quest_status_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct map_npcs_quest_status_update_message : dofus_unit
     {

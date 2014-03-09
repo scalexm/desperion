@@ -3,7 +3,7 @@
 #ifndef core_paddock_to_sell_filter_message_hpp
 #define core_paddock_to_sell_filter_message_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_to_sell_filter_message : dofus_unit
     {

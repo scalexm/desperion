@@ -3,7 +3,7 @@
 #ifndef core_prism_state_enum_hpp
 #define core_prism_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum prism_state
     {

@@ -3,7 +3,7 @@
 #ifndef core_game_action_fight_no_spell_cast_message_hpp
 #define core_game_action_fight_no_spell_cast_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_action_fight_no_spell_cast_message : dofus_unit
     {

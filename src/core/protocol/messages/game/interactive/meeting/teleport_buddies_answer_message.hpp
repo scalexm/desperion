@@ -3,7 +3,7 @@
 #ifndef core_teleport_buddies_answer_message_hpp
 #define core_teleport_buddies_answer_message_hpp
 
-namespace network
+namespace protocol
 {
     struct teleport_buddies_answer_message : dofus_unit
     {

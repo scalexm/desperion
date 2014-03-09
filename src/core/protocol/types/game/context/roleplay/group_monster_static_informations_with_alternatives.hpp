@@ -3,7 +3,7 @@
 #ifndef core_group_monster_static_informations_with_alternatives_hpp
 #define core_group_monster_static_informations_with_alternatives_hpp
 
-namespace network
+namespace protocol
 {
     struct group_monster_static_informations_with_alternatives : group_monster_static_informations
     {

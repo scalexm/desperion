@@ -3,7 +3,7 @@
 #ifndef core_basic_pong_message_hpp
 #define core_basic_pong_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_pong_message : dofus_unit
     {

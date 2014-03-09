@@ -3,7 +3,7 @@
 #ifndef core_characters_list_error_message_hpp
 #define core_characters_list_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct characters_list_error_message : dofus_unit
     {

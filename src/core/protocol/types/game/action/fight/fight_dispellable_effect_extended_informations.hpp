@@ -3,7 +3,7 @@
 #ifndef core_fight_dispellable_effect_extended_informations_hpp
 #define core_fight_dispellable_effect_extended_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_dispellable_effect_extended_informations : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_exchange_bid_house_in_list_updated_message_hpp
 #define core_exchange_bid_house_in_list_updated_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_bid_house_in_list_updated_message : exchange_bid_house_in_list_added_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_sub_entity_hpp
 #define core_sub_entity_hpp
 
-namespace network
+namespace protocol
 {
     struct sub_entity : dofus_unit
     {

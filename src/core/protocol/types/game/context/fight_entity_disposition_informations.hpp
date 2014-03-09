@@ -3,7 +3,7 @@
 #ifndef core_fight_entity_disposition_informations_hpp
 #define core_fight_entity_disposition_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_entity_disposition_informations : entity_disposition_informations
     {

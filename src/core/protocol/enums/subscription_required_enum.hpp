@@ -3,7 +3,7 @@
 #ifndef core_subscription_required_enum_hpp
 #define core_subscription_required_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum subscription_required
     {

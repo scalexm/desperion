@@ -3,7 +3,7 @@
 #ifndef core_game_fight_show_fighter_random_static_pose_message_hpp
 #define core_game_fight_show_fighter_random_static_pose_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_show_fighter_random_static_pose_message : game_fight_show_fighter_message
     {

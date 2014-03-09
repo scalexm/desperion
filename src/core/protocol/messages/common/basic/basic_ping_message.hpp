@@ -3,7 +3,7 @@
 #ifndef core_basic_ping_message_hpp
 #define core_basic_ping_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_ping_message : dofus_unit
     {

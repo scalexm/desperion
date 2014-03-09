@@ -3,7 +3,7 @@
 #ifndef core_house_guild_none_message_hpp
 #define core_house_guild_none_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_guild_none_message : dofus_unit
     {

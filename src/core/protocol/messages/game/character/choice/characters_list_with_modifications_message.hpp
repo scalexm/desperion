@@ -3,7 +3,7 @@
 #ifndef core_characters_list_with_modifications_message_hpp
 #define core_characters_list_with_modifications_message_hpp
 
-namespace network
+namespace protocol
 {
     struct characters_list_with_modifications_message : characters_list_message
     {

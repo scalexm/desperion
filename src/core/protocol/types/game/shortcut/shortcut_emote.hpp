@@ -3,7 +3,7 @@
 #ifndef core_shortcut_emote_hpp
 #define core_shortcut_emote_hpp
 
-namespace network
+namespace protocol
 {
     struct shortcut_emote : shortcut
     {

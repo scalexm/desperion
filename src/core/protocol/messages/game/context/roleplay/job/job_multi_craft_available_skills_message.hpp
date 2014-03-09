@@ -3,7 +3,7 @@
 #ifndef core_job_multi_craft_available_skills_message_hpp
 #define core_job_multi_craft_available_skills_message_hpp
 
-namespace network
+namespace protocol
 {
     struct job_multi_craft_available_skills_message : job_allow_multi_craft_request_message
     {

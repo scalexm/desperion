@@ -3,7 +3,7 @@
 #ifndef core_game_fight_fighter_light_informations_hpp
 #define core_game_fight_fighter_light_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_fighter_light_informations : dofus_unit
     {

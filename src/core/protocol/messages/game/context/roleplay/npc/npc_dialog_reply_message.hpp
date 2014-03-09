@@ -3,7 +3,7 @@
 #ifndef core_npc_dialog_reply_message_hpp
 #define core_npc_dialog_reply_message_hpp
 
-namespace network
+namespace protocol
 {
     struct npc_dialog_reply_message : dofus_unit
     {

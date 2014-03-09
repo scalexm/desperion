@@ -3,7 +3,7 @@
 #ifndef core_job_crafter_directory_entry_message_hpp
 #define core_job_crafter_directory_entry_message_hpp
 
-namespace network
+namespace protocol
 {
     struct job_crafter_directory_entry_message : dofus_unit
     {

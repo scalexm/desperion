@@ -3,7 +3,7 @@
 #ifndef core_identification_success_message_hpp
 #define core_identification_success_message_hpp
 
-namespace network
+namespace protocol
 {
     struct identification_success_message : dofus_unit
     {

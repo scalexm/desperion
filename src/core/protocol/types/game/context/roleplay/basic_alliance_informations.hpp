@@ -3,7 +3,7 @@
 #ifndef core_basic_alliance_informations_hpp
 #define core_basic_alliance_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_alliance_informations : abstract_social_group_infos
     {

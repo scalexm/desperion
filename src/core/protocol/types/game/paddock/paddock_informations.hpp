@@ -3,7 +3,7 @@
 #ifndef core_paddock_informations_hpp
 #define core_paddock_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_informations : dofus_unit
     {

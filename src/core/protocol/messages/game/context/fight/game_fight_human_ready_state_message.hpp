@@ -3,7 +3,7 @@
 #ifndef core_game_fight_human_ready_state_message_hpp
 #define core_game_fight_human_ready_state_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_fight_human_ready_state_message : dofus_unit
     {

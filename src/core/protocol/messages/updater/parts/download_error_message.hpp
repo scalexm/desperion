@@ -3,7 +3,7 @@
 #ifndef core_download_error_message_hpp
 #define core_download_error_message_hpp
 
-namespace network
+namespace protocol
 {
     struct download_error_message : dofus_unit
     {

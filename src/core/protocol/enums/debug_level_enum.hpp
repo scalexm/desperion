@@ -3,7 +3,7 @@
 #ifndef core_debug_level_enum_hpp
 #define core_debug_level_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum debug_level
     {

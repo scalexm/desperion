@@ -3,7 +3,7 @@
 #ifndef core_guild_emblem_hpp
 #define core_guild_emblem_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_emblem : dofus_unit
     {

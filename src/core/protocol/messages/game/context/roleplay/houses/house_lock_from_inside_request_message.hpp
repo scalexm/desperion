@@ -3,7 +3,7 @@
 #ifndef core_house_lock_from_inside_request_message_hpp
 #define core_house_lock_from_inside_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_lock_from_inside_request_message : lockable_change_code_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_character_inventory_position_enum_hpp
 #define core_character_inventory_position_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum character_inventory_position
     {

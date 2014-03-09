@@ -3,7 +3,7 @@
 #ifndef core_character_to_recolor_information_hpp
 #define core_character_to_recolor_information_hpp
 
-namespace network
+namespace protocol
 {
     struct character_to_recolor_information : abstract_character_information
     {

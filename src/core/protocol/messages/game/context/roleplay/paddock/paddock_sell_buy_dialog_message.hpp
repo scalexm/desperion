@@ -3,7 +3,7 @@
 #ifndef core_paddock_sell_buy_dialog_message_hpp
 #define core_paddock_sell_buy_dialog_message_hpp
 
-namespace network
+namespace protocol
 {
     struct paddock_sell_buy_dialog_message : dofus_unit
     {

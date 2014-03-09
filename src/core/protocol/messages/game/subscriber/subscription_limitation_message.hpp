@@ -3,7 +3,7 @@
 #ifndef core_subscription_limitation_message_hpp
 #define core_subscription_limitation_message_hpp
 
-namespace network
+namespace protocol
 {
     struct subscription_limitation_message : dofus_unit
     {

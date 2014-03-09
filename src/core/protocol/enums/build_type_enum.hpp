@@ -3,7 +3,7 @@
 #ifndef core_build_type_enum_hpp
 #define core_build_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum build_type
     {

@@ -3,7 +3,7 @@
 //  core
 //
 //  Created by Alexandre Martin on 04/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "../common.hpp"

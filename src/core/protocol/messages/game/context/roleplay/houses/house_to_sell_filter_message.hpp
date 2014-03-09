@@ -3,7 +3,7 @@
 #ifndef core_house_to_sell_filter_message_hpp
 #define core_house_to_sell_filter_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_to_sell_filter_message : dofus_unit
     {

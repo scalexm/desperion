@@ -3,7 +3,7 @@
 #ifndef core_dungeon_key_ring_message_hpp
 #define core_dungeon_key_ring_message_hpp
 
-namespace network
+namespace protocol
 {
     struct dungeon_key_ring_message : dofus_unit
     {

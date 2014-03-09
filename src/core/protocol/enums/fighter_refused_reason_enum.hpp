@@ -3,7 +3,7 @@
 #ifndef core_fighter_refused_reason_enum_hpp
 #define core_fighter_refused_reason_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum fighter_refused_reason
     {

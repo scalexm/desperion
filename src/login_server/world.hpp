@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef login_server_world_hpp
@@ -17,7 +17,7 @@ class session;
 class game_session;
 class game_server;
 
-namespace network
+namespace protocol
 {
     class game_server_informations;
     using game_server_informations_ptr = std::unique_ptr<game_server_informations>;
@@ -45,7 +45,7 @@ public:
 
     const game_server * get_game_server(int16_t) const;
     void refresh_game_server(const game_server *);
-    std::vector<network::game_server_informations_ptr> get_server_informations(session *) const;
+    std::vector<protocol::game_server_informations_ptr> get_server_informations(session *) const;
 
     uint16_t get_players() const;
     uint16_t get_max_players() const;

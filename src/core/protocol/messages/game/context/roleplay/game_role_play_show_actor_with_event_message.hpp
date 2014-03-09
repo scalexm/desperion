@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_show_actor_with_event_message_hpp
 #define core_game_role_play_show_actor_with_event_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_show_actor_with_event_message : game_role_play_show_actor_message
     {

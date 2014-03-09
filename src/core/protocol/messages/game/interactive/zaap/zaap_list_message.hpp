@@ -3,7 +3,7 @@
 #ifndef core_zaap_list_message_hpp
 #define core_zaap_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct zaap_list_message : teleport_destinations_list_message
     {

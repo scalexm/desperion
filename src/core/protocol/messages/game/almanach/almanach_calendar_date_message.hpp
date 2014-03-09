@@ -3,7 +3,7 @@
 #ifndef core_almanach_calendar_date_message_hpp
 #define core_almanach_calendar_date_message_hpp
 
-namespace network
+namespace protocol
 {
     struct almanach_calendar_date_message : dofus_unit
     {

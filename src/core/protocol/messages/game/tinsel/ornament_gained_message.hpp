@@ -3,7 +3,7 @@
 #ifndef core_ornament_gained_message_hpp
 #define core_ornament_gained_message_hpp
 
-namespace network
+namespace protocol
 {
     struct ornament_gained_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_guild_invitation_state_recruted_message_hpp
 #define core_guild_invitation_state_recruted_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_invitation_state_recruted_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #include "common.hpp"
@@ -109,15 +109,20 @@ void world::impl::refresh_game_server(const game_server * gs)
     if (application::instance().get_shutdown() != shutdown_type::NOT_REQUESTED)
         return;
     for (auto && it : _sessions)
-        it.second->send(network::server_status_update_message { it.second->get_server_status(gs) });
+    {
+        it.second->make_guard().write(protocol::server_status_update_message
+        {
+            it.second->get_server_status(gs)
+        });
+    }
 }
 
-std::vector<network::game_server_informations_ptr> world::impl::
+std::vector<protocol::game_server_informations_ptr> world::impl::
     get_server_informations(session * s)const
 {
-    std::vector<network::game_server_informations_ptr> results;
+    std::vector<protocol::game_server_informations_ptr> results;
     for (auto && it : _game_servers)
-        if (it.second.get_state(s->account_data().level, false) != network::NOJOIN)
+        if (it.second.get_state(s->account_data().level, false) != protocol::NOJOIN)
             results.push_back(s->get_server_status(&it.second));
     return results;
 }

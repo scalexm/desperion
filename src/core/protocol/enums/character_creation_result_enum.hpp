@@ -3,7 +3,7 @@
 #ifndef core_character_creation_result_enum_hpp
 #define core_character_creation_result_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum character_creation_result
     {

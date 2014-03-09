@@ -3,7 +3,7 @@
 #ifndef core_exchange_handle_mount_stable_message_hpp
 #define core_exchange_handle_mount_stable_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_handle_mount_stable_message : dofus_unit
     {

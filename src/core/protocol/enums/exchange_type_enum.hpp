@@ -3,7 +3,7 @@
 #ifndef core_exchange_type_enum_hpp
 #define core_exchange_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum exchange_type
     {

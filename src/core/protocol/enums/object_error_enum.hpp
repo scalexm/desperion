@@ -3,7 +3,7 @@
 #ifndef core_object_error_enum_hpp
 #define core_object_error_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum object_error
     {

@@ -3,7 +3,7 @@
 #ifndef core_guild_in_alliance_facts_message_hpp
 #define core_guild_in_alliance_facts_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_in_alliance_facts_message : guild_facts_message
     {

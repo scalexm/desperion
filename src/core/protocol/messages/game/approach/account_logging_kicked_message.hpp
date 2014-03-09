@@ -3,7 +3,7 @@
 #ifndef core_account_logging_kicked_message_hpp
 #define core_account_logging_kicked_message_hpp
 
-namespace network
+namespace protocol
 {
     struct account_logging_kicked_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_stated_element_updated_message_hpp
 #define core_stated_element_updated_message_hpp
 
-namespace network
+namespace protocol
 {
     struct stated_element_updated_message : dofus_unit
     {

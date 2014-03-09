@@ -3,7 +3,7 @@
 #ifndef core_delayed_action_type_enum_hpp
 #define core_delayed_action_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum delayed_action_type
     {

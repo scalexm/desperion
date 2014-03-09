@@ -3,7 +3,7 @@
 #ifndef core_update_mount_boost_hpp
 #define core_update_mount_boost_hpp
 
-namespace network
+namespace protocol
 {
     struct update_mount_boost : dofus_unit
     {

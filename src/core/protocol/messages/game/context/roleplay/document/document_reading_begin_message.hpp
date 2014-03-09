@@ -3,7 +3,7 @@
 #ifndef core_document_reading_begin_message_hpp
 #define core_document_reading_begin_message_hpp
 
-namespace network
+namespace protocol
 {
     struct document_reading_begin_message : dofus_unit
     {

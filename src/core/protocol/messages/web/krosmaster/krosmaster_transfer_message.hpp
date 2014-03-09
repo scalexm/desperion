@@ -3,7 +3,7 @@
 #ifndef core_krosmaster_transfer_message_hpp
 #define core_krosmaster_transfer_message_hpp
 
-namespace network
+namespace protocol
 {
     struct krosmaster_transfer_message : dofus_unit
     {

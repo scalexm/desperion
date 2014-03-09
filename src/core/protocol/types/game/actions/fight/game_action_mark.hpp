@@ -3,7 +3,7 @@
 #ifndef core_game_action_mark_hpp
 #define core_game_action_mark_hpp
 
-namespace network
+namespace protocol
 {
     struct game_action_mark : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_abstract_social_group_infos_hpp
 #define core_abstract_social_group_infos_hpp
 
-namespace network
+namespace protocol
 {
     struct abstract_social_group_infos : dofus_unit
     {

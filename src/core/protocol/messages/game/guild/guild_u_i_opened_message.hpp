@@ -3,7 +3,7 @@
 #ifndef core_guild_u_i_opened_message_hpp
 #define core_guild_u_i_opened_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_u_i_opened_message : dofus_unit
     {

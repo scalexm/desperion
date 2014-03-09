@@ -3,7 +3,7 @@
 #ifndef core_popup_warning_message_hpp
 #define core_popup_warning_message_hpp
 
-namespace network
+namespace protocol
 {
     struct popup_warning_message : dofus_unit
     {

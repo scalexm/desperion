@@ -3,7 +3,7 @@
 #ifndef core_exchange_start_as_vendor_message_hpp
 #define core_exchange_start_as_vendor_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_start_as_vendor_message : dofus_unit
     {

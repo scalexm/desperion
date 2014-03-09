@@ -3,7 +3,7 @@
 #ifndef core_set_character_restrictions_message_hpp
 #define core_set_character_restrictions_message_hpp
 
-namespace network
+namespace protocol
 {
     struct set_character_restrictions_message : dofus_unit
     {

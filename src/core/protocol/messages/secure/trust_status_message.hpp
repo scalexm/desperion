@@ -3,7 +3,7 @@
 #ifndef core_trust_status_message_hpp
 #define core_trust_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct trust_status_message : dofus_unit
     {

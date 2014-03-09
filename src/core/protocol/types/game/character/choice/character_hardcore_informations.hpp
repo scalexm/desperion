@@ -3,7 +3,7 @@
 #ifndef core_character_hardcore_informations_hpp
 #define core_character_hardcore_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct character_hardcore_informations : character_base_informations
     {

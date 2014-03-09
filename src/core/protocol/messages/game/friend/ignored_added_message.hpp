@@ -3,7 +3,7 @@
 #ifndef core_ignored_added_message_hpp
 #define core_ignored_added_message_hpp
 
-namespace network
+namespace protocol
 {
     struct ignored_added_message : dofus_unit
     {

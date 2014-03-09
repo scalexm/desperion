@@ -3,7 +3,7 @@
 #ifndef core_house_guild_rights_view_message_hpp
 #define core_house_guild_rights_view_message_hpp
 
-namespace network
+namespace protocol
 {
     struct house_guild_rights_view_message : dofus_unit
     {

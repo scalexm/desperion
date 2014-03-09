@@ -3,7 +3,7 @@
 #ifndef core_exchange_multi_craft_set_crafter_can_use_his_ressources_message_hpp
 #define core_exchange_multi_craft_set_crafter_can_use_his_ressources_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_multi_craft_set_crafter_can_use_his_ressources_message : dofus_unit
     {

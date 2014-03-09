@@ -3,7 +3,7 @@
 #ifndef core_alliance_left_message_hpp
 #define core_alliance_left_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_left_message : dofus_unit
     {

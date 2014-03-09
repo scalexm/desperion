@@ -3,7 +3,7 @@
 #ifndef core_friend_spouse_informations_hpp
 #define core_friend_spouse_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_spouse_informations : dofus_unit
     {

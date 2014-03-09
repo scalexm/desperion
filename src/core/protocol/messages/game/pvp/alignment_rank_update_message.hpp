@@ -3,7 +3,7 @@
 #ifndef core_alignment_rank_update_message_hpp
 #define core_alignment_rank_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alignment_rank_update_message : dofus_unit
     {

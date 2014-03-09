@@ -3,7 +3,7 @@
 #ifndef core_actor_extended_alignment_informations_hpp
 #define core_actor_extended_alignment_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct actor_extended_alignment_informations : actor_alignment_informations
     {

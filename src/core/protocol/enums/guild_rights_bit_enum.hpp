@@ -3,7 +3,7 @@
 #ifndef core_guild_rights_bit_enum_hpp
 #define core_guild_rights_bit_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum guild_rights_bit
     {

@@ -3,7 +3,7 @@
 #ifndef core_admin_quiet_command_message_hpp
 #define core_admin_quiet_command_message_hpp
 
-namespace network
+namespace protocol
 {
     struct admin_quiet_command_message : admin_command_message
     {

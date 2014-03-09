@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_group_monster_informations_hpp
 #define core_game_role_play_group_monster_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_group_monster_informations : game_role_play_actor_informations
     {

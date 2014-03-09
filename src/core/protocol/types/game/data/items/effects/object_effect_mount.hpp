@@ -3,7 +3,7 @@
 #ifndef core_object_effect_mount_hpp
 #define core_object_effect_mount_hpp
 
-namespace network
+namespace protocol
 {
     struct object_effect_mount : object_effect
     {

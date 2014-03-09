@@ -3,7 +3,7 @@
 #ifndef core_achievement_rewardable_hpp
 #define core_achievement_rewardable_hpp
 
-namespace network
+namespace protocol
 {
     struct achievement_rewardable : dofus_unit
     {

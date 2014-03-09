@@ -3,7 +3,7 @@
 #ifndef core_hardcore_death_state_enum_hpp
 #define core_hardcore_death_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum hardcore_death_state
     {

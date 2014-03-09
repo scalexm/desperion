@@ -3,7 +3,7 @@
 #ifndef core_selected_server_data_message_hpp
 #define core_selected_server_data_message_hpp
 
-namespace network
+namespace protocol
 {
     struct selected_server_data_message : dofus_unit
     {

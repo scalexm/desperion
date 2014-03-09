@@ -3,7 +3,7 @@
 #ifndef core_actor_restrictions_informations_hpp
 #define core_actor_restrictions_informations_hpp
 
-namespace network
+namespace protocol
 {
     struct actor_restrictions_informations : dofus_unit
     {

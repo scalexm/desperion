@@ -3,7 +3,7 @@
 #ifndef core_objects_quantity_message_hpp
 #define core_objects_quantity_message_hpp
 
-namespace network
+namespace protocol
 {
     struct objects_quantity_message : dofus_unit
     {

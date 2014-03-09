@@ -3,7 +3,7 @@
 #ifndef core_interactive_map_update_message_hpp
 #define core_interactive_map_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct interactive_map_update_message : dofus_unit
     {

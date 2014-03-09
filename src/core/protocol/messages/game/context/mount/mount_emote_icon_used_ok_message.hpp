@@ -3,7 +3,7 @@
 #ifndef core_mount_emote_icon_used_ok_message_hpp
 #define core_mount_emote_icon_used_ok_message_hpp
 
-namespace network
+namespace protocol
 {
     struct mount_emote_icon_used_ok_message : dofus_unit
     {

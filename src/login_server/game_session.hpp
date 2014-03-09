@@ -3,18 +3,18 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef login_server_game_session_impl_hpp
 #define login_server_game_session_impl_hpp
 
-#include "../core/protocol/dofus_executor.hpp"
+#include "../core/abstract_session.hpp"
 #include <unordered_map>
 
 class game_server;
 
-class game_session : public dofus_session, public std::enable_shared_from_this<game_session>
+class game_session : public abstract_session
 {
 private:
     enum class req_flag
@@ -36,8 +36,8 @@ private:
     uint16_t _port, _players = 0;
 
 // --- unsafe, called in socket_listener threads
-    void handle_error();
-    void handle_new_message(int16_t, std::shared_ptr<byte_buffer>) override;
+    void handle_error(const boost::system::error_code &);
+    void handle_new_message(int16_t, std::shared_ptr<byte_buffer>);
 // ---
     
     void handle_state_message(byte_buffer &);
@@ -45,15 +45,12 @@ private:
     void handle_connect_message(byte_buffer &);
 
     void process_data(int16_t, std::shared_ptr<byte_buffer> &);
-    void send(const network::dofus_unit &, bool disconnect = false);
-    void write(const network::dofus_unit &);
-    void flush(bool disconnect = false);
 
     game_session(boost::asio::ip::tcp::socket &&);
 public:
     static std::shared_ptr<game_session> create(boost::asio::ip::tcp::socket &&);
     ~game_session();
-    void start() override;
+    void start();
     void send_disconnect_player_message(int);
 
     const class game_server * game_server() const

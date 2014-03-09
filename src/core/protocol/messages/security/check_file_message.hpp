@@ -3,7 +3,7 @@
 #ifndef core_check_file_message_hpp
 #define core_check_file_message_hpp
 
-namespace network
+namespace protocol
 {
     struct check_file_message : dofus_unit
     {

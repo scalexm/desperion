@@ -3,7 +3,7 @@
 #ifndef core_alliance_prism_dialog_question_message_hpp
 #define core_alliance_prism_dialog_question_message_hpp
 
-namespace network
+namespace protocol
 {
     struct alliance_prism_dialog_question_message : dofus_unit
     {

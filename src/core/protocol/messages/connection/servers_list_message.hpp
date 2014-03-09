@@ -3,7 +3,7 @@
 #ifndef core_servers_list_message_hpp
 #define core_servers_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct servers_list_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_party_invitation_cancelled_for_guest_message_hpp
 #define core_party_invitation_cancelled_for_guest_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_invitation_cancelled_for_guest_message : abstract_party_message
     {

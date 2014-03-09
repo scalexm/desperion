@@ -3,7 +3,7 @@
 #ifndef core_map_informations_request_message_hpp
 #define core_map_informations_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct map_informations_request_message : dofus_unit
     {

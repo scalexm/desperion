@@ -3,7 +3,7 @@
 #ifndef core_friend_warn_on_level_gain_state_message_hpp
 #define core_friend_warn_on_level_gain_state_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_warn_on_level_gain_state_message : dofus_unit
     {

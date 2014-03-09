@@ -3,7 +3,7 @@
 #ifndef core_game_context_create_request_message_hpp
 #define core_game_context_create_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct game_context_create_request_message : dofus_unit
     {

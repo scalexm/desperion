@@ -3,7 +3,7 @@
 #ifndef core_fight_result_list_entry_hpp
 #define core_fight_result_list_entry_hpp
 
-namespace network
+namespace protocol
 {
     struct fight_result_list_entry : dofus_unit
     {

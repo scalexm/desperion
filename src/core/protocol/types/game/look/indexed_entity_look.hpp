@@ -3,7 +3,7 @@
 #ifndef core_indexed_entity_look_hpp
 #define core_indexed_entity_look_hpp
 
-namespace network
+namespace protocol
 {
     struct indexed_entity_look : dofus_unit
     {

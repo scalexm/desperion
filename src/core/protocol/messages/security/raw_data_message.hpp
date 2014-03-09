@@ -3,7 +3,7 @@
 #ifndef core_raw_data_message_hpp
 #define core_raw_data_message_hpp
 
-namespace network
+namespace protocol
 {
     struct raw_data_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_server_session_constants_message_hpp
 #define core_server_session_constants_message_hpp
 
-namespace network
+namespace protocol
 {
     struct server_session_constants_message : dofus_unit
     {

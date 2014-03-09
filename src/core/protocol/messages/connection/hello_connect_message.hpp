@@ -3,7 +3,7 @@
 #ifndef core_hello_connect_message_hpp
 #define core_hello_connect_message_hpp
 
-namespace network
+namespace protocol
 {
     struct hello_connect_message : dofus_unit
     {

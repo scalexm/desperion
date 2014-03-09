@@ -3,7 +3,7 @@
 //  login_server
 //
 //  Created by Alexandre Martin on 07/08/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef login_server_session_impl_hpp
@@ -31,7 +31,7 @@ private:
     };
 
     const static std::unordered_map<int16_t, packet_handler> _handlers;
-    static auth_queue<session, network::identification_message> _queue;
+    static auth_queue<session, protocol::identification_message> _queue;
     static std::vector<int8_t> _raw_data_patch;
 
     session * _owner;
@@ -47,10 +47,10 @@ private:
 
     void handle_identification_message(byte_buffer &);
     void handle_server_selection_message(byte_buffer &);
-    bool handle_server_selection(const game_server *, bool);
+    bool handle_server_selection(const game_server *, bool, flush_guard &);
     void handle_acquaintance_search_message(byte_buffer &);
 
-    void send_servers_list();
+    void send_servers_list(flush_guard &);
     void update_idle_timer();
     void idle_callback(const boost::system::error_code &);
     void queue_callback(const boost::system::error_code &);
@@ -62,13 +62,9 @@ public:
     void start();
     void process_data(int16_t, byte_buffer &);
     bool can_select(int8_t) const;
-    network::game_server_informations_ptr get_server_status(const game_server *) const;
-    void handle_identification(const std::shared_ptr<network::identification_message> &);
+    protocol::game_server_informations_ptr get_server_status(const game_server *) const;
+    void handle_identification(const std::shared_ptr<protocol::identification_message> &);
     void finish_identification(int16_t, int16_t, bool);
-
-    void send(const network::dofus_unit &, bool disconnect = false);
-    void write(const network::dofus_unit &);
-    void flush(bool disconnect = false);
 
     bool is_subscriber() const
     { return _subscription_end > time(nullptr); }

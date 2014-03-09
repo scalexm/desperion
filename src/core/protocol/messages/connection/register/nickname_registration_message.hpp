@@ -3,7 +3,7 @@
 #ifndef core_nickname_registration_message_hpp
 #define core_nickname_registration_message_hpp
 
-namespace network
+namespace protocol
 {
     struct nickname_registration_message : dofus_unit
     {

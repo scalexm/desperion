@@ -3,7 +3,7 @@
 #ifndef core_update_self_agressable_status_message_hpp
 #define core_update_self_agressable_status_message_hpp
 
-namespace network
+namespace protocol
 {
     struct update_self_agressable_status_message : dofus_unit
     {

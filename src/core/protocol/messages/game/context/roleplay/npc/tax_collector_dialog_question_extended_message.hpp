@@ -3,7 +3,7 @@
 #ifndef core_tax_collector_dialog_question_extended_message_hpp
 #define core_tax_collector_dialog_question_extended_message_hpp
 
-namespace network
+namespace protocol
 {
     struct tax_collector_dialog_question_extended_message : tax_collector_dialog_question_basic_message
     {

@@ -3,7 +3,7 @@
 #ifndef core_display_numerical_value_with_age_bonus_message_hpp
 #define core_display_numerical_value_with_age_bonus_message_hpp
 
-namespace network
+namespace protocol
 {
     struct display_numerical_value_with_age_bonus_message : display_numerical_value_message
     {

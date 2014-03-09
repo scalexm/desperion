@@ -3,7 +3,7 @@
 #ifndef core_part_state_enum_hpp
 #define core_part_state_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum part_state
     {

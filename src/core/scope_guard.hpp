@@ -3,16 +3,11 @@
 //  core
 //
 //  Created by Alexandre Martin on 30/07/13.
-//  Copyright (c) 2013 alexm. All rights reserved.
+//  Copyright (c) 2013-2014 scalexm. All rights reserved.
 //
 
 #ifndef core_scope_guard_hpp
 #define core_scope_guard_hpp
-
-/*
- see drdobbs "ScopeGuard"/"most important const", though this pattern is not
- used there you will understand how scope_guard's useful
-*/
 
 template<class Fun>
 class scope_guard
@@ -56,7 +51,7 @@ public:
 };
 
 template <typename Fun>
-scope_guard<Fun> make_guard(const Fun & fun)
+scope_guard<Fun> make_scope_guard(const Fun & fun)
 {
     return scope_guard<Fun>(fun);
 }

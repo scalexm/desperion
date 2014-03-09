@@ -3,7 +3,7 @@
 #ifndef core_guild_house_remove_message_hpp
 #define core_guild_house_remove_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_house_remove_message : dofus_unit
     {

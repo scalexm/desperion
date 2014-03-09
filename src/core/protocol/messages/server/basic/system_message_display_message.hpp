@@ -3,7 +3,7 @@
 #ifndef core_system_message_display_message_hpp
 #define core_system_message_display_message_hpp
 
-namespace network
+namespace protocol
 {
     struct system_message_display_message : dofus_unit
     {

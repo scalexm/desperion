@@ -3,7 +3,7 @@
 #ifndef core_basic_set_away_mode_request_message_hpp
 #define core_basic_set_away_mode_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct basic_set_away_mode_request_message : dofus_unit
     {

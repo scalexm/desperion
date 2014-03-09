@@ -3,7 +3,7 @@
 #ifndef core_abstract_party_message_hpp
 #define core_abstract_party_message_hpp
 
-namespace network
+namespace protocol
 {
     struct abstract_party_message : dofus_unit
     {

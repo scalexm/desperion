@@ -3,7 +3,7 @@
 #ifndef core_map_coordinates_hpp
 #define core_map_coordinates_hpp
 
-namespace network
+namespace protocol
 {
     struct map_coordinates : dofus_unit
     {

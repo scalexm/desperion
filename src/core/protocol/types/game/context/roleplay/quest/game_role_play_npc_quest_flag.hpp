@@ -3,7 +3,7 @@
 #ifndef core_game_role_play_npc_quest_flag_hpp
 #define core_game_role_play_npc_quest_flag_hpp
 
-namespace network
+namespace protocol
 {
     struct game_role_play_npc_quest_flag : dofus_unit
     {

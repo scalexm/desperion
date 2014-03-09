@@ -3,7 +3,7 @@
 #ifndef core_fighter_stats_list_message_hpp
 #define core_fighter_stats_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct fighter_stats_list_message : dofus_unit
     {

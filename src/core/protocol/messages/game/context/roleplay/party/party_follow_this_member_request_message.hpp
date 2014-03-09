@@ -3,7 +3,7 @@
 #ifndef core_party_follow_this_member_request_message_hpp
 #define core_party_follow_this_member_request_message_hpp
 
-namespace network
+namespace protocol
 {
     struct party_follow_this_member_request_message : party_follow_member_request_message
     {

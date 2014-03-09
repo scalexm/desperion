@@ -3,7 +3,7 @@
 #ifndef core_update_mount_int_boost_hpp
 #define core_update_mount_int_boost_hpp
 
-namespace network
+namespace protocol
 {
     struct update_mount_int_boost : update_mount_boost
     {

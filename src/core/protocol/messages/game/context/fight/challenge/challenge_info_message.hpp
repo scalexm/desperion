@@ -3,7 +3,7 @@
 #ifndef core_challenge_info_message_hpp
 #define core_challenge_info_message_hpp
 
-namespace network
+namespace protocol
 {
     struct challenge_info_message : dofus_unit
     {

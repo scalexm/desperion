@@ -3,7 +3,7 @@
 #ifndef core_exchange_start_ok_npc_shop_message_hpp
 #define core_exchange_start_ok_npc_shop_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_start_ok_npc_shop_message : dofus_unit
     {

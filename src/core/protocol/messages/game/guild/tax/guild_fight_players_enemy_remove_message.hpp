@@ -3,7 +3,7 @@
 #ifndef core_guild_fight_players_enemy_remove_message_hpp
 #define core_guild_fight_players_enemy_remove_message_hpp
 
-namespace network
+namespace protocol
 {
     struct guild_fight_players_enemy_remove_message : dofus_unit
     {

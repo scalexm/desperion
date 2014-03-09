@@ -3,7 +3,7 @@
 #ifndef core_pack_restricted_sub_area_message_hpp
 #define core_pack_restricted_sub_area_message_hpp
 
-namespace network
+namespace protocol
 {
     struct pack_restricted_sub_area_message : dofus_unit
     {

@@ -3,7 +3,7 @@
 #ifndef core_exchange_leave_message_hpp
 #define core_exchange_leave_message_hpp
 
-namespace network
+namespace protocol
 {
     struct exchange_leave_message : leave_dialog_message
     {

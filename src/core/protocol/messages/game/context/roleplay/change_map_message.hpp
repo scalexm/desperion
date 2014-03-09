@@ -3,7 +3,7 @@
 #ifndef core_change_map_message_hpp
 #define core_change_map_message_hpp
 
-namespace network
+namespace protocol
 {
     struct change_map_message : dofus_unit
     {

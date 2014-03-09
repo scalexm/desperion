@@ -3,7 +3,7 @@
 #ifndef core_job_listed_update_message_hpp
 #define core_job_listed_update_message_hpp
 
-namespace network
+namespace protocol
 {
     struct job_listed_update_message : dofus_unit
     {

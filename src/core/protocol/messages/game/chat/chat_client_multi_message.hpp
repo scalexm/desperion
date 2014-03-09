@@ -3,7 +3,7 @@
 #ifndef core_chat_client_multi_message_hpp
 #define core_chat_client_multi_message_hpp
 
-namespace network
+namespace protocol
 {
     struct chat_client_multi_message : chat_abstract_client_message
     {

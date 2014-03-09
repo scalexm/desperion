@@ -3,7 +3,7 @@
 #ifndef core_server_session_constant_integer_hpp
 #define core_server_session_constant_integer_hpp
 
-namespace network
+namespace protocol
 {
     struct server_session_constant_integer : server_session_constant
     {

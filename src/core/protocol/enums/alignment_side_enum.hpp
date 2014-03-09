@@ -3,7 +3,7 @@
 #ifndef core_alignment_side_enum_hpp
 #define core_alignment_side_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum alignment_side
     {

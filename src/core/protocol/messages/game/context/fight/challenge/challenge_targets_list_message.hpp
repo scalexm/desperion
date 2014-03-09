@@ -3,7 +3,7 @@
 #ifndef core_challenge_targets_list_message_hpp
 #define core_challenge_targets_list_message_hpp
 
-namespace network
+namespace protocol
 {
     struct challenge_targets_list_message : dofus_unit
     {

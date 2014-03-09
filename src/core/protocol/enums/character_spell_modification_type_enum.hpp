@@ -3,7 +3,7 @@
 #ifndef core_character_spell_modification_type_enum_hpp
 #define core_character_spell_modification_type_enum_hpp
 
-namespace network
+namespace protocol
 {
     enum character_spell_modification_type
     {

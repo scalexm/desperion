@@ -3,7 +3,7 @@
 #ifndef core_friend_added_message_hpp
 #define core_friend_added_message_hpp
 
-namespace network
+namespace protocol
 {
     struct friend_added_message : dofus_unit
     {

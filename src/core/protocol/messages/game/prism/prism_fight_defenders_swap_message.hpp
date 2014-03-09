@@ -3,7 +3,7 @@
 #ifndef core_prism_fight_defenders_swap_message_hpp
 #define core_prism_fight_defenders_swap_message_hpp
 
-namespace network
+namespace protocol
 {
     struct prism_fight_defenders_swap_message : dofus_unit
     {
