@@ -9,7 +9,7 @@
 #include "common.hpp"
 #include "network_executor.hpp"
 #include "byte_buffer.hpp"
-#include "protocol/dofus.hpp"
+#include "../protocol/dofus.hpp"
 
 void network_executor::close_socket()
 {
@@ -92,8 +92,7 @@ void network_executor::handle_write(const boost::system::error_code & ec,
 }
 
 network_executor::network_executor(boost::asio::ip::tcp::socket && socket,
-                                   error_handler handle_error, message_handler handle_message
-                                   )
+                                   error_handler handle_error, message_handler handle_message)
     : _socket { std::move(socket) }, _strand { _socket.get_io_service() },
     _handle_error { std::move(handle_error) }, _handle_message { std::move(handle_message) }
 {
