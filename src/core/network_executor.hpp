@@ -51,7 +51,7 @@ public:
     
     void write(const byte_buffer &);
     void write(const protocol::dofus_unit &);
-    void flush(std::shared_ptr<abstract_session>, bool);
+    bool flush(std::shared_ptr<abstract_session>, bool);
 
     const boost::asio::ip::tcp::socket & socket() const
     { return _socket; }

@@ -473,7 +473,7 @@ void session::impl::queue_callback(const boost::system::error_code & ec)
     if (ec)
         return;
     // same thing here for async_wait
-    _queue_timer.expires_from_now(boost::posix_time::seconds{ 2 });
+    _queue_timer.expires_from_now(boost::posix_time::seconds { 2 });
     _queue_timer.async_wait(std::bind(&impl::queue_callback, this,
                                        std::placeholders::_1));
 }

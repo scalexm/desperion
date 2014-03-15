@@ -26,8 +26,8 @@ void abstract_session::flush_guard::write(const protocol::dofus_unit & packet)
 
 abstract_session::flush_guard::~flush_guard()
 {
-    _owner._going_to_disconnect = _disconnect;
-    _owner._executor.flush(_owner.shared_from_this(), _disconnect);
+    if (_owner._executor.flush(_owner.shared_from_this(), _disconnect))
+        _owner._going_to_disconnect = _disconnect;
 }
 
 abstract_session::abstract_session(boost::asio::ip::tcp::socket && socket,

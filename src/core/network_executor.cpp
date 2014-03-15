@@ -118,10 +118,10 @@ void network_executor::write(const protocol::dofus_unit & packet)
     protocol::fmt(*_packet, packet);
 }
 
-void network_executor::flush(std::shared_ptr<abstract_session> owner, bool disconnect)
+bool network_executor::flush(std::shared_ptr<abstract_session> owner, bool disconnect)
 {
     if (!_packet || empty(*_packet))
-        return;
+        return false;
     boost::asio::async_write(_socket, boost::asio::buffer(data(*_packet), _packet->size()),
                              _strand.wrap(std::bind(&network_executor::handle_write,
                                                     this,
@@ -130,4 +130,5 @@ void network_executor::flush(std::shared_ptr<abstract_session> owner, bool disco
                                                     std::move(owner),
                                                     disconnect)));
     _packet.reset();
+    return true;
 }
