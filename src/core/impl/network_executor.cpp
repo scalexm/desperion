@@ -74,9 +74,8 @@ void network_executor::handle_read_raw_data(const boost::system::error_code & ec
     if (ec)
         return _handle_error(ec);
 
-    _handle_message(_header >> 2, std::make_shared<byte_buffer>(_raw_data));
+    _handle_message(_header >> 2, std::make_shared<byte_buffer>(std::move(_raw_data)));
     _header = 0;
-    _raw_data.clear();
     start_read(std::move(owner));
 }
 
